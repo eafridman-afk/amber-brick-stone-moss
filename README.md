@@ -78,3 +78,12 @@ Live path uses **formal / HH** numeric charges only (`chargeSource: formal`). No
 Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
 
 **MoleculoSphere 5D · v1.1**
+
+## Public ligand keep/drop (v1.1)
+
+| Keep | Drop |
+|------|------|
+| KSRRRAR (L2), Pb²⁺ (L1), PRARR/SLLRST if in export | 5H-EAF (private) |
+| Cu²⁺ only on panels E/F | ACh optional omit |
+
+See `exports/docs_MoleculoSphere5D/PUBLIC_LIGAND_KEEP_DROP.md`.
