@@ -1,0 +1,14 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+parameter,symbol,value,unit,disclaimer
+lambda_D_nm,λ_D,0.8,nm,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+coulombK,k,1.15,continuum,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+force_cutoff_nm,r_cut,3.2,nm,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+friction,γ,1.917,—,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+fCap,fCap,16.2,kT/nm,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+dt,dt,0.012,—,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+frameNs,frameNs,100,ns/frame (label),Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+rng_seed_master,seed,20260805,—,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+proximity_r_nm,d_prox,1.0,nm,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+hold_frames,hold,3,frames,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+hh_theta_on,θ_on,0.5,—,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+dual_events,events,"proximity (d<1 nm hold≥3); HH-binary (θ≥0.5 hold≥3, titratable only)",—,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.

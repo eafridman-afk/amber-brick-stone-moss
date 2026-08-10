@@ -1,0 +1,79 @@
+{
+  "programme": "PUB_COMBO_v1.1",
+  "title": "Public multi-ligand HM + peptide combinations (v1.1)",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "app_version": "1.1",
+  "hypothesis": "When a public heavy-metal cation and a polybasic peptide co-occupy a continuum domain, same-sign Yukawa yields U_HM\u2013pep > 0 (Competitive educational label) while both may retain negative U\u2013ROI on attractive domains. Classical continuum only.",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "scientific_framing": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support. 5H-EAF and private nanotoxicity analyses are excluded from this public package.",
+  "receptors": [
+    "acidic_pore",
+    "atp7a_wt",
+    "atp7a_menkes"
+  ],
+  "pairs": [
+    {
+      "id": "Pb_KSRRRAR",
+      "label": "Pb\u00b2\u207a + KSRRRAR",
+      "optional": false
+    },
+    {
+      "id": "Cu_KSRRRAR",
+      "label": "Cu\u00b2\u207a + KSRRRAR",
+      "optional": false
+    },
+    {
+      "id": "Pb_PRARR",
+      "label": "Pb\u00b2\u207a + PRARR",
+      "optional": true
+    }
+  ],
+  "pH": [
+    7.4,
+    6.2,
+    5.0
+  ],
+  "n_rep": 5,
+  "n_unit": 8,
+  "respawn": false,
+  "ligand_ligand_forces_in_combo": true,
+  "locked_physics": {
+    "lambda_D_nm": 0.8,
+    "coulombK": 1.15,
+    "force_cutoff_nm": 3.2,
+    "short_range_well": false,
+    "friction": 1.917,
+    "fCap": 16.2,
+    "dt": 0.012,
+    "noiseScale": 0.35,
+    "kT": 1.0,
+    "n_frames_fixed_pH": 120,
+    "n_frames_pH_ramp": 1500,
+    "n_replicates": 5,
+    "rng_seed_master": 20260805,
+    "proximity_r_nm": 1.0,
+    "hold_frames": 3,
+    "hh_theta_on": 0.5,
+    "pKa": 6.2,
+    "r_min_nm": 0.12,
+    "box_nm": 4.0,
+    "energy_force_units": "nm_Yukawa_with_coulombK",
+    "integrator": "overdamped_Langevin_continuum",
+    "coordinate_source": "diagnostics/diag_Build_initial_coords_SCALED_nm.json",
+    "coordinate_units": "absolute_nm_SCALED_nm",
+    "public_assets_only": true,
+    "forbidden_paths": [
+      "nanotoxicity"
+    ]
+  },
+  "energy_export": [
+    "U_HM_ROI_kT",
+    "U_pep_ROI_kT",
+    "U_HM_pep_kT",
+    "U_tot_combo_kT"
+  ],
+  "badge_rule": "Competitive if U_HM\u2013pep > 0; Cooperative if U_HM\u2013pep < 0 (educational continuum label only)",
+  "charge_note": "Charges are formal / HH continuum parameters; chargeSource metadata is formal|HH. DFT may refine charges offline. No live quantum solver.",
+  "public_disclosure": "5H-EAF and private nanotoxicity analyses are excluded from this public package.",
+  "generated_at": "2026-08-10T20:06:02.336003+00:00"
+}
