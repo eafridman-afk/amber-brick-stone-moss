@@ -1,0 +1,10 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+# Public paper / panel keep–drop policy (tool may still implement full L1–L4 internally).
+action,ligand_id,species,q_nominal,notes
+KEEP,L1,Pb²⁺,+2,Public continuum heavy-metal baseline
+KEEP,L2,KSRRRAR,+5,Primary polybasic peptide (FCS-like continuum proxy)
+KEEP,L2,PRARR,+3,Include if present in that export (intermediate charge)
+KEEP,L2,SLLRST,+1,Include if present in that export (single-Arg educational proxy; not a viral infectivity claim)
+KEEP,L?,Cu²⁺,+2,Only if the panel is E/F (not in default A–D public pack)
+DROP,L4,5H-EAF,≈θ·4.5,Omit from public paper tables/panels by default
+DROP,L3,ACh,+1,Optional — omit unless you explicitly publicize ACh continuum results

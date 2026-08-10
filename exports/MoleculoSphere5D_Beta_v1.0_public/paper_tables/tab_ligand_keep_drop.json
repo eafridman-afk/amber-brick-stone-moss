@@ -1,0 +1,54 @@
+{
+  "table": "tab_ligand_keep_drop",
+  "scope": "Public paper / panel ligand policy. Full L1–L4 remain in the open tool for internal MULTI/P3 work; default publicized set is narrower.",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "KEEP": [
+    {
+      "id": "L1",
+      "species": "Pb2+",
+      "q": "+2",
+      "note": "Public continuum heavy-metal baseline"
+    },
+    {
+      "id": "L2",
+      "species": "KSRRRAR",
+      "q": "+5",
+      "note": "Primary polybasic peptide (FCS-like continuum proxy)"
+    },
+    {
+      "id": "L2",
+      "species": "PRARR",
+      "q": "+3",
+      "note": "Include if present in that export"
+    },
+    {
+      "id": "L2",
+      "species": "SLLRST",
+      "q": "+1",
+      "note": "Include if present in that export (single-Arg educational proxy; not a viral infectivity claim)"
+    },
+    {
+      "id": "Cu2+",
+      "species": "Cu2+",
+      "q": "+2",
+      "note": "Only if the panel is E/F (not in default receptor A–D public pack)"
+    }
+  ],
+  "DROP": [
+    {
+      "id": "L4",
+      "species": "5H-EAF",
+      "q": "approx theta*4.5",
+      "note": "Omit from public paper tables/panels by default"
+    },
+    {
+      "id": "L3",
+      "species": "ACh",
+      "q": "+1",
+      "note": "Optional — omit unless you explicitly publicize ACh continuum results"
+    }
+  ],
+  "public_default_panel": ["L1_Pb", "L2_KSRRRAR", "L2_PRARR", "L2_SLLRST"],
+  "explicit_publicize_required": ["L3_ACh"],
+  "default_omit": ["L4_5H_EAF"]
+}
