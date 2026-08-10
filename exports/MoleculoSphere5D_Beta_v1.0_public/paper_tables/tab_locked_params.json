@@ -1,0 +1,92 @@
+{
+  "table": "tab_locked_params",
+  "rows": [
+    {
+      "parameter": "lambda_D_nm",
+      "symbol": "\u03bb_D",
+      "value": 0.8,
+      "unit": "nm",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "coulombK",
+      "symbol": "k",
+      "value": 1.15,
+      "unit": "continuum",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "force_cutoff_nm",
+      "symbol": "r_cut",
+      "value": 3.2,
+      "unit": "nm",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "friction",
+      "symbol": "\u03b3",
+      "value": 1.917,
+      "unit": "\u2014",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "fCap",
+      "symbol": "fCap",
+      "value": 16.2,
+      "unit": "kT/nm",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "dt",
+      "symbol": "dt",
+      "value": 0.012,
+      "unit": "\u2014",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "frameNs",
+      "symbol": "frameNs",
+      "value": 100,
+      "unit": "ns/frame (label)",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "rng_seed_master",
+      "symbol": "seed",
+      "value": 20260805,
+      "unit": "\u2014",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "proximity_r_nm",
+      "symbol": "d_prox",
+      "value": 1.0,
+      "unit": "nm",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "hold_frames",
+      "symbol": "hold",
+      "value": 3,
+      "unit": "frames",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "hh_theta_on",
+      "symbol": "\u03b8_on",
+      "value": 0.5,
+      "unit": "\u2014",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "parameter": "dual_events",
+      "symbol": "events",
+      "value": "proximity (d<1 nm hold\u22653); HH-binary (\u03b8\u22650.5 hold\u22653, titratable only)",
+      "unit": "\u2014",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    }
+  ],
+  "seed": 20260805,
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "model": "MoleculoSphere5D_continuum_v1"
+}

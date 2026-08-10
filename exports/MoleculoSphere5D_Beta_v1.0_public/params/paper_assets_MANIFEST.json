@@ -1,0 +1,120 @@
+{
+  "package": "validation_package_MoleculoSphere5D",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "generated_at": "2026-08-06T21:41:13.831713+00:00",
+  "seed": 20260805,
+  "locked_params_file": "LOCKED_VALIDITY_PARAMS.json",
+  "locked_params_sha256": "b2069e78b464884faf4cf3152db1bc36288a7c16652d03876f6685e2d0411d7d",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "public_assets_only": true,
+  "forbidden": [
+    "nanotoxicity/"
+  ],
+  "paper_tables": {
+    "tab_locked_params": [
+      "paper_tables/tab_locked_params.csv",
+      "paper_tables/tab_locked_params.json"
+    ],
+    "tab_kernel_validation": [
+      "paper_tables/tab_kernel_validation.csv",
+      "paper_tables/tab_kernel_validation.json"
+    ],
+    "tab_MULTI_exclusive_ranking": [
+      "paper_tables/tab_MULTI_exclusive_ranking.csv",
+      "paper_tables/tab_MULTI_exclusive_ranking.json"
+    ],
+    "tab_receptors": [
+      "paper_tables/tab_receptors.csv",
+      "paper_tables/tab_receptors.json"
+    ],
+    "tab_ligands": [
+      "paper_tables/tab_ligands.csv",
+      "paper_tables/tab_ligands.json"
+    ],
+    "tab_ligand_keep_drop": [
+      "paper_tables/tab_ligand_keep_drop.csv",
+      "paper_tables/tab_ligand_keep_drop.json"
+    ]
+  },
+  "paper_figures": {
+    "Fig1_kernel": [
+      "paper_figures/Fig1_kernel.png",
+      "paper_figures/Fig1_kernel.pdf",
+      "paper_figures/Fig1_kernel_caption.txt",
+      "paper_figures/Fig1_kernel_curve.csv"
+    ],
+    "Fig2_MULTI_ranking": [
+      "paper_figures/Fig2_MULTI_ranking.png",
+      "paper_figures/Fig2_MULTI_ranking.pdf",
+      "paper_figures/Fig2_MULTI_ranking_caption.txt"
+    ],
+    "Fig3_P1_Pb_domains": [
+      "paper_figures/Fig3_P1_Pb_domains.png",
+      "paper_figures/Fig3_P1_Pb_domains.pdf",
+      "paper_figures/Fig3_P1_Pb_domains_caption.txt"
+    ],
+    "Fig4_workflow": [
+      "paper_figures/Fig4_workflow.png",
+      "paper_figures/Fig4_workflow.pdf",
+      "paper_figures/Fig4_workflow_caption.txt"
+    ]
+  },
+  "all_asset_paths": [
+    "PUBLIC_LIGAND_KEEP_DROP.md",
+    "paper_figures/Fig1_kernel.pdf",
+    "paper_figures/Fig1_kernel.png",
+    "paper_figures/Fig1_kernel_caption.txt",
+    "paper_figures/Fig1_kernel_curve.csv",
+    "paper_figures/Fig2_MULTI_ranking.pdf",
+    "paper_figures/Fig2_MULTI_ranking.png",
+    "paper_figures/Fig2_MULTI_ranking_caption.txt",
+    "paper_figures/Fig3_P1_Pb_domains.pdf",
+    "paper_figures/Fig3_P1_Pb_domains.png",
+    "paper_figures/Fig3_P1_Pb_domains_caption.txt",
+    "paper_figures/Fig4_workflow.pdf",
+    "paper_figures/Fig4_workflow.png",
+    "paper_figures/Fig4_workflow_caption.txt",
+    "paper_tables/tab_MULTI_exclusive_ranking.csv",
+    "paper_tables/tab_MULTI_exclusive_ranking.json",
+    "paper_tables/tab_kernel_validation.csv",
+    "paper_tables/tab_kernel_validation.json",
+    "paper_tables/tab_ligand_keep_drop.csv",
+    "paper_tables/tab_ligand_keep_drop.json",
+    "paper_tables/tab_ligands.csv",
+    "paper_tables/tab_ligands.json",
+    "paper_tables/tab_locked_params.csv",
+    "paper_tables/tab_locked_params.json",
+    "paper_tables/tab_receptors.csv",
+    "paper_tables/tab_receptors.json"
+  ],
+  "MULTI_ranking_note": "Ranked by most negative mean U_L\u2013ROI at pH 5.0: L2 KSRRRAR \u2192 L4 5H-EAF \u2192 L1 Pb\u00b2\u207a \u2192 L3 ACh (validated publication numbers; continuum only).",
+  "FROZEN_MULTI": {
+    "status": "FROZEN",
+    "canonical_csv": "MULTI_exclusive_ranking_publication.csv",
+    "paper_table": "paper_tables/tab_MULTI_exclusive_ranking.csv",
+    "figure": "paper_figures/Fig2_MULTI_ranking.png",
+    "source_export": "public_MULTI_pore_competition_20260806_1849",
+    "seed": 20260805,
+    "n_unit": 12,
+    "n_rep": 3,
+    "n_frames": 120,
+    "provenance": "FROZEN_MULTI_PAPER_TABLE.json",
+    "note": "Absolute U scales with n_unit and n_frames; rank order robust under locked kernel."
+  },
+  "public_ligand_policy": {
+    "KEEP": [
+      "L1_Pb",
+      "L2_KSRRRAR",
+      "L2_PRARR_if_export",
+      "L2_SLLRST_if_export",
+      "Cu2+_only_panel_E_F"
+    ],
+    "DROP": [
+      "L4_5H_EAF"
+    ],
+    "OPTIONAL": [
+      "L3_ACh_omit_unless_explicitly_publicized"
+    ],
+    "doc": "PUBLIC_LIGAND_KEEP_DROP.md"
+  }
+}
