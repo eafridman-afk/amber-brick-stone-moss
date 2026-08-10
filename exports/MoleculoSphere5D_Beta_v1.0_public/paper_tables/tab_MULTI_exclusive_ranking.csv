@@ -1,0 +1,5 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+# PUBLIC figure set: KEEP L2 KSRRRAR + L1 Pb only. 5H-EAF (L4) DROPPED. ACh (L3) omitted unless publicized.
+Rank,Ligand_ID,Ligand,U_pH5.0_kT,U_pH7.4_kT,U_pH5.0_exact,U_pH7.4_exact,public_action,rank_rule,dropped_from_public_figure,disclaimer
+1,L2,KSRRRAR,-21.3,-18.9,-21.334,-18.88,KEEP,most_negative_U_at_pH_5.0_public_KEEP_only,L4_5H-EAF; L3_ACh_optional_omitted,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+2,L1,Pb²⁺,-4.1,-6.1,-4.089,-6.066,KEEP,most_negative_U_at_pH_5.0_public_KEEP_only,L4_5H-EAF; L3_ACh_optional_omitted,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
