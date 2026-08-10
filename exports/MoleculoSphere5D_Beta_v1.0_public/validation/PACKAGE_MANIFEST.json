@@ -1,0 +1,33 @@
+{
+  "package": "validation_package_MoleculoSphere5D",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "files": [
+    "DISCLAIMER.txt",
+    "KERNEL_VALIDATION.json",
+    "LOCKED_VALIDITY_PARAMS.json",
+    "LOCKED_VALIDITY_PARAMS_SOURCE.json",
+    "MULTI_LIGAND_PRESETS.json",
+    "MULTI_REPORT.md",
+    "MULTI_exclusive_baselines_mean_sd.csv",
+    "MULTI_exclusive_ranking_publication.csv",
+    "MULTI_replicates_fixed_pH_raw.csv",
+    "MULTI_summary_mean_sd.csv",
+    "P1_REPORT.md",
+    "P1_summary_mean_sd.csv",
+    "P2_REPORT.md",
+    "P2_exclusive_ranking_pH5_vs_pH7.csv",
+    "P2_summary_mean_sd.csv",
+    "PACKAGE_MANIFEST.json",
+    "VALIDITY_REPORT.md"
+  ],
+  "n_rep": 10,
+  "n_frames": 800,
+  "p1_rows": 12,
+  "p2_rows": 15,
+  "numeric_check": "all U_primary_mean_kT/sd finite",
+  "generated_at": "2026-08-06T20:02:02.278502+00:00",
+  "MULTI_included": true,
+  "MULTI_source_export": "public_MULTI_pore_competition_20260806_2000",
+  "updated_at": "2026-08-06T20:05:07.718911+00:00"
+}
