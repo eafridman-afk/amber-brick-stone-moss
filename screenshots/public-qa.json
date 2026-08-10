@@ -1,0 +1,38 @@
+{
+  "checks": {
+    "receptors": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "E": true,
+      "F": true
+    },
+    "peptides": {
+      "ksrrrar": true,
+      "prarr": true,
+      "sllrst": true
+    },
+    "no5HControl": true,
+    "noU5H": true,
+    "hasDisclosure": true,
+    "hasPubMatrixBtn": true,
+    "hasPrivateToggle": true,
+    "programmesPublic": true,
+    "noP2P4": true
+  },
+  "eActive": "atp7aWt",
+  "fActive": "atp7aMenkes",
+  "privateOn": {
+    "has5H": true,
+    "hasU5H": true
+  },
+  "privateOff": {
+    "has5H": false
+  },
+  "mobileOverflow": {
+    "scrollW": 390,
+    "clientW": 390,
+    "overflow": false
+  }
+}

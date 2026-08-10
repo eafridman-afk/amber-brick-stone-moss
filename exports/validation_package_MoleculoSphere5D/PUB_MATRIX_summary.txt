@@ -1,0 +1,1 @@
+PUB_MATRIX 72 cells · n=5 · frames=150 · E vs F @7.4: Pb2+: |U|_E=44.71 |U|_F=4.73 → E > F · KSRRRAR: |U|_E=1157.42 |U|_F=72.36 → E > F · PRARR: |U|_E=389.47 |U|_F=23.79 → E > F · SLLRST: |U|_E=128.22 |U|_F=9.24 → E > F · Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.

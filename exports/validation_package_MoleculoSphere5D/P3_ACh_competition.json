@@ -1,0 +1,20 @@
+{
+  "disclaimer": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support.",
+  "programme": {
+    "id": "prog3_ach",
+    "label": "Programme 3 \u2013 Allosteric competition with acetylcholine",
+    "hypothesis": "Heavy metals or polycationic peptides alter continuum electrostatics at an \u03b17 allosteric (or orthosteric) site and thereby compete with acetylcholine.",
+    "note": "Continuum ranking of electrostatic competition against ACh only \u2014 not a claim of receptor antagonism without independent biological support."
+  },
+  "locked": {
+    "debyeNm": 0.8,
+    "coulombK": 1.15,
+    "forceCutoffNm": 3.2,
+    "frictionScale": 1.35,
+    "baseSeed": 20260805,
+    "coordScaleToNm": 1
+  },
+  "results": [],
+  "exportedAt": "2026-08-06T20:04:37.883Z",
+  "publicPackageDisclosure": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation."
+}

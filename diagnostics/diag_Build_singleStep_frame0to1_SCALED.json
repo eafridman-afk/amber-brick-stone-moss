@@ -1,0 +1,120 @@
+{
+  "schema": "moleculosphere5d.diag_singleStep_frame0to1_SCALED.v1",
+  "coordsSource": "diagnostics/diag_Build_initial_coords_SCALED_nm.json",
+  "coordScaleToNm": 1,
+  "environment": "Build",
+  "locked": {
+    "seed": 20260805,
+    "pH": 6.2,
+    "debyeNm": 0.8,
+    "forceCutoffNm": 3.2,
+    "coulombK": 1.15,
+    "frictionScale": 1.35,
+    "noiseScale": 0.35,
+    "kT": 1,
+    "frameNs": 100,
+    "shortRangeWellEnabled": false,
+    "integrator_dt_scene": 0.012,
+    "note": "Conceptual frame length = 100 ns; overdamped integrator uses fixed scene dt=0.012 per frame step"
+  },
+  "targetId": 35,
+  "rngSeedAtStep": 20260805,
+  "frame0": {
+    "position": {
+      "x": 0.16969656276593134,
+      "y": 0.5708421779771458,
+      "z": 0.04390468156386196,
+      "ox": -0.4787943369890639,
+      "oy": -0.4820266598278863,
+      "oz": 0.7337617338635027,
+      "q": 4.999947879040468
+    },
+    "hisWorld": {
+      "x": 0,
+      "y": 0.4,
+      "z": 0.303968
+    },
+    "minDistNm": 0.35442474911687893,
+    "U_pep_His": 28.884769951434006,
+    "U_tot": -77.93775516337381,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "force_on_id35": {
+    "fx": 50.461585998535156,
+    "fy": 302.5501708984375,
+    "fz": 66.40699005126953,
+    "magnitude": 313.8357307570805,
+    "fx_afterClip": 2.60479484348143,
+    "fy_afterClip": 15.617446607277712,
+    "fz_afterClip": 3.4278864176344124,
+    "forceClipped": true,
+    "fCap": 16.200000000000003,
+    "units": "scene force (arbitrary continuum units, nm-Yukawa kernel)"
+  },
+  "force_on_His194_pair_only": {
+    "fx": -10.15322467409818,
+    "fy": -10.221768717889852,
+    "fz": 15.560016411267924,
+    "magnitude": 21.205816129629977,
+    "note": "His194 is fixed continuum proxy; reaction force = −F_His→peptide (pair only)"
+  },
+  "force_His194_on_id35_pair_only": {
+    "fx": 10.15322467409818,
+    "fy": 10.221768717889852,
+    "fz": -15.560016411267924,
+    "magnitude": 21.205816129629977
+  },
+  "random_force": {
+    "rng_uniform": [
+      0.76819542,
+      0.92722843,
+      0.33537283
+    ],
+    "rng_source": "hard-wired WSL uniforms [0.76819542, 0.92722843, 0.33537283]",
+    "displacement_noise": {
+      "nx": 0.01072797881559734,
+      "ny": 0.01708939528669398,
+      "nz": -0.006585186250502496
+    },
+    "orientation_rng": [
+      0.568663939833641,
+      0.7677551771048456,
+      0.22740986687131226
+    ],
+    "noiseAmp": 0.03834057902536163,
+    "formula": "n = (U(0,1)*2-1) * noiseScale * sqrt(dt) / friction"
+  },
+  "deterministic_drift": {
+    "dx": 0.016305445029617716,
+    "dy": 0.09776179409876502,
+    "dz": 0.021457817950763146
+  },
+  "friction": 1.917,
+  "invFriction": 0.5216484089723527,
+  "speciesFriction": 1.42,
+  "dt": 0.012,
+  "frame1": {
+    "position": {
+      "x": 0.1967299866111464,
+      "y": 0.6856933673626048,
+      "z": 0.05877731326412261,
+      "ox": -0.4851940845344727,
+      "oy": -0.4762878350722397,
+      "oz": 0.7333052546181777
+    },
+    "minDistNm": 0.42478448729799123,
+    "U_pep_His": 25.026331789933028,
+    "U_tot": -78.93830644754252,
+    "theta": 0.5,
+    "q_His": 0.5,
+    "tNs": 100
+  },
+  "delta": {
+    "dx": 0.027033423845215065,
+    "dy": 0.11485118938545902,
+    "dz": 0.014872631700260652,
+    "dMinDistNm": 0.0703597381811123,
+    "dU_pep_His": -3.8584381615009775
+  }
+}

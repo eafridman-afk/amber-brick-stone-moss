@@ -1,0 +1,31 @@
+{
+  "schema": "moleculosphere5d.diag_frame0_energies_SCALED.v1",
+  "environment": "Build",
+  "minDistNm": 0.35442474911687893,
+  "nInside1nm": 10,
+  "U_pep_His_total": 28.884769951434006,
+  "U_tot": -76.6435857843507,
+  "U_closest": 5.20838872680948,
+  "closestId": 35,
+  "theta": 0.5,
+  "q_His": 0.5,
+  "coulombK": 1.15,
+  "debyeNm": 0.8,
+  "scale": 4,
+  "pH": 6.2,
+  "seed": 20260805,
+  "baselineId": "Baseline_KSRRRAR_50",
+  "nMolecules": 50,
+  "target": {
+    "minDistNm": 0.3544,
+    "nInside1nm": 10,
+    "U_pep_His_total": 28.88,
+    "U_closest": 5.21,
+    "note": "After r-in-nm fix, U should be ~1/4 of pre-fix scene-unit energies"
+  },
+  "pass": {
+    "minDist": true,
+    "nInside": true,
+    "U_pep": true
+  }
+}

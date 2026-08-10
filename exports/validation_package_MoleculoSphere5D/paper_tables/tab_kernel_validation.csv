@@ -1,0 +1,5 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, coordination chemistry, or biological validation.
+r_nm,U_kT,F_abs_kT_per_nm,inside_cutoff,qi,qj,coulombK,lambda_D_nm,cutoff_nm
+1.0,0.32948052,0.74133116,True,1.0,1.0,1.15,0.8,3.2
+3.1,0.00769919,0.0121076,True,1.0,1.0,1.15,0.8,3.2
+3.3,0.0,0.0,False,1.0,1.0,1.15,0.8,3.2

@@ -1,0 +1,9 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
+# MoleculoSphere 5D · Beta v1.0 · locked Yukawa · respawn OFF
+receptorId,receptorLabel,ligandId,ligandLabel,nominalCharge,pH,n,frames,U_Cu_ROI_mean,U_Cu_ROI_sd,U_tot_mean,U_tot_sd
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,7.4,5,150,-38.003641,6.029330,-176.627242,26.022665
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,6.2,5,150,-42.069415,11.513968,-193.577692,46.782099
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,5,5,150,-38.943050,8.726109,-182.587691,41.232751
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,7.4,5,150,-4.590638,0.514077,-22.579545,3.742894
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,6.2,5,150,-4.903337,0.586015,-23.207263,4.233255
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,5,5,150,-5.003630,0.941492,-24.253917,6.030547

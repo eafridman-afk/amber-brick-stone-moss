@@ -1,0 +1,1999 @@
+{
+  "schema": "moleculosphere5d.validity_suite.v2_NMnative",
+  "exportedAt": "2026-08-06T12:05:42.483Z",
+  "locked": {
+    "debyeNm": 0.8,
+    "debyeScene": 0.8,
+    "hisPka": 6.2,
+    "forceCutoffLambdaMult": 4,
+    "forceCutoffNm": 3.2,
+    "forceCutoffScene": 3.2,
+    "shortRangeWellEnabled": false,
+    "metalHisPrefEnabled": false,
+    "temperature": 298,
+    "kT": 1,
+    "coulombK": 1.15,
+    "frictionScale": 1.35,
+    "frameNs": 100,
+    "runFrames": 2500,
+    "rampFrames": 1500,
+    "replicates": 10,
+    "baseSeed": 20260805,
+    "nMolecules": 50,
+    "proximityNm": 1,
+    "confirmFrames": 3,
+    "shellMinNm": 0.55,
+    "shellMaxNm": 2.8,
+    "coordScaleToNm": 1,
+    "coordsSource": "diagnostics/diag_Build_initial_coords_SCALED_nm.json",
+    "speciesFriction_KSRRRAR": 1.42,
+    "speciesFriction_PRARR": 1.25,
+    "friction_KSRRRAR": 1.917,
+    "friction_PRARR": 1.6875,
+    "fCap": 16.200000000000003,
+    "integrator_dt_scene": 0.012,
+    "noiseScale": 0.35,
+    "energyForceUnits": "nm",
+    "PRNG": "makeSeededRng(seed) after SCALED_nm load; seed=baseSeed+rep*997(+5000 PRARR)"
+  },
+  "receptor": {
+    "label": "Furin catalytic triad continuum proxy",
+    "triad": "Asp153–His194–Ser368",
+    "roi": "His194"
+  },
+  "expectation": "KSRRRAR (nominal +5) should produce more proximity events and higher |U_pep–His| than PRARR (nominal +3) under the same locked pH and λ_D=0.80 nm (cutoff 3.2 nm).",
+  "ranking": [
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed-pH_7.4",
+      "ksrrrarMean": 1,
+      "prarrMean": 1,
+      "confirmed": false,
+      "note": "pH 7.4"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed-pH_7.4",
+      "ksrrrarMean": 0.5177109851490572,
+      "prarrMean": 0.36848006007336315,
+      "confirmed": true,
+      "note": "pH 7.4 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed-pH_6.2",
+      "ksrrrarMean": 1,
+      "prarrMean": 1,
+      "confirmed": false,
+      "note": "pH 6.2"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed-pH_6.2",
+      "ksrrrarMean": 4.332807401142725,
+      "prarrMean": 3.0239738715440554,
+      "confirmed": true,
+      "note": "pH 6.2 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed-pH_5",
+      "ksrrrarMean": 1,
+      "prarrMean": 1,
+      "confirmed": false,
+      "note": "pH 5"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed-pH_5",
+      "ksrrrarMean": 7.816995262765007,
+      "prarrMean": 5.605333783671659,
+      "confirmed": true,
+      "note": "pH 5 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "pH-ramp_7.4_to_5",
+      "ksrrrarMean": 1,
+      "prarrMean": 1,
+      "confirmed": false,
+      "note": "pH ramp 7.4→5.0"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "pH-ramp_7.4_to_5",
+      "ksrrrarMean": 4.296446002339163,
+      "prarrMean": 3.050386331258389,
+      "confirmed": true,
+      "note": "pH ramp 7.4→5.0 · |U_pep–His|"
+    }
+  ],
+  "aggregates": [
+    {
+      "baselineId": "Baseline_KSRRRAR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 7.4,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.3999658248602768,
+        "sd": 0.012224950851791101
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 0.5177109851490572,
+        "sd": 0.02292356433973486
+      },
+      "meanUTot": {
+        "mean": -344.48097542684854,
+        "sd": 23.64121462584889
+      },
+      "finalTheta": {
+        "mean": 0.059350943102767575,
+        "sd": 7.314236392868128e-18
+      },
+      "finalQHis": {
+        "mean": 0.059350943102767575,
+        "sd": 7.314236392868128e-18
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20260805,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4147181385212285,
+          "meanHhDistNm": null,
+          "meanUTot": -310.6056985547592,
+          "meanUPepHis": 0.48590560098548485,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 1,
+          "seed": 20261802,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41684363615074166,
+          "meanHhDistNm": null,
+          "meanUTot": -358.96747830715276,
+          "meanUPepHis": 0.5316018258116304,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 2,
+          "seed": 20262799,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.38340258151039974,
+          "meanHhDistNm": null,
+          "meanUTot": -359.21834631963316,
+          "meanUPepHis": 0.5312066538055831,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 3,
+          "seed": 20263796,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.39840378483190236,
+          "meanHhDistNm": null,
+          "meanUTot": -361.9634145127731,
+          "meanUPepHis": 0.5325874105299054,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 4,
+          "seed": 20264793,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3872733448278796,
+          "meanHhDistNm": null,
+          "meanUTot": -357.9752368861323,
+          "meanUPepHis": 0.5315111481357743,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 5,
+          "seed": 20265790,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.40553986407913717,
+          "meanHhDistNm": null,
+          "meanUTot": -363.13797625712857,
+          "meanUPepHis": 0.5320235571438979,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 6,
+          "seed": 20266787,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3870258443101261,
+          "meanHhDistNm": null,
+          "meanUTot": -356.7457463971096,
+          "meanUPepHis": 0.5308888771614931,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 7,
+          "seed": 20267784,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4035929203790491,
+          "meanHhDistNm": null,
+          "meanUTot": -308.02753884316144,
+          "meanUPepHis": 0.4837335740307688,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 8,
+          "seed": 20268781,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41114303894664816,
+          "meanHhDistNm": null,
+          "meanUTot": -312.5864808823906,
+          "meanUPepHis": 0.48392466211696694,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 9,
+          "seed": 20269778,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3917150950456552,
+          "meanHhDistNm": null,
+          "meanUTot": -355.581837308245,
+          "meanUPepHis": 0.5337265417690675,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_KSRRRAR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 6.2,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.4046481029377219,
+        "sd": 0.012233311350135225
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 4.332807401142725,
+        "sd": 0.19406992038853188
+      },
+      "meanUTot": {
+        "mean": -338.9640793147962,
+        "sd": 23.743656210017228
+      },
+      "finalTheta": {
+        "mean": 0.5,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.5,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20260805,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4194012561838216,
+          "meanHhDistNm": null,
+          "meanUTot": -305.4162051983373,
+          "meanUPepHis": 4.057315739925563,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 1,
+          "seed": 20261802,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.42147937353121634,
+          "meanHhDistNm": null,
+          "meanUTot": -349.8001884313388,
+          "meanUPepHis": 4.434309353245435,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 2,
+          "seed": 20262799,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3881657721950092,
+          "meanHhDistNm": null,
+          "meanUTot": -355.6377612905635,
+          "meanUPepHis": 4.451222477964584,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 3,
+          "seed": 20263796,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4032278624450863,
+          "meanHhDistNm": null,
+          "meanUTot": -356.8860906314811,
+          "meanUPepHis": 4.463384950969167,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 4,
+          "seed": 20264793,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3919541383049269,
+          "meanHhDistNm": null,
+          "meanUTot": -352.5386025069495,
+          "meanUPepHis": 4.4382608829016394,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 5,
+          "seed": 20265790,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41040410734739047,
+          "meanHhDistNm": null,
+          "meanUTot": -356.7936073642914,
+          "meanUPepHis": 4.4607942283896875,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 6,
+          "seed": 20266787,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3915649705884398,
+          "meanHhDistNm": null,
+          "meanUTot": -351.54370894141465,
+          "meanUPepHis": 4.451969466242183,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 7,
+          "seed": 20267784,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.408195004555413,
+          "meanHhDistNm": null,
+          "meanUTot": -303.21837158087567,
+          "meanUPepHis": 4.047979801121387,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 8,
+          "seed": 20268781,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41579972915739605,
+          "meanHhDistNm": null,
+          "meanUTot": -305.54556343103803,
+          "meanUPepHis": 4.050851323184685,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 9,
+          "seed": 20269778,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3962888150685198,
+          "meanHhDistNm": null,
+          "meanUTot": -352.2606937716722,
+          "meanUPepHis": 4.471985787482914,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_KSRRRAR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 5,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.4060927550723902,
+        "sd": 0.01224509028647682
+      },
+      "meanHhDistNm": {
+        "mean": 0.5594331683558933,
+        "sd": 0.02866617089557055
+      },
+      "meanUPepHis": {
+        "mean": 7.816995262765007,
+        "sd": 0.35535101548683856
+      },
+      "meanUTot": {
+        "mean": -316.14119666718926,
+        "sd": 22.09642032149879
+      },
+      "finalTheta": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20260805,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4208047681538118,
+          "meanHhDistNm": 0.6327275542459895,
+          "meanUTot": -301.0147711583218,
+          "meanUPepHis": 7.5753260558718365,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 1,
+          "seed": 20261802,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4228234876884184,
+          "meanHhDistNm": 0.5461147178701702,
+          "meanUTot": -302.0250264787557,
+          "meanUPepHis": 7.654822214796355,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 2,
+          "seed": 20262799,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.38975381822917377,
+          "meanHhDistNm": 0.527889684081855,
+          "meanUTot": -350.5532752087915,
+          "meanUPepHis": 8.314359685299275,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 3,
+          "seed": 20263796,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4049358431542672,
+          "meanHhDistNm": 0.553758622315092,
+          "meanUTot": -304.34221482204117,
+          "meanUPepHis": 7.602210873465703,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 4,
+          "seed": 20264793,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.3934440165882728,
+          "meanHhDistNm": 0.5466079891307091,
+          "meanUTot": -302.3611560148774,
+          "meanUPepHis": 7.589142344650597,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 5,
+          "seed": 20265790,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.41221815338631684,
+          "meanHhDistNm": 0.5620800575484256,
+          "meanUTot": -306.46585420112217,
+          "meanUPepHis": 7.621884316013145,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 6,
+          "seed": 20266787,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.39270241020491786,
+          "meanHhDistNm": 0.5710444696059753,
+          "meanUTot": -346.58846219313523,
+          "meanUPepHis": 8.321209250592247,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 7,
+          "seed": 20267784,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4095230435170159,
+          "meanHhDistNm": 0.5621076548940718,
+          "meanUTot": -299.31604243098957,
+          "meanUPepHis": 7.5735410791473825,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 8,
+          "seed": 20268781,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4171850534681206,
+          "meanHhDistNm": 0.537492740723304,
+          "meanUTot": -301.85981891708093,
+          "meanUPepHis": 7.562119146162217,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 9,
+          "seed": 20269778,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.3975369563335865,
+          "meanHhDistNm": 0.5545081931433408,
+          "meanUTot": -346.88534524677635,
+          "meanUPepHis": 8.355337661651308,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_KSRRRAR_50",
+      "protocol": {
+        "kind": "pH-ramp",
+        "pHStart": 7.4,
+        "pHEnd": 5,
+        "frames": 1500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.3999658248602768,
+        "sd": 0.012224950851791101
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 4.296446002339163,
+        "sd": 0.1977942489579938
+      },
+      "meanUTot": {
+        "mean": -337.62822290588406,
+        "sd": 23.543580364801986
+      },
+      "finalTheta": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20260805,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4147181385212285,
+          "meanHhDistNm": null,
+          "meanUTot": -305.05223996816443,
+          "meanUPepHis": 4.00863644666506,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 1,
+          "seed": 20261802,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41684363615074166,
+          "meanHhDistNm": null,
+          "meanUTot": -353.0614169930186,
+          "meanUPepHis": 4.415456707073403,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 2,
+          "seed": 20262799,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.38340258151039974,
+          "meanHhDistNm": null,
+          "meanUTot": -351.50747746954596,
+          "meanUPepHis": 4.404247346501214,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 3,
+          "seed": 20263796,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.39840378483190236,
+          "meanHhDistNm": null,
+          "meanUTot": -354.93120154708026,
+          "meanUPepHis": 4.418923415662554,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 4,
+          "seed": 20264793,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3872733448278796,
+          "meanHhDistNm": null,
+          "meanUTot": -350.2398422400934,
+          "meanUPepHis": 4.4240117759897855,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 5,
+          "seed": 20265790,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.40553986407913717,
+          "meanHhDistNm": null,
+          "meanUTot": -353.6924987711757,
+          "meanUPepHis": 4.42743577588633,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 6,
+          "seed": 20266787,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3870258443101261,
+          "meanHhDistNm": null,
+          "meanUTot": -352.1778490980409,
+          "meanUPepHis": 4.418168804277916,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 7,
+          "seed": 20267784,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4035929203790491,
+          "meanHhDistNm": null,
+          "meanUTot": -299.3428110400396,
+          "meanUPepHis": 4.01170702166585,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 8,
+          "seed": 20268781,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41114303894664816,
+          "meanHhDistNm": null,
+          "meanUTot": -306.6604729674987,
+          "meanUPepHis": 4.009571602744753,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 9,
+          "seed": 20269778,
+          "baselineId": "Baseline_KSRRRAR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.3917150950456552,
+          "meanHhDistNm": null,
+          "meanUTot": -349.61641896418314,
+          "meanUPepHis": 4.42630112692476,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_PRARR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 7.4,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.41137682441037837,
+        "sd": 0.0121858303912155
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 0.36848006007336315,
+        "sd": 0.009883725494931692
+      },
+      "meanUTot": {
+        "mean": -234.87579601487928,
+        "sd": 7.869481665413126
+      },
+      "finalTheta": {
+        "mean": 0.059350943102767575,
+        "sd": 7.314236392868128e-18
+      },
+      "finalQHis": {
+        "mean": 0.059350943102767575,
+        "sd": 7.314236392868128e-18
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20265805,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4133721429361202,
+          "meanHhDistNm": null,
+          "meanUTot": -241.758368143486,
+          "meanUPepHis": 0.37627158337203415,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 1,
+          "seed": 20266802,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4132760987135934,
+          "meanHhDistNm": null,
+          "meanUTot": -217.4095024876053,
+          "meanUPepHis": 0.3433300823066511,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 2,
+          "seed": 20267799,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.39993636766988466,
+          "meanHhDistNm": null,
+          "meanUTot": -225.4022368379382,
+          "meanUPepHis": 0.36202626928058124,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 3,
+          "seed": 20268796,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.43128253593852106,
+          "meanHhDistNm": null,
+          "meanUTot": -238.6661980646707,
+          "meanUPepHis": 0.3735205046156505,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 4,
+          "seed": 20269793,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.425611063717417,
+          "meanHhDistNm": null,
+          "meanUTot": -239.54053865038304,
+          "meanUPepHis": 0.3736998792966384,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 5,
+          "seed": 20270790,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.38967669632328744,
+          "meanHhDistNm": null,
+          "meanUTot": -241.229042540308,
+          "meanUPepHis": 0.3713734635604694,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 6,
+          "seed": 20271787,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41340799515036586,
+          "meanHhDistNm": null,
+          "meanUTot": -240.2678877220464,
+          "meanUPepHis": 0.3758758177479818,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 7,
+          "seed": 20272784,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41748038114323477,
+          "meanHhDistNm": null,
+          "meanUTot": -236.17281650413457,
+          "meanUPepHis": 0.3728381585111944,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 8,
+          "seed": 20273781,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4058571419148395,
+          "meanHhDistNm": null,
+          "meanUTot": -232.300368726088,
+          "meanUPepHis": 0.36581143232835356,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        },
+        {
+          "replicate": 9,
+          "seed": 20274778,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 7.4,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.40386782059651954,
+          "meanHhDistNm": null,
+          "meanUTot": -236.01100047213248,
+          "meanUPepHis": 0.3700534097140768,
+          "finalTheta": 0.05935094310276757,
+          "finalQHis": 0.05935094310276757,
+          "finalPH": 7.4
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_PRARR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 6.2,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.41893645741282926,
+        "sd": 0.011236971789390832
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 3.0239738715440554,
+        "sd": 0.09568024973332431
+      },
+      "meanUTot": {
+        "mean": -223.08257978883017,
+        "sd": 10.825724215195159
+      },
+      "finalTheta": {
+        "mean": 0.5,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.5,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20265805,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.42194269969102854,
+          "meanHhDistNm": null,
+          "meanUTot": -236.14660469035212,
+          "meanUPepHis": 3.1490867130430304,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 1,
+          "seed": 20266802,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41747053607565804,
+          "meanHhDistNm": null,
+          "meanUTot": -214.60368315878125,
+          "meanUPepHis": 2.876606494942815,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 2,
+          "seed": 20267799,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4082222644112055,
+          "meanHhDistNm": null,
+          "meanUTot": -216.0013813652418,
+          "meanUPepHis": 2.9981411659435064,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 3,
+          "seed": 20268796,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4354636803397606,
+          "meanHhDistNm": null,
+          "meanUTot": -212.82251906255595,
+          "meanUPepHis": 2.9219542433960553,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 4,
+          "seed": 20269793,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4328099977116734,
+          "meanHhDistNm": null,
+          "meanUTot": -236.00221382655874,
+          "meanUPepHis": 3.1330936346682963,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 5,
+          "seed": 20270790,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.398346001021345,
+          "meanHhDistNm": null,
+          "meanUTot": -236.58739000018738,
+          "meanUPepHis": 3.109333628136547,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 6,
+          "seed": 20271787,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.42220977995574555,
+          "meanHhDistNm": null,
+          "meanUTot": -214.4249007930047,
+          "meanUPepHis": 2.993515656176528,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 7,
+          "seed": 20272784,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.42593153173367954,
+          "meanHhDistNm": null,
+          "meanUTot": -233.6372441323669,
+          "meanUPepHis": 3.1149412230074143,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 8,
+          "seed": 20273781,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4144197154227916,
+          "meanHhDistNm": null,
+          "meanUTot": -215.2712814354713,
+          "meanUPepHis": 2.9765541540859632,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        },
+        {
+          "replicate": 9,
+          "seed": 20274778,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 6.2,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41254836776540454,
+          "meanHhDistNm": null,
+          "meanUTot": -215.32857942378138,
+          "meanUPepHis": 2.9665118020403964,
+          "finalTheta": 0.5,
+          "finalQHis": 0.5,
+          "finalPH": 6.2
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_PRARR_50",
+      "protocol": {
+        "kind": "fixed-pH",
+        "pH": 5,
+        "frames": 2500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.42374374011756527,
+        "sd": 0.01151310097604448
+      },
+      "meanHhDistNm": {
+        "mean": 0.6410164502566464,
+        "sd": 0.01820304952164061
+      },
+      "meanUPepHis": {
+        "mean": 5.605333783671659,
+        "sd": 0.15334734677596237
+      },
+      "meanUTot": {
+        "mean": -217.71986942948,
+        "sd": 8.233433002692319
+      },
+      "finalTheta": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20265805,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.42640025934875153,
+          "meanHhDistNm": 0.645441699676786,
+          "meanUTot": -213.02229022518145,
+          "meanUPepHis": 5.575653910111265,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 1,
+          "seed": 20266802,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4230856269207824,
+          "meanHhDistNm": 0.6038737553624993,
+          "meanUTot": -212.98583359982385,
+          "meanUPepHis": 5.377888785276973,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 2,
+          "seed": 20267799,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.41235357734314776,
+          "meanHhDistNm": 0.6358352796252118,
+          "meanUTot": -212.4542698481258,
+          "meanUPepHis": 5.578460048230593,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 3,
+          "seed": 20268796,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.440885407459916,
+          "meanHhDistNm": 0.6453913355420507,
+          "meanUTot": -209.33622451836345,
+          "meanUPepHis": 5.465736663837599,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 4,
+          "seed": 20269793,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4383329196075869,
+          "meanHhDistNm": 0.6771829845973569,
+          "meanUTot": -231.53108615569215,
+          "meanUPepHis": 5.854654879456448,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 5,
+          "seed": 20270790,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.40299313367544853,
+          "meanHhDistNm": 0.629472822294031,
+          "meanUTot": -213.46914952512168,
+          "meanUPepHis": 5.567338619272927,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 6,
+          "seed": 20271787,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.42704079350542407,
+          "meanHhDistNm": 0.6457679434449727,
+          "meanUTot": -226.7456271077428,
+          "meanUPepHis": 5.746664555444283,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 7,
+          "seed": 20272784,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.430211945443421,
+          "meanHhDistNm": 0.6478600697589527,
+          "meanUTot": -229.81754675453408,
+          "meanUPepHis": 5.817468638040981,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 8,
+          "seed": 20273781,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4188752228591077,
+          "meanHhDistNm": 0.6430380876205722,
+          "meanUTot": -212.89985283284713,
+          "meanUPepHis": 5.546325672259412,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 9,
+          "seed": 20274778,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "fixed-pH",
+            "pH": 5,
+            "frames": 2500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 1,
+          "meanProximityDistNm": 0.4172585150120673,
+          "meanHhDistNm": 0.6363005246440311,
+          "meanUTot": -214.93681372736782,
+          "meanUPepHis": 5.523146064786107,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        }
+      ]
+    },
+    {
+      "baselineId": "Baseline_PRARR_50",
+      "protocol": {
+        "kind": "pH-ramp",
+        "pHStart": 7.4,
+        "pHEnd": 5,
+        "frames": 1500
+      },
+      "n": 10,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "hhBinaryEvents": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanProximityDistNm": {
+        "mean": 0.41137682441037837,
+        "sd": 0.0121858303912155
+      },
+      "meanHhDistNm": {
+        "mean": 0,
+        "sd": 0
+      },
+      "meanUPepHis": {
+        "mean": 3.050386331258389,
+        "sd": 0.09734891660451175
+      },
+      "meanUTot": {
+        "mean": -226.27576287428224,
+        "sd": 9.779079352989426
+      },
+      "finalTheta": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "finalQHis": {
+        "mean": 0.9406490568972323,
+        "sd": 0
+      },
+      "replicates": [
+        {
+          "replicate": 0,
+          "seed": 20265805,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4133721429361202,
+          "meanHhDistNm": null,
+          "meanUTot": -236.63013347385805,
+          "meanUPepHis": 3.1284267877424385,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 1,
+          "seed": 20266802,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4132760987135934,
+          "meanHhDistNm": null,
+          "meanUTot": -209.20035012998642,
+          "meanUPepHis": 2.8567540513493164,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 2,
+          "seed": 20267799,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.39993636766988466,
+          "meanHhDistNm": null,
+          "meanUTot": -216.7731458330702,
+          "meanUPepHis": 2.9609323821915763,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 3,
+          "seed": 20268796,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.43128253593852106,
+          "meanHhDistNm": null,
+          "meanUTot": -229.94618785682488,
+          "meanUPepHis": 3.1116999952132645,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 4,
+          "seed": 20269793,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.425611063717417,
+          "meanHhDistNm": null,
+          "meanUTot": -231.5626514102827,
+          "meanUPepHis": 3.1253868198715304,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 5,
+          "seed": 20270790,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.38967669632328744,
+          "meanHhDistNm": null,
+          "meanUTot": -234.20798948158625,
+          "meanUPepHis": 3.094889370324557,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 6,
+          "seed": 20271787,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41340799515036586,
+          "meanHhDistNm": null,
+          "meanUTot": -236.30264526644356,
+          "meanUPepHis": 3.1336455139029677,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 7,
+          "seed": 20272784,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.41748038114323477,
+          "meanHhDistNm": null,
+          "meanUTot": -230.95233197701043,
+          "meanUPepHis": 3.1057942413612,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 8,
+          "seed": 20273781,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.4058571419148395,
+          "meanHhDistNm": null,
+          "meanUTot": -214.93522414293466,
+          "meanUPepHis": 2.939360250757067,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        },
+        {
+          "replicate": 9,
+          "seed": 20274778,
+          "baselineId": "Baseline_PRARR_50",
+          "protocol": {
+            "kind": "pH-ramp",
+            "pHStart": 7.4,
+            "pHEnd": 5,
+            "frames": 1500
+          },
+          "proximityEvents": 1,
+          "hhBinaryEvents": 0,
+          "meanProximityDistNm": 0.40386782059651954,
+          "meanHhDistNm": null,
+          "meanUTot": -222.24696917082537,
+          "meanUPepHis": 3.0469738998699722,
+          "finalTheta": 0.9406490568972323,
+          "finalQHis": 0.9406490568972323,
+          "finalPH": 5
+        }
+      ]
+    }
+  ]
+}

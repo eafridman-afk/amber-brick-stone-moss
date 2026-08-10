@@ -1,0 +1,13 @@
+{
+  "schema": "moleculosphere5d.tab_receptors.v2",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "publicPackageDisclosure": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "receptors": [
+    {"letter": "A", "geometry_id": "furin", "label": "Furin catalytic triad continuum proxy", "roi": "His194", "titratable_His": true, "character": "orthosteric"},
+    {"letter": "B", "geometry_id": "acidicPore", "label": "Generic acidic pore constriction", "roi": "Constriction ROI", "titratable_His": false, "character": "constriction"},
+    {"letter": "C", "geometry_id": "alpha7Allo", "label": "α7-nAChR allosteric continuum proxy", "roi": "Allosteric site", "titratable_His": false, "character": "allosteric"},
+    {"letter": "D", "geometry_id": "alpha7Ortho", "label": "α7-like orthosteric continuum proxy", "roi": "Orthosteric site", "titratable_His": false, "character": "orthosteric"},
+    {"letter": "E", "geometry_id": "atp7aWt", "label": "ATP7A WT ATOX1-docking platform", "roi": "ATP7A WT platform", "titratable_His": false, "character": "platform"},
+    {"letter": "F", "geometry_id": "atp7aMenkes", "label": "ATP7A Menkes platform (reduced electronegativity)", "roi": "ATP7A Menkes platform", "titratable_His": false, "character": "platform"}
+  ]
+}

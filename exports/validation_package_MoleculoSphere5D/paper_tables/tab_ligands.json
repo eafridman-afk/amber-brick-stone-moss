@@ -1,0 +1,13 @@
+{
+  "schema": "moleculosphere5d.tab_ligands.v1",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "publicPackageDisclosure": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "ligands": [
+    {"id": "L_HM_Pb", "name": "Pb2+", "engine_class": "ligand1", "nominal_charge": 2},
+    {"id": "L_HM_Cu", "name": "Cu2+", "engine_class": "ligand1", "nominal_charge": 2},
+    {"id": "L_PB5", "name": "KSRRRAR", "engine_class": "ligand2", "nominal_charge": 5},
+    {"id": "L_PB3", "name": "PRARR", "engine_class": "ligand2", "nominal_charge": 3},
+    {"id": "L_MB1", "name": "SLLRST", "engine_class": "ligand2", "nominal_charge": 1}
+  ],
+  "excluded": []
+}

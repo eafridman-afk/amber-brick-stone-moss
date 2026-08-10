@@ -1,0 +1,8 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, coordination chemistry, or biological validation.
+letter,geometry_id,label,roi,titratable_His,character
+A,furin,Furin catalytic triad continuum proxy,His194,true,orthosteric
+B,acidicPore,Generic acidic pore constriction,Constriction ROI,false,constriction
+C,alpha7Allo,α7-nAChR allosteric continuum proxy,Allosteric site,false,allosteric
+D,alpha7Ortho,α7-like orthosteric continuum proxy,Orthosteric site,false,orthosteric
+E,atp7aWt,ATP7A WT ATOX1-docking platform,ATP7A WT platform,false,platform
+F,atp7aMenkes,ATP7A Menkes platform (reduced electronegativity),ATP7A Menkes platform,false,platform

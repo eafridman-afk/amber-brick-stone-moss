@@ -1,0 +1,50 @@
+{
+  "schema": "moleculosphere5d.paper_assets.v3",
+  "title": "MoleculoSphere 5D publication assets (public package)",
+  "version": "Beta v1.0",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "publicPackageDisclosure": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.",
+  "generatedAt": "2026-08-10T14:00:00Z",
+  "seed": 20260805,
+  "lockedParamsSource": "LOCKED_VALIDITY_PARAMS.json",
+  "kernelValidationSource": "KERNEL_VALIDATION.json",
+  "pubMatrixSource": "PUB_MATRIX_mean_sd.csv",
+  "cuMenkesSource": "PUB_MATRIX_Cu_E_F_mean_sd.csv",
+  "cuContrastSource": "PUB_MATRIX_Cu_E_vs_F_contrast.csv",
+  "p1Source": "P1_Pb_across_receptors_summary.csv",
+  "pep3Source": "ranking_KSRRRAR_vs_PRARR_vs_SLLRST.csv",
+  "physicsChanged": false,
+  "publicLigands": [
+    "Pb2+",
+    "Cu2+",
+    "KSRRRAR",
+    "PRARR",
+    "SLLRST"
+  ],
+  "publicReceptors": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "cuMenkesReceptors": [
+    "E",
+    "F"
+  ],
+  "figures": {
+    "Fig1_kernel": "Analytic Yukawa U(r) and |F|(r) under locked params",
+    "Fig3_P1_Pb_domains": "Exclusive Pb\u00b2\u207a U across receptors \u00d7 pH",
+    "Fig4_workflow": "Continuum workflow schematic (public only)"
+  },
+  "tables": {
+    "tab_locked_params": "Locked validity parameters",
+    "tab_kernel_validation": "Analytic pair test at r=1.0/3.1/3.3 nm",
+    "tab_receptors": "Public receptor proxies A\u2013F",
+    "tab_ligands": "Public exclusive ligands Pb\u00b2\u207a, Cu\u00b2\u207a, KSRRRAR, PRARR, SLLRST",
+    "tab_PUB_MATRIX": "PUB_MATRIX mean\u00b1sd (Pb + peptides \u00d7 A\u2013F)",
+    "tab_PUB_MATRIX_Cu_E_F": "Cu\u00b2\u207a Menkes E/F mean\u00b1sd"
+  },
+  "publicOnly": true
+}

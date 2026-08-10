@@ -1,0 +1,590 @@
+{
+  "disclaimer": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support.",
+  "programme": {
+    "id": "prog2_pore",
+    "label": "Programme 2 – Polycationic peptide pore dynamics and 5H-EAF alteration",
+    "hypothesis": "Polycationic peptides are electrostatically attracted toward an acidic pore constriction; 5H-EAF alters the pH-dependent electrostatic landscape (exclusion / competition).",
+    "note": "“Block / repel” language is continuum-electrostatic only; biological pore block requires separate validation."
+  },
+  "locked": {
+    "debyeNm": 0.8,
+    "coulombK": 1.15,
+    "forceCutoffNm": 3.2,
+    "frictionScale": 1.35,
+    "baseSeed": 20260805,
+    "coordScaleToNm": 1
+  },
+  "results": [
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2",
+      "ligandLabel": "KSRRRAR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.44000552184780767,
+        "sd": 0.07045742780598918
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -24.801649175362456,
+        "sd": 1.7624799641666966
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -366.4827033690383,
+        "sd": 29.448312768656773
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2",
+      "ligandLabel": "KSRRRAR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4369272102544464,
+        "sd": 0.0711391474402327
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -23.963544949393604,
+        "sd": 3.7532393613926494
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -362.00074667485615,
+        "sd": 62.98993389699087
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2",
+      "ligandLabel": "KSRRRAR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4324088453578262,
+        "sd": 0.07276592117041182
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -22.872706081216307,
+        "sd": 3.653752052277931
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -350.861892463507,
+        "sd": 62.3181501397854
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2pr",
+      "ligandLabel": "PRARR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3891352904942995,
+        "sd": 0.04945068458367419
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -32.171135471124906,
+        "sd": 28.834209821633515
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -284.7148170243831,
+        "sd": 46.356161131582674
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2pr",
+      "ligandLabel": "PRARR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3891787367514635,
+        "sd": 0.048497614965004716
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -18.960690506397608,
+        "sd": 1.7724218437621806
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -266.55050804790545,
+        "sd": 27.420456986933477
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2pr",
+      "ligandLabel": "PRARR exclusive",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.38929549286336607,
+        "sd": 0.047158082861355644
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -18.182659206522157,
+        "sd": 1.6086060319779154
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -263.8776965192816,
+        "sd": 30.692501870916082
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L3",
+      "ligandLabel": "5H-EAF exclusive",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4947096652489947,
+        "sd": 0.04599770092173452
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -13.242151426589325,
+        "sd": 2.0843576901981713
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -82.11331795588532,
+        "sd": 8.065015404082287
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L3",
+      "ligandLabel": "5H-EAF exclusive",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4435098961125202,
+        "sd": 0.08474632641362315
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -27.644597147089247,
+        "sd": 22.891620314916644
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -264.3238175477044,
+        "sd": 35.25109771178497
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L3",
+      "ligandLabel": "5H-EAF exclusive",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4952713889705646,
+        "sd": 0.11169185521337267
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -20.58090434124393,
+        "sd": 1.8550603838565085
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -301.8834166189713,
+        "sd": 29.594171415620437
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2L3",
+      "ligandLabel": "KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4386309135019574,
+        "sd": 0.05073613345421608
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -20.203822142705498,
+        "sd": 3.4835304296014376
+      },
+      "U_5H_ROI": {
+        "mean": -0.8678930218973019,
+        "sd": 0.588491944429413
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -298.32771233523715,
+        "sd": 57.23394730912019
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2L3",
+      "ligandLabel": "KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4347321123789972,
+        "sd": 0.061442504371277094
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -16.77965035184509,
+        "sd": 5.367829147280631
+      },
+      "U_5H_ROI": {
+        "mean": -5.584997675705659,
+        "sd": 4.1636143735451485
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -285.3754267724813,
+        "sd": 46.31564556766258
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L2L3",
+      "ligandLabel": "KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4604275798887141,
+        "sd": 0.07712736544460831
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -15.619292743693435,
+        "sd": 5.469913008260482
+      },
+      "U_5H_ROI": {
+        "mean": -7.421417117248934,
+        "sd": 4.473596620314445
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -277.2542782639143,
+        "sd": 70.2059286843369
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L1L2L3",
+      "ligandLabel": "Pb + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4052828429442116,
+        "sd": 0.051166568268804294
+      },
+      "U_Pb_ROI": {
+        "mean": -3.9316493555824876,
+        "sd": 1.8619881203106028
+      },
+      "U_pep_ROI": {
+        "mean": -39.62537311446299,
+        "sd": 50.105444816957586
+      },
+      "U_5H_ROI": {
+        "mean": -0.4235540406360497,
+        "sd": 0.22068938679642983
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -295.6767412098658,
+        "sd": 82.10278414897984
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L1L2L3",
+      "ligandLabel": "Pb + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4220876093240262,
+        "sd": 0.06206767311472177
+      },
+      "U_Pb_ROI": {
+        "mean": -5.173555392046114,
+        "sd": 1.3754954717873724
+      },
+      "U_pep_ROI": {
+        "mean": -37.38362295416662,
+        "sd": 53.24684688026793
+      },
+      "U_5H_ROI": {
+        "mean": -2.034255372643901,
+        "sd": 2.2254415815404456
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -268.858894737595,
+        "sd": 94.36250213807125
+      }
+    },
+    {
+      "programme": "prog2_pore",
+      "receptor": "acidicPore",
+      "ligandSet": "L1L2L3",
+      "ligandLabel": "Pb + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 120,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.43105702380142785,
+        "sd": 0.0853019314518965
+      },
+      "U_Pb_ROI": {
+        "mean": -5.112589441353142,
+        "sd": 2.634755321964166
+      },
+      "U_pep_ROI": {
+        "mean": -36.50292070412425,
+        "sd": 56.106716007699276
+      },
+      "U_5H_ROI": {
+        "mean": -3.250637273108984,
+        "sd": 3.818513284643911
+      },
+      "U_ACh_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_tot": {
+        "mean": -253.7630815672297,
+        "sd": 99.87034433829945
+      }
+    }
+  ],
+  "exportedAt": "2026-08-06T20:04:35.741Z"
+}

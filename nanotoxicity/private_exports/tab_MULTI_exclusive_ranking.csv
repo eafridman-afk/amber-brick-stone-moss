@@ -1,0 +1,6 @@
+# Classical continuum electrostatics only. Educational / hypothesis tool. Not MD, docking, coordination chemistry, or biological validation.
+rank,ligand_id,ligand_name,U_pH5_mean,U_pH5_sd,U_pH7p4_mean,U_pH7p4_sd,receptor,programme,n_replicates,frames,seed
+1,L2,KSRRRAR,-20.207000,2.578400,-21.147900,3.070500,acidicPore,prog4_multi_pore,5,120,20260805
+2,L3,ACh,-18.657200,7.116700,-22.242300,5.138200,acidicPore,prog4_multi_pore,5,120,20260805
+3,L4,5H-EAF,-17.391200,3.065100,-13.862600,0.560200,acidicPore,prog4_multi_pore,5,120,20260805
+4,L1,Pb2+,-13.405600,1.369600,-14.098700,1.622800,acidicPore,prog4_multi_pore,5,120,20260805

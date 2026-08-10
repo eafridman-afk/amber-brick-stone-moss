@@ -1,0 +1,15 @@
+quantity,value,unit,note
+minDistNm,0.35442475,nm,minimum peptide–His194 distance
+nInside1nm,10,count,peptides with r < 1.0 nm
+U_pep_His_total,28.88476995,kT,sum Yukawa His–peptide (nm form)
+U_tot,-76.64358578,kT,total continuum ROI energy
+U_closest,5.20838873,kT,Yukawa of closest peptide id=35
+closestId,35,id,peptide index
+theta,0.50000000,fraction,His194 protonation
+q_His,0.50000000,e,His194 charge
+coulombK,1.15,—,locked
+debyeNm,0.8,nm,locked λ_D
+scale,4,nm/scene,SCENE_TO_NM
+pH,6.2,—,stress
+seed,20260805,—,RNG
+nMolecules,50,—,exclusive KSRRRAR

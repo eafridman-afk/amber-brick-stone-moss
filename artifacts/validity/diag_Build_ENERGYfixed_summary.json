@@ -1,0 +1,68 @@
+{
+  "file": "diag_Build_minDist_seed20260805_pH6.2_200frames_ENERGYfixed.csv",
+  "paths": [
+    "/workspace/artifacts/diag_Build_minDist_seed20260805_pH6.2_200frames_ENERGYfixed.csv",
+    "/workspace/diagnostics/diag_Build_minDist_seed20260805_pH6.2_200frames_ENERGYfixed.csv",
+    "/workspace/artifacts/validity/diag_Build_minDist_seed20260805_pH6.2_200frames_ENERGYfixed.csv"
+  ],
+  "params": {
+    "debyeNm": 0.8,
+    "cutNm": 3.2,
+    "k": 1.15,
+    "well": false,
+    "baseline": "ligand1",
+    "n": 50
+  },
+  "locked": {
+    "debyeNm": 0.8,
+    "forceCutoffNm": 3.2,
+    "hisPka": 6.2,
+    "shortRangeWellEnabled": false,
+    "coulombK": 1.15,
+    "frictionScale": 1.35,
+    "kT": 1,
+    "frameNs": 100,
+    "shellMinNm": 0.55,
+    "shellMaxNm": 2.8
+  },
+  "nParticles": 50,
+  "nFrames": 201,
+  "first": {
+    "frame": 0,
+    "tNs": 0,
+    "minDistNm": 0.35442474911687893,
+    "nInside1nm": 10,
+    "U_pep_His": 28.884769951434006,
+    "U_tot": -76.6435857843507,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "mid": {
+    "frame": 100,
+    "tNs": 10000,
+    "minDistNm": 0.6097366870591071,
+    "nInside1nm": 2,
+    "U_pep_His": 4.68221424371569,
+    "U_tot": -71.21316604307603,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "last": {
+    "frame": 200,
+    "tNs": 20000,
+    "minDistNm": 0.5132975529931267,
+    "nInside1nm": 1,
+    "U_pep_His": 4.8525154919012135,
+    "U_tot": -49.314764473670074,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "minOfMin": 0.34416147073164927,
+  "maxInside": 10,
+  "energyCheck": {
+    "frame0_U_pep": 28.884769951434006,
+    "expected_approx": 28.88,
+    "ratio_vs_old_115_5": 0.2499999999907737
+  },
+  "errs": []
+}

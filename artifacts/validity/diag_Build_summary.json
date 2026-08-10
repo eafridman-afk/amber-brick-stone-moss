@@ -1,0 +1,54 @@
+{
+  "files": [
+    "/workspace/artifacts/diag_Build_minDist_seed20260805_pH6.2_200frames.csv",
+    "/workspace/artifacts/diag_Build_initial_coords.json",
+    "/workspace/artifacts/validity/diag_Build_minDist_seed20260805_pH6.2_200frames.csv",
+    "/workspace/artifacts/validity/diag_Build_initial_coords.json"
+  ],
+  "paramsLive": {
+    "debyeNm": 0.8,
+    "debyeScene": 0.2,
+    "cutScene": 0.8,
+    "cutNm": 3.2,
+    "well": false,
+    "k": 1.15,
+    "pka": 6.2,
+    "n": 50,
+    "baseline": "ligand1"
+  },
+  "nParticles": 50,
+  "nFrames": 201,
+  "first": {
+    "frame": 0,
+    "tNs": 0,
+    "minDistNm": 0.35442474911687893,
+    "nInside1nm": 10,
+    "U_pep_His": 115.53907980573602,
+    "U_tot": -291.8269576374672,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "mid": {
+    "frame": 100,
+    "tNs": 10000,
+    "minDistNm": 0.8867870849452206,
+    "nInside1nm": 1,
+    "U_pep_His": 8.985845699533686,
+    "U_tot": -237.62946115178372,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "last": {
+    "frame": 200,
+    "tNs": 20000,
+    "minDistNm": 0.7727104791828516,
+    "nInside1nm": 1,
+    "U_pep_His": 10.809137153160822,
+    "U_tot": -326.1877641230417,
+    "theta": 0.5,
+    "q_His": 0.5
+  },
+  "minOfMin": 0.35442474911687893,
+  "maxInside": 10,
+  "errs": []
+}

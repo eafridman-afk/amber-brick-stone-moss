@@ -1,0 +1,23 @@
+{
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, coordination chemistry, or biological validation.",
+  "exportedAt": "2026-08-06T20:58:51Z",
+  "seed": 20260805,
+  "rows": [
+    {
+      "lambda_D_nm": 0.8,
+      "coulombK": 1.15,
+      "cutoff_nm": 3.2,
+      "friction": 1.917,
+      "fCap": 16.2,
+      "dt": 0.012,
+      "frameNs": 100,
+      "seed": 20260805,
+      "proximity_rule": "d < 1.0 nm, hold \u2265 3 frames",
+      "HH_binary_rule": "\u03b8 \u2265 0.5, hold \u2265 3 frames",
+      "kT": 1.0,
+      "short_range_well": false,
+      "coordinate_system": "absolute nm (SCALED_nm); coord_scale_to_nm = 1",
+      "source_file": "LOCKED_VALIDITY_PARAMS.json"
+    }
+  ]
+}

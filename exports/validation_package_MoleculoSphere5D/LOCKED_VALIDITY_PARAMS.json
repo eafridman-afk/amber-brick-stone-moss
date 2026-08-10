@@ -1,0 +1,37 @@
+{
+  "name": "LOCKED_VALIDITY_PARAMS",
+  "version": "MoleculoSphere5D_public_v1",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, coordination chemistry, or biological validation.",
+  "kernel": "nm-unit Yukawa / Debye\u2013H\u00fcckel",
+  "coordinate_system": "absolute nm (SCALED_nm); coord_scale_to_nm = 1",
+  "coords_source": "diagnostics/diag_Build_initial_coords_SCALED_nm.json",
+  "parameters": {
+    "lambda_D_nm": 0.8,
+    "coulombK": 1.15,
+    "force_cutoff_nm": 3.2,
+    "friction": 1.917,
+    "frictionScale": 1.35,
+    "speciesFriction_peptide": 1.42,
+    "fCap": 16.2,
+    "dt": 0.012,
+    "kT": 1.0,
+    "frameNs": 100,
+    "master_seed": 20260805,
+    "his_pKa": 6.2,
+    "short_range_well": false,
+    "metal_his_pref": false
+  },
+  "dual_events": {
+    "proximity": {
+      "d_nm": 1.0,
+      "hold_frames": 3
+    },
+    "HH_binary": {
+      "theta_threshold": 0.5,
+      "hold_frames": 3
+    },
+    "response_time_metric": false
+  },
+  "integrator": "overdamped Langevin with force clip fCap",
+  "parity": "Identical parameters for Build sandbox UI and WSL batch runner"
+}

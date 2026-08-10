@@ -1,0 +1,11 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, or biological validation.
+pH,rank,sequence,nominalCharge,U_pep_His_mean,U_pep_His_sd,absU
+7.4,1,KSRRRAR,5,10.423917,2.373082,10.423917
+7.4,2,PRARR,3,2.924453,0.656091,2.924453
+7.4,3,SLLRST,1,1.190654,0.159859,1.190654
+6.2,1,KSRRRAR,5,83.136901,20.745321,83.136901
+6.2,2,PRARR,3,20.585343,5.504473,20.585343
+6.2,3,SLLRST,1,8.051700,0.455850,8.051700
+5,1,KSRRRAR,5,90.588383,15.471268,90.588383
+5,2,PRARR,3,38.809828,11.576786,38.809828
+5,3,SLLRST,1,13.278556,1.447183,13.278556

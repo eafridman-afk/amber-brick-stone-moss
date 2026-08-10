@@ -1,0 +1,193 @@
+{
+  "locked": {
+    "debyeNm": 0.8,
+    "debyeScene": 0.2,
+    "cutScene": 0.8,
+    "cutNm": 3.2,
+    "k": 1.15,
+    "well": false,
+    "pka": 6.2,
+    "n": 50
+  },
+  "ranking": [
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed_pH_7.4",
+      "ksrrrarMean": 4,
+      "prarrMean": 5.7,
+      "confirmed": false,
+      "note": "pH 7.4"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed_pH_7.4",
+      "ksrrrarMean": 1.681444145171063,
+      "prarrMean": 1.1600867151392924,
+      "confirmed": true,
+      "note": "pH 7.4 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed_pH_6.2",
+      "ksrrrarMean": 137.6,
+      "prarrMean": 128.9,
+      "confirmed": true,
+      "note": "pH 6.2"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed_pH_6.2",
+      "ksrrrarMean": 8.98618748263133,
+      "prarrMean": 6.2162009992494385,
+      "confirmed": true,
+      "note": "pH 6.2 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "fixed_pH_5.0",
+      "ksrrrarMean": 52.3,
+      "prarrMean": 35.6,
+      "confirmed": true,
+      "note": "pH 5"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "fixed_pH_5.0",
+      "ksrrrarMean": 16.110010998181973,
+      "prarrMean": 10.952105064921906,
+      "confirmed": true,
+      "note": "pH 5 · |U_pep–His|"
+    },
+    {
+      "metric": "proximityEvents",
+      "protocol": "ramp_7.4_to_5",
+      "ksrrrarMean": 27.8,
+      "prarrMean": 25.2,
+      "confirmed": true,
+      "note": "pH ramp 7.4→5.0"
+    },
+    {
+      "metric": "absUPepHis",
+      "protocol": "ramp_7.4_to_5",
+      "ksrrrarMean": 9.012553972047723,
+      "prarrMean": 6.3565170493623375,
+      "confirmed": true,
+      "note": "pH ramp 7.4→5.0 · |U_pep–His|"
+    }
+  ],
+  "rows": [
+    {
+      "baseline": "Baseline_KSRRRAR_50",
+      "protocol": "pH 7.4",
+      "n": 10,
+      "prox": "4.00±7.41",
+      "proxDist": "0.540±0.187",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "1.681±0.244",
+      "Utot": "-273.236±26.241",
+      "theta": "0.059±0.000",
+      "qHis": "0.059±0.000"
+    },
+    {
+      "baseline": "Baseline_KSRRRAR_50",
+      "protocol": "pH 6.2",
+      "n": 10,
+      "prox": "137.60±26.88",
+      "proxDist": "0.819±0.024",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "8.986±0.723",
+      "Utot": "-264.320±17.935",
+      "theta": "0.500±0.000",
+      "qHis": "0.500±0.000"
+    },
+    {
+      "baseline": "Baseline_KSRRRAR_50",
+      "protocol": "pH 5",
+      "n": 10,
+      "prox": "52.30±10.87",
+      "proxDist": "0.835±0.023",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "16.110±1.195",
+      "Utot": "-258.887±19.672",
+      "theta": "0.941±0.000",
+      "qHis": "0.941±0.000"
+    },
+    {
+      "baseline": "Baseline_KSRRRAR_50",
+      "protocol": "ramp 7.4→5.0",
+      "n": 10,
+      "prox": "27.80±10.26",
+      "proxDist": "0.820±0.033",
+      "hh": "1.00±0.00",
+      "hhDist": "0.737±0.188",
+      "Upep": "9.013±1.013",
+      "Utot": "-247.049±20.151",
+      "theta": "0.941±0.000",
+      "qHis": "0.941±0.000"
+    },
+    {
+      "baseline": "Baseline_PRARR_50",
+      "protocol": "pH 7.4",
+      "n": 10,
+      "prox": "5.70±2.36",
+      "proxDist": "0.546±0.055",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "1.160±0.047",
+      "Utot": "-168.090±9.854",
+      "theta": "0.059±0.000",
+      "qHis": "0.059±0.000"
+    },
+    {
+      "baseline": "Baseline_PRARR_50",
+      "protocol": "pH 6.2",
+      "n": 10,
+      "prox": "128.90±17.43",
+      "proxDist": "0.809±0.014",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "6.216±0.487",
+      "Utot": "-164.291±9.750",
+      "theta": "0.500±0.000",
+      "qHis": "0.500±0.000"
+    },
+    {
+      "baseline": "Baseline_PRARR_50",
+      "protocol": "pH 5",
+      "n": 10,
+      "prox": "35.60±8.76",
+      "proxDist": "0.810±0.032",
+      "hh": "0.00±0.00",
+      "hhDist": "—",
+      "Upep": "10.952±0.949",
+      "Utot": "-155.722±14.271",
+      "theta": "0.941±0.000",
+      "qHis": "0.941±0.000"
+    },
+    {
+      "baseline": "Baseline_PRARR_50",
+      "protocol": "ramp 7.4→5.0",
+      "n": 10,
+      "prox": "25.20±6.01",
+      "proxDist": "0.780±0.035",
+      "hh": "1.00±0.00",
+      "hhDist": "0.757±0.141",
+      "Upep": "6.357±0.360",
+      "Utot": "-156.262±8.814",
+      "theta": "0.941±0.000",
+      "qHis": "0.941±0.000"
+    }
+  ],
+  "expectation": "KSRRRAR (nominal +5) should produce more proximity events and higher |U_pep–His| than PRARR (nominal +3) under the same locked pH and λ_D=0.80 nm (cutoff 3.2 nm).",
+  "verdict": {
+    "proximityWins": 3,
+    "absUWins": 4,
+    "totalComparisons": 4,
+    "note": "KSRRRAR(+5) expected > PRARR(+3) for both proximity events and |U_pep–His|"
+  },
+  "seconds": "18.9",
+  "errs": []
+}

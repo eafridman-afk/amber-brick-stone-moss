@@ -1,0 +1,43 @@
+{
+  "description": "Yukawa kernel analytic validation (pre-dynamics pair test)",
+  "formulas": {
+    "U": "U = coulombK * (qi*qj / r) * exp(-r / \u03bb_D)  for 0 < r \u2264 cutoff; else 0",
+    "F_mag": "|F| = coulombK * |qi*qj| * exp(-r/\u03bb_D) * (1/r\u00b2 + 1/(\u03bb_D*r))  for 0 < r \u2264 cutoff; else 0"
+  },
+  "parameters": {
+    "qi": 1.0,
+    "qj": 1.0,
+    "coulombK": 1.15,
+    "lambda_D_nm": 0.8,
+    "cutoff_nm": 3.2
+  },
+  "evaluations": [
+    {
+      "r_nm": 1.0,
+      "inside_cutoff": true,
+      "U": 0.3294805163892186,
+      "F_mag": 0.7413311618757419
+    },
+    {
+      "r_nm": 3.1,
+      "inside_cutoff": true,
+      "U": 0.007699189856372484,
+      "F_mag": 0.012107596951553501
+    },
+    {
+      "r_nm": 3.3,
+      "inside_cutoff": false,
+      "U": 0.0,
+      "F_mag": 0.0
+    }
+  ],
+  "targets": {
+    "r_1.0_nm": {
+      "U_approx": 0.32948,
+      "F_mag_approx": 0.74133
+    },
+    "cutoff": "r=3.1 nonzero; r=3.3 identically zero"
+  },
+  "parity_note": "Build sandbox and WSL batch runner must produce identical U and |F| at the same (qi,qj,r) under LOCKED_VALIDITY_PARAMS. Kernel is pure nm-unit; no scene scaling.",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis tool. Not MD, docking, coordination chemistry, or biological validation."
+}

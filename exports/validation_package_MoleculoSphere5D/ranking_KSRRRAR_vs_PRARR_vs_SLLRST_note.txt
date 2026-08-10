@@ -1,0 +1,22 @@
+# Ranking note — KSRRRAR vs PRARR vs SLLRST at furin His194
+
+Receptor: A · Furin catalytic triad (ROI His194)
+Ligands: exclusive L2 only (three separate runs)
+pH: 7.4 · 6.2 · 5.0
+Respawn: OFF
+Primary metric: mean ± sd U_pep–His (kT); rank by |U| descending
+
+Locked continuum params (unchanged): λ_D=0.8 nm, coulombK=1.15, cutoff=3.2 nm, seed=20260805
+
+Hypothesis: |U|(KSRRRAR +5) > |U|(PRARR +3) > |U|(SLLRST +1) at all three pH values.
+
+Result:
+pH 7.4: |U| K=10.42 PR=2.92 SL=1.19 → CONFIRMED · pH 6.2: |U| K=83.14 PR=20.59 SL=8.05 → CONFIRMED · pH 5: |U| K=90.59 PR=38.81 SL=13.28 → CONFIRMED
+
+Labels:
+- KSRRRAR — polybasic FCS-like continuum proxy (q ≈ +5)
+- PRARR — intermediate polybasic (q ≈ +3)
+- SLLRST — continuum single-Arg educational proxy (q ≈ +1); not a viral infectivity claim
+
+Classical continuum electrostatics only. Not MD, docking, or biological validation.
+Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.

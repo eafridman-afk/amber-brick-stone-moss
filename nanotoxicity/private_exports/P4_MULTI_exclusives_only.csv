@@ -1,0 +1,13 @@
+programme,receptor,ligandSet,ligandLabel,protocol,pH,frames,n,proximity_mean,proximity_sd,U_L1_Pb_mean,U_L1_Pb_sd,U_L2_pep_mean,U_L2_pep_sd,U_L3_5H_mean,U_L3_5H_sd,U_L4_ACh_mean,U_L4_ACh_sd,U_tot_mean,U_tot_sd
+prog4_multi_pore,acidicPore,L1_baseline,L1 · Pb²⁺ alone,fixed-pH,7.4,120,5,1.000,0.000,-14.0987,1.6228,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-165.6070,19.4581
+prog4_multi_pore,acidicPore,L1_baseline,L1 · Pb²⁺ alone,fixed-pH,6.2,120,5,1.000,0.000,-13.4385,1.3620,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-161.1551,17.4387
+prog4_multi_pore,acidicPore,L1_baseline,L1 · Pb²⁺ alone,fixed-pH,5,120,5,1.000,0.000,-13.4056,1.3696,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-161.9019,15.2098
+prog4_multi_pore,acidicPore,L2_baseline,L2 · KSRRRAR alone,fixed-pH,7.4,120,5,1.000,0.000,0.0000,0.0000,-21.1479,3.0705,0.0000,0.0000,0.0000,0.0000,-308.5841,56.7098
+prog4_multi_pore,acidicPore,L2_baseline,L2 · KSRRRAR alone,fixed-pH,6.2,120,5,1.000,0.000,0.0000,0.0000,-20.6283,3.0423,0.0000,0.0000,0.0000,0.0000,-304.3856,55.8871
+prog4_multi_pore,acidicPore,L2_baseline,L2 · KSRRRAR alone,fixed-pH,5,120,5,1.000,0.000,0.0000,0.0000,-20.2070,2.5784,0.0000,0.0000,0.0000,0.0000,-307.2120,49.1673
+prog4_multi_pore,acidicPore,L3_baseline,L3 · ACh alone,fixed-pH,7.4,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-22.2423,5.1382,-157.5718,10.2148
+prog4_multi_pore,acidicPore,L3_baseline,L3 · ACh alone,fixed-pH,6.2,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-20.2952,6.8064,-153.6862,14.4889
+prog4_multi_pore,acidicPore,L3_baseline,L3 · ACh alone,fixed-pH,5,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,-18.6572,7.1167,-146.4478,14.9450
+prog4_multi_pore,acidicPore,L4_baseline,L4 · 5H-EAF alone,fixed-pH,7.4,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,-13.8626,0.5602,0.0000,0.0000,-77.9699,6.0801
+prog4_multi_pore,acidicPore,L4_baseline,L4 · 5H-EAF alone,fixed-pH,6.2,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,-24.8478,20.1242,0.0000,0.0000,-235.2496,40.1672
+prog4_multi_pore,acidicPore,L4_baseline,L4 · 5H-EAF alone,fixed-pH,5,120,5,1.000,0.000,0.0000,0.0000,0.0000,0.0000,-17.3912,3.0651,0.0000,0.0000,-250.9308,53.4463

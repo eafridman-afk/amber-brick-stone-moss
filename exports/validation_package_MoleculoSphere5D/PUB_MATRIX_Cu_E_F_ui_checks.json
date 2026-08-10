@@ -1,0 +1,13 @@
+{
+  "ui": {
+    "hasCu": false,
+    "hasPb": false,
+    "hasBanner": true,
+    "hasDisclaimer": true,
+    "has5H": false,
+    "hasPrivatePath": false,
+    "hasCuBtn": true,
+    "bodyLen": 4580
+  },
+  "summary": "Cu Menkes E/F 6 cells · n=5 · frames=150 · @7.4: Cu2+: ΔU(F−E)=33.41 |U|_E=38.00 |U|_F=4.59 · Pb2+: ΔU(F−E)=37.14 |U|_E=42.00 |U|_F=4.87 · Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation."
+}

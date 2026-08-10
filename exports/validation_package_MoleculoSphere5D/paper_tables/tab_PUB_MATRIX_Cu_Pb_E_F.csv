@@ -1,0 +1,15 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
+# Primary metric: mean±sd U_L–ROI (exclusive L1). Locked Yukawa.
+receptorId,receptorLabel,ligandId,ligandLabel,nominalCharge,pH,n,frames,U_L_ROI_mean,U_L_ROI_sd,U_tot_mean,U_tot_sd
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,7.4,5,150,-38.003641,6.029330,-176.627242,26.022665
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,6.2,5,150,-42.069415,11.513968,-193.577692,46.782099
+atp7aWt,E · ATP7A WT,L_HM_Cu,Cu2+,2,5,5,150,-38.943050,8.726109,-182.587691,41.232751
+atp7aWt,E · ATP7A WT,L_HM_Pb,Pb2+,2,7.4,5,150,-42.004775,8.025608,-197.460119,36.674487
+atp7aWt,E · ATP7A WT,L_HM_Pb,Pb2+,2,6.2,5,150,-37.168963,5.942051,-176.563505,28.669286
+atp7aWt,E · ATP7A WT,L_HM_Pb,Pb2+,2,5,5,150,-37.331615,10.655733,-174.511694,48.142286
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,7.4,5,150,-4.488032,0.439741,-20.344978,1.808230
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,6.2,5,150,-4.708668,1.101896,-22.217294,5.704595
+atp7aMenkes,F · ATP7A Menkes,L_HM_Cu,Cu2+,2,5,5,150,-4.242238,0.594028,-19.307785,1.896982
+atp7aMenkes,F · ATP7A Menkes,L_HM_Pb,Pb2+,2,7.4,5,150,-5.030830,0.693198,-24.131045,4.483370
+atp7aMenkes,F · ATP7A Menkes,L_HM_Pb,Pb2+,2,6.2,5,150,-4.711130,0.529859,-22.183157,2.592604
+atp7aMenkes,F · ATP7A Menkes,L_HM_Pb,Pb2+,2,5,5,150,-4.741017,0.757961,-22.912895,5.459462

@@ -1,0 +1,9 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
+# MoleculoSphere 5D · Beta v1.0 · locked Yukawa · respawn OFF
+ligandLabel,nominalCharge,pH,U_E_WT_mean,U_E_WT_sd,U_F_Menkes_mean,U_F_Menkes_sd,deltaU_F_minus_E,deltaAbsU_E_minus_F,WT_stronger
+Cu2+,2,7.4,-38.003641,6.029330,-4.590638,0.514077,33.413003,33.413003,yes
+Cu2+,2,6.2,-42.069415,11.513968,-4.903337,0.586015,37.166078,37.166078,yes
+Cu2+,2,5,-38.943050,8.726109,-5.003630,0.941492,33.939420,33.939420,yes
+Pb2+,2,7.4,-42.004775,8.025608,-4.866093,0.528896,37.138682,37.138682,yes
+Pb2+,2,6.2,-37.168963,5.942051,-4.255477,1.033734,32.913486,32.913486,yes
+Pb2+,2,5,-37.331615,10.655733,-4.440072,0.433360,32.891544,32.891544,yes

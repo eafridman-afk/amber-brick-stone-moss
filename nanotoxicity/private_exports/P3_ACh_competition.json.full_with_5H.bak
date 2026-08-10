@@ -1,0 +1,1388 @@
+{
+  "disclaimer": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support.",
+  "programme": {
+    "id": "prog3_ach",
+    "label": "Programme 3 – Allosteric competition with acetylcholine",
+    "hypothesis": "Heavy metals or polycationic peptides alter continuum electrostatics at an α7 allosteric (or orthosteric) site and thereby compete with acetylcholine.",
+    "note": "Continuum ranking of electrostatic competition against ACh only — not a claim of receptor antagonism without independent biological support."
+  },
+  "locked": {
+    "debyeNm": 0.8,
+    "coulombK": 1.15,
+    "forceCutoffNm": 3.2,
+    "frictionScale": 1.35,
+    "baseSeed": 20260805,
+    "coordScaleToNm": 1
+  },
+  "results": [
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.25626491967341536,
+        "sd": 0.1429055064486501
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -6.18738656106773,
+        "sd": 0.8214122712898695
+      },
+      "U_tot": {
+        "mean": -25.58251675292393,
+        "sd": 2.8477994618373663
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.2534910076822583,
+        "sd": 0.14264941788039925
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -5.920464558463286,
+        "sd": 0.433820894627685
+      },
+      "U_tot": {
+        "mean": -24.57235882478317,
+        "sd": 2.5053469346095123
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.24960579553980694,
+        "sd": 0.1423215506401774
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -5.91216846346497,
+        "sd": 0.4560249358724508
+      },
+      "U_tot": {
+        "mean": -24.14440682458696,
+        "sd": 1.941360085398024
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.40795902737501455,
+        "sd": 0.08546716094934459
+      },
+      "U_Pb_ROI": {
+        "mean": -3.341958722078669,
+        "sd": 3.925127884066821
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.193049987446513,
+        "sd": 2.5881641649309604
+      },
+      "U_tot": {
+        "mean": -13.046886815309716,
+        "sd": 6.487959035768248
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.40359457244608954,
+        "sd": 0.08751798010364566
+      },
+      "U_Pb_ROI": {
+        "mean": -3.0609623412545037,
+        "sd": 3.7011211863606737
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.5425229428719134,
+        "sd": 2.946153365822037
+      },
+      "U_tot": {
+        "mean": -13.917048799983231,
+        "sd": 6.58912376615996
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3972520629163677,
+        "sd": 0.09053275617316556
+      },
+      "U_Pb_ROI": {
+        "mean": -2.642528120490732,
+        "sd": 2.853077250669948
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.263080736675323,
+        "sd": 2.675540528015526
+      },
+      "U_tot": {
+        "mean": -13.218703294587588,
+        "sd": 4.980580447192873
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1.2,
+        "sd": 0.4472135954999579
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.5043872920680995,
+        "sd": 0.13644743517500485
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -12.25035857813503,
+        "sd": 15.877115109635257
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -2.959356971975816,
+        "sd": 2.6598375483610677
+      },
+      "U_tot": {
+        "mean": -24.552729784199915,
+        "sd": 35.9938839866283
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1.2,
+        "sd": 0.4472135954999579
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.5071030831771455,
+        "sd": 0.14415576707175873
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -12.697750327072,
+        "sd": 16.423581974446808
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -2.7837579475257392,
+        "sd": 2.5571843323441588
+      },
+      "U_tot": {
+        "mean": -25.952824299954614,
+        "sd": 38.17032376065968
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.45635630706183783,
+        "sd": 0.08446090628745449
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -13.491585456090585,
+        "sd": 16.160784488240523
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -2.6846423062112783,
+        "sd": 2.4942354929635964
+      },
+      "U_tot": {
+        "mean": -30.498868791481925,
+        "sd": 36.441176565023966
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.2891335801967242,
+        "sd": 0.2142946166076494
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.28368348041174696,
+        "sd": 0.08470100164036466
+      },
+      "U_ACh_ROI": {
+        "mean": -5.6359199023964175,
+        "sd": 0.3714708004452184
+      },
+      "U_tot": {
+        "mean": -19.884457206626802,
+        "sd": 2.1888572841207714
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3697064758992113,
+        "sd": 0.1576797579381748
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -3.6082583487575866,
+        "sd": 7.078779454468407
+      },
+      "U_ACh_ROI": {
+        "mean": -4.7648641158692895,
+        "sd": 2.55458938587359
+      },
+      "U_tot": {
+        "mean": -16.70432712640576,
+        "sd": 10.304615794334259
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4126542443282114,
+        "sd": 0.15221795930137436
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -6.229604099933618,
+        "sd": 12.851672589072534
+      },
+      "U_ACh_ROI": {
+        "mean": -4.341842660816178,
+        "sd": 2.2622035897820485
+      },
+      "U_tot": {
+        "mean": -20.567357330549818,
+        "sd": 26.56845657681248
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3222251728753191,
+        "sd": 0.15585197180384353
+      },
+      "U_Pb_ROI": {
+        "mean": -1.2500960216033907,
+        "sd": 1.9647405237743085
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.1995006920445504,
+        "sd": 0.030514028566582578
+      },
+      "U_ACh_ROI": {
+        "mean": -3.987780078782607,
+        "sd": 2.116759948756767
+      },
+      "U_tot": {
+        "mean": -8.35405815121985,
+        "sd": 1.4199614005607097
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3290458329316105,
+        "sd": 0.19503552715808964
+      },
+      "U_Pb_ROI": {
+        "mean": -0.5566709416520055,
+        "sd": 0.39627657730862736
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.32031106996285325,
+        "sd": 0.10844869559825258
+      },
+      "U_ACh_ROI": {
+        "mean": -5.1664504728253835,
+        "sd": 0.7003324312227079
+      },
+      "U_tot": {
+        "mean": 1.3017200267082922,
+        "sd": 4.848016003696987
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.31043807794265355,
+        "sd": 0.1706093444587405
+      },
+      "U_Pb_ROI": {
+        "mean": -1.3764730196217438,
+        "sd": 1.927286169824206
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.32926599962244874,
+        "sd": 0.07941473094480145
+      },
+      "U_ACh_ROI": {
+        "mean": -4.345915370010948,
+        "sd": 1.0413019012717653
+      },
+      "U_tot": {
+        "mean": 4.70650977364086,
+        "sd": 3.8983997222221323
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.4055498180187719,
+        "sd": 0.16453312551363863
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -5.855666042130373,
+        "sd": 11.556440627597087
+      },
+      "U_5H_ROI": {
+        "mean": -0.2623741219549837,
+        "sd": 0.21448788820347808
+      },
+      "U_ACh_ROI": {
+        "mean": -3.768090501678936,
+        "sd": 2.0543778415897456
+      },
+      "U_tot": {
+        "mean": -10.880235933547567,
+        "sd": 27.01703783969484
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3796704370384942,
+        "sd": 0.15785168907740904
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -5.8002171723930065,
+        "sd": 11.155696905414601
+      },
+      "U_5H_ROI": {
+        "mean": -1.5751421809046868,
+        "sd": 2.9203598745855555
+      },
+      "U_ACh_ROI": {
+        "mean": -3.4779105417537233,
+        "sd": 2.179008326107762
+      },
+      "U_tot": {
+        "mean": 6.12770756640901,
+        "sd": 24.362945091156725
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Allo",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3493049752224352,
+        "sd": 0.15190784067749238
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -1.3621224907882803,
+        "sd": 0.7541044754892863
+      },
+      "U_5H_ROI": {
+        "mean": -0.2699861358340404,
+        "sd": 0.0432126276958124
+      },
+      "U_ACh_ROI": {
+        "mean": -4.49729472791069,
+        "sd": 0.4008228712381304
+      },
+      "U_tot": {
+        "mean": 23.566164873046525,
+        "sd": 5.2923612402869145
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3332714457563708,
+        "sd": 0.09836449911198078
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.430471513951209,
+        "sd": 0.44710467888835964
+      },
+      "U_tot": {
+        "mean": -15.843102112559786,
+        "sd": 1.3882673479073175
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3309152415599583,
+        "sd": 0.0978221030701854
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.7150162930405,
+        "sd": 0.4721552456744094
+      },
+      "U_tot": {
+        "mean": -15.839063076074481,
+        "sd": 1.219677225312596
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4",
+      "ligandLabel": "ACh exclusive",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.32712382093412773,
+        "sd": 0.0966467003801306
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.6808447888981903,
+        "sd": 0.33561264523811035
+      },
+      "U_tot": {
+        "mean": -15.680783574236909,
+        "sd": 1.1280045817512998
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3010960689703891,
+        "sd": 0.112818026777647
+      },
+      "U_Pb_ROI": {
+        "mean": -0.6899379129632782,
+        "sd": 0.5963484548930545
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -3.097537651599538,
+        "sd": 2.4086153669710155
+      },
+      "U_tot": {
+        "mean": -2.357985941364484,
+        "sd": 4.216722942264752
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.30096548923277655,
+        "sd": 0.11198129702918384
+      },
+      "U_Pb_ROI": {
+        "mean": -0.6858309296595003,
+        "sd": 0.6053304984971418
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -2.371766015369071,
+        "sd": 1.679946466280625
+      },
+      "U_tot": {
+        "mean": -1.6077035412701774,
+        "sd": 3.154255653633075
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1",
+      "ligandLabel": "ACh + Pb²⁺",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.30047421177845857,
+        "sd": 0.11096562315179193
+      },
+      "U_Pb_ROI": {
+        "mean": -0.6525864520675392,
+        "sd": 0.5849650646130659
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -2.2742487353205223,
+        "sd": 1.553762145274817
+      },
+      "U_tot": {
+        "mean": -2.1895255381523135,
+        "sd": 2.5197545960216146
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1.2,
+        "sd": 0.4472135954999579
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.33231481732248536,
+        "sd": 0.2151532459049438
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -2.630742626853214,
+        "sd": 3.057349061965216
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -1.7002149961439303,
+        "sd": 1.8332301858858489
+      },
+      "U_tot": {
+        "mean": 2.699662576484975,
+        "sd": 12.924755402568273
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1.2,
+        "sd": 0.4472135954999579
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.33219602190701847,
+        "sd": 0.2195557938982154
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -1.7398096298041206,
+        "sd": 1.6639056500155616
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -1.9371690650098123,
+        "sd": 1.8793992371856056
+      },
+      "U_tot": {
+        "mean": 2.5979711179057796,
+        "sd": 10.417948725591426
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2",
+      "ligandLabel": "ACh + KSRRRAR",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1.2,
+        "sd": 0.4472135954999579
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3301135043488562,
+        "sd": 0.22113558173675987
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -1.6749578403647682,
+        "sd": 1.6316428883814356
+      },
+      "U_5H_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_ACh_ROI": {
+        "mean": -1.8469532761203546,
+        "sd": 1.8139012882856254
+      },
+      "U_tot": {
+        "mean": 1.2501185081066815,
+        "sd": 10.051739458734405
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.29355513888834184,
+        "sd": 0.0720898559443434
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.17409481303997043,
+        "sd": 0.019052609607316195
+      },
+      "U_ACh_ROI": {
+        "mean": -3.0576057704830792,
+        "sd": 0.779636792636983
+      },
+      "U_tot": {
+        "mean": -11.10662061122505,
+        "sd": 0.7992200980446407
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.2620126514015969,
+        "sd": 0.10154862859829969
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.507909432732621,
+        "sd": 0.5566945345876284
+      },
+      "U_ACh_ROI": {
+        "mean": -3.0522683195022218,
+        "sd": 1.0424321475955902
+      },
+      "U_tot": {
+        "mean": -4.065368554130063,
+        "sd": 0.7192534514950498
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L3",
+      "ligandLabel": "ACh + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.24323262804913925,
+        "sd": 0.12363347732277644
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -1.1109800941111891,
+        "sd": 1.834131789688293
+      },
+      "U_ACh_ROI": {
+        "mean": -2.6078070236118798,
+        "sd": 1.3120545929918805
+      },
+      "U_tot": {
+        "mean": -2.354058521294052,
+        "sd": 4.93759572943411
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.27332555114543233,
+        "sd": 0.2571717295542597
+      },
+      "U_Pb_ROI": {
+        "mean": -0.480343322866937,
+        "sd": 0.5680872235957138
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.17481024812195875,
+        "sd": 0.08633699886077896
+      },
+      "U_ACh_ROI": {
+        "mean": -2.4622365879067805,
+        "sd": 1.5607066309679063
+      },
+      "U_tot": {
+        "mean": -1.169900360511815,
+        "sd": 2.5161388729358185
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3279206753208769,
+        "sd": 0.21160115673176172
+      },
+      "U_Pb_ROI": {
+        "mean": -0.4607609331645214,
+        "sd": 0.563301145464338
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.2321892698549736,
+        "sd": 0.06849670472351033
+      },
+      "U_ACh_ROI": {
+        "mean": -3.1410004909764226,
+        "sd": 1.3894493335393814
+      },
+      "U_tot": {
+        "mean": 7.8278500454308855,
+        "sd": 4.1041777159843384
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L1L3",
+      "ligandLabel": "ACh + Pb + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.3294600573871963,
+        "sd": 0.1843906322331544
+      },
+      "U_Pb_ROI": {
+        "mean": -0.5068339140953604,
+        "sd": 0.6870251305391714
+      },
+      "U_pep_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_5H_ROI": {
+        "mean": -0.8143346782450417,
+        "sd": 1.2789197749569707
+      },
+      "U_ACh_ROI": {
+        "mean": -2.188705205415825,
+        "sd": 1.5694680793482918
+      },
+      "U_tot": {
+        "mean": 10.503436875701386,
+        "sd": 7.172871403216111
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 7.4,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.37096956958161603,
+        "sd": 0.21392930313863634
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -2.0683820918971016,
+        "sd": 2.6565072495410655
+      },
+      "U_5H_ROI": {
+        "mean": -0.14759556234577437,
+        "sd": 0.05478190734250904
+      },
+      "U_ACh_ROI": {
+        "mean": -2.25027254253857,
+        "sd": 1.7254363182106718
+      },
+      "U_tot": {
+        "mean": 1.6336925290790725,
+        "sd": 7.809183466858148
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 6.2,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.37815995487792836,
+        "sd": 0.17408871149845925
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -9.824260030140573,
+        "sd": 13.596731220056679
+      },
+      "U_5H_ROI": {
+        "mean": -0.20531472365978964,
+        "sd": 0.072571692832176
+      },
+      "U_ACh_ROI": {
+        "mean": -1.9850895279323435,
+        "sd": 1.7126432180397952
+      },
+      "U_tot": {
+        "mean": 6.318551390575841,
+        "sd": 26.77534759919495
+      }
+    },
+    {
+      "programme": "prog3_ach",
+      "receptor": "alpha7Ortho",
+      "ligandSet": "L4L2L3",
+      "ligandLabel": "ACh + KSRRRAR + 5H-EAF",
+      "protocol": "fixed-pH",
+      "pH": 5,
+      "frames": 100,
+      "n": 5,
+      "proximityEvents": {
+        "mean": 1,
+        "sd": 0
+      },
+      "meanTriggerDistNm": {
+        "mean": 0.36070998913360086,
+        "sd": 0.15623630705261307
+      },
+      "U_Pb_ROI": {
+        "mean": 0,
+        "sd": 0
+      },
+      "U_pep_ROI": {
+        "mean": -7.837461092133668,
+        "sd": 14.991220504710864
+      },
+      "U_5H_ROI": {
+        "mean": -0.19983222923940563,
+        "sd": 0.059715684322388426
+      },
+      "U_ACh_ROI": {
+        "mean": -2.0385363104337237,
+        "sd": 1.7349711208629246
+      },
+      "U_tot": {
+        "mean": 16.75448034209211,
+        "sd": 29.59377130810967
+      }
+    }
+  ],
+  "exportedAt": "2026-08-06T20:04:37.883Z"
+}

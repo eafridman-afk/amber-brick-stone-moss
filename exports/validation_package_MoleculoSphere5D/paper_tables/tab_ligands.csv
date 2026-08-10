@@ -1,0 +1,7 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
+id,name,engine_class,nominal_charge,role
+L_HM_Pb,Pb2+,ligand1,+2,"divalent heavy-metal ion (exclusive baseline)"
+L_HM_Cu,Cu2+,ligand1,+2,"divalent copper ion (exclusive baseline; continuum q=+2)"
+L_PB5,KSRRRAR,ligand2,+5,"polybasic peptide FCS-like continuum proxy"
+L_PB3,PRARR,ligand2,+3,"intermediate polybasic peptide"
+L_MB1,SLLRST,ligand2,+1,"single-Arg continuum educational proxy — not a viral infectivity claim"

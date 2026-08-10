@@ -1,0 +1,40 @@
+{
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation. Not MD, docking, coordination chemistry, or biological validation.",
+  "exportedAt": "2026-08-06T20:58:51Z",
+  "seed": 20260805,
+  "rows": [
+    {
+      "r_nm": 1.0,
+      "U_kT": 0.32948052,
+      "F_abs_kT_per_nm": 0.74133116,
+      "inside_cutoff": true,
+      "qi": 1.0,
+      "qj": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "cutoff_nm": 3.2
+    },
+    {
+      "r_nm": 3.1,
+      "U_kT": 0.00769919,
+      "F_abs_kT_per_nm": 0.0121076,
+      "inside_cutoff": true,
+      "qi": 1.0,
+      "qj": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "cutoff_nm": 3.2
+    },
+    {
+      "r_nm": 3.3,
+      "U_kT": 0.0,
+      "F_abs_kT_per_nm": 0.0,
+      "inside_cutoff": false,
+      "qi": 1.0,
+      "qj": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "cutoff_nm": 3.2
+    }
+  ]
+}

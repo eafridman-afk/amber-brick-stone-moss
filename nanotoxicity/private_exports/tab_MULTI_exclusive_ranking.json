@@ -1,0 +1,63 @@
+{
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis tool. Not MD, docking, coordination chemistry, or biological validation.",
+  "exportedAt": "2026-08-06T20:58:51Z",
+  "seed": 20260805,
+  "rows": [
+    {
+      "rank": 1,
+      "ligand_id": "L2",
+      "ligand_name": "KSRRRAR",
+      "U_pH5_mean": "-20.207000",
+      "U_pH5_sd": "2.578400",
+      "U_pH7p4_mean": "-21.147900",
+      "U_pH7p4_sd": "3.070500",
+      "receptor": "acidicPore",
+      "programme": "prog4_multi_pore",
+      "n_replicates": 5,
+      "frames": 120,
+      "seed": 20260805
+    },
+    {
+      "rank": 2,
+      "ligand_id": "L3",
+      "ligand_name": "ACh",
+      "U_pH5_mean": "-18.657200",
+      "U_pH5_sd": "7.116700",
+      "U_pH7p4_mean": "-22.242300",
+      "U_pH7p4_sd": "5.138200",
+      "receptor": "acidicPore",
+      "programme": "prog4_multi_pore",
+      "n_replicates": 5,
+      "frames": 120,
+      "seed": 20260805
+    },
+    {
+      "rank": 3,
+      "ligand_id": "L4",
+      "ligand_name": "5H-EAF",
+      "U_pH5_mean": "-17.391200",
+      "U_pH5_sd": "3.065100",
+      "U_pH7p4_mean": "-13.862600",
+      "U_pH7p4_sd": "0.560200",
+      "receptor": "acidicPore",
+      "programme": "prog4_multi_pore",
+      "n_replicates": 5,
+      "frames": 120,
+      "seed": 20260805
+    },
+    {
+      "rank": 4,
+      "ligand_id": "L1",
+      "ligand_name": "Pb2+",
+      "U_pH5_mean": "-13.405600",
+      "U_pH5_sd": "1.369600",
+      "U_pH7p4_mean": "-14.098700",
+      "U_pH7p4_sd": "1.622800",
+      "receptor": "acidicPore",
+      "programme": "prog4_multi_pore",
+      "n_replicates": 5,
+      "frames": 120,
+      "seed": 20260805
+    }
+  ]
+}

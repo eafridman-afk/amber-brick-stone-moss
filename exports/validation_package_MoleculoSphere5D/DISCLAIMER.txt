@@ -1,0 +1,6 @@
+MoleculoSphere 5D · Beta v1.0
+
+Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
+
+Public continuum observables only — not MD, docking, or clinical prediction.
+Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.

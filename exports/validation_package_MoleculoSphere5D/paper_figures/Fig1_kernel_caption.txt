@@ -1,0 +1,1 @@
+Figure 1. Analytic Debye–Hückel / Yukawa energy U(r) and force magnitude |F|(r) for two unit charges under locked parameters (λ_D = 0.8 nm, coulombK = 1.15, cutoff = 3.2 nm). Red markers: validation points at r = 1.0, 3.1, 3.3 nm (U ≈ 0.32948, 0.00770, 0 at r = 1.0 / 3.1 / 3.3). Dashed line: force cutoff. Classical continuum electrostatics only; Build≡WSL kernel parity target.
