@@ -3082,7 +3082,7 @@ export class SimEngine {
     const disclaimer =
       "# " +
       PUBLICATION_DISCLAIMER +
-      "\n# MoleculoSphere 5D · Beta v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
+      "\n# MoleculoSphere 5D · v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
     const comboRows = rows.filter((r) => r.mode === "combo");
     const header = [
       "receptorId",
@@ -3199,7 +3199,7 @@ export class SimEngine {
     const payload = {
       schema: "moleculosphere5d.pub_combo.v1_1",
       disclaimer: PUBLICATION_DISCLAIMER,
-      version: "Beta v1.1",
+      version: "v1.1",
       locked: { ...VALIDITY_LOCKED },
       chargeSource: "formal" as const,
       receptors,

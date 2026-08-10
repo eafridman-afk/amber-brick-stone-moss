@@ -1,4 +1,4 @@
-MoleculoSphere 5D · Beta v1.1
+MoleculoSphere 5D · v1.1
 
 Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
 

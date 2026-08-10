@@ -1,4 +1,4 @@
-# MoleculoSphere 5D · Beta v1.1
+# MoleculoSphere 5D · v1.1
 
 **Classical continuum electrostatics · Educational / hypothesis tool**
 
@@ -77,4 +77,4 @@ Live path uses **formal / HH** numeric charges only (`chargeSource: formal`). No
 
 Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
 
-**MoleculoSphere 5D · Beta v1.1**
+**MoleculoSphere 5D · v1.1**

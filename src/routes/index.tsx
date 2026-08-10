@@ -26,7 +26,7 @@ function Home() {
       >
         <div className="space-y-2 text-center">
           <p className="text-sm font-medium text-fg">
-            Loading MoleculoSphere 5D · Beta v1.1…
+            Loading MoleculoSphere 5D · v1.1…
           </p>
           <p className="text-xs text-subtle">
             Classical continuum electrostatics · Educational / hypothesis tool

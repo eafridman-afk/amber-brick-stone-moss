@@ -4,7 +4,7 @@ import { a as Play, c as Focus, d as Beaker, i as RotateCcw, l as Download, o as
 import { i as SliderTrack, n as SliderRange, r as SliderThumb, t as Slider$1 } from "../_libs/@radix-ui/react-slider+[...].mjs";
 import { a as useFrame, c as Color, d as RGBAFormat, f as Vector3, i as Canvas, l as DataTexture, n as Line, o as useThree, r as Html, t as OrbitControls, u as LinearFilter } from "../_libs/@react-three/drei+[...].mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/App-CiYIczbQ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/App-Do9o1aAw.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...parts) {
@@ -22,7 +22,7 @@ function Slider({ className, ...props }) {
 }
 var PUBLICATION_DISCLAIMER = "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.";
 /** In-app / export version tag. */
-var APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.1";
+var APP_VERSION_BANNER = "MoleculoSphere 5D · v1.1";
 /** Subtitle under app title (UI + README). */
 var APP_SUBTITLE = "Classical continuum electrostatics · Educational / hypothesis tool";
 /** Frozen public validation package root (workspace-relative). */
@@ -6358,7 +6358,7 @@ var SimEngine = class {
 			cell++;
 		}
 		this.setRespawnOnBinding(savedRespawn);
-		const disclaimer = "# " + PUBLICATION_DISCLAIMER + "\n# MoleculoSphere 5D · Beta v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
+		const disclaimer = "# " + PUBLICATION_DISCLAIMER + "\n# MoleculoSphere 5D · v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
 		const comboRows = rows.filter((r) => r.mode === "combo");
 		const csv = `${disclaimer}\n${[
 			"receptorId",
@@ -6442,7 +6442,7 @@ var SimEngine = class {
 		const payload = {
 			schema: "moleculosphere5d.pub_combo.v1_1",
 			disclaimer: PUBLICATION_DISCLAIMER,
-			version: "Beta v1.1",
+			version: "v1.1",
 			locked: { ...VALIDITY_LOCKED },
 			chargeSource: "formal",
 			receptors,

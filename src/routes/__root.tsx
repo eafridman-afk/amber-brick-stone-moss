@@ -3,7 +3,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { CreatedWithGrokBanner } from "@/components/created-with-grok-banner";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "MoleculoSphere 5D · Beta v1.1";
+const APP_NAME = "MoleculoSphere 5D · v1.1";
 const host = import.meta.env.VITE_PUBLIC_HOSTNAME;
 const ogImage = host
   ? `https://og.grok.me/v1/card.png?host=${encodeURIComponent(host)}&title=${encodeURIComponent(APP_NAME)}`
@@ -17,7 +17,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "MoleculoSphere 5D · Beta v1.1 — classical continuum electrostatics (Yukawa / Debye–Hückel). Educational / hypothesis-generation tool. No biological claim without independent validation.",
+          "MoleculoSphere 5D · v1.1 — classical continuum electrostatics (Yukawa / Debye–Hückel). Educational / hypothesis-generation tool. No biological claim without independent validation.",
       },
       { title: APP_NAME },
       ...(ogImage

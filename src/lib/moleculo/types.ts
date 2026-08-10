@@ -1,6 +1,6 @@
 /**
  * MoleculoSphere 5D shared types & constants.
- * Classical continuum electrostatics only. Physics params locked (Beta v1.1 public multi-ligand).
+ * Classical continuum electrostatics only. Physics params locked (v1.1 public multi-ligand).
  */
 
 export type MoleculeKind =
@@ -57,7 +57,7 @@ export const PUBLIC_PACKAGE_DISCLOSURE = PUBLICATION_DISCLAIMER;
 export const PUBLIC_BUILD_DEFAULT = true as const;
 
 /** In-app / export version tag. */
-export const APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.1" as const;
+export const APP_VERSION_BANNER = "MoleculoSphere 5D · v1.1" as const;
 
 /** Subtitle under app title (UI + README). */
 export const APP_SUBTITLE =
