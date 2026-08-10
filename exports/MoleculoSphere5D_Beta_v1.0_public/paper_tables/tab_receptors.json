@@ -1,0 +1,47 @@
+{
+  "table": "tab_receptors",
+  "rows": [
+    {
+      "ID": "A",
+      "preset": "furin",
+      "name": "Furin catalytic triad",
+      "ROI": "His194",
+      "titratable": true,
+      "pKa": 6.2,
+      "notes": "Asp153=\u22121 \u00b7 His194=\u03b8 \u00b7 Ser368=0",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "ID": "B",
+      "preset": "acidic_pore",
+      "name": "Generic acidic pore constriction",
+      "ROI": "most-negative ring site",
+      "titratable": false,
+      "pKa": "",
+      "notes": "Continuum proxy only; not a specific toxin pore",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "ID": "C",
+      "preset": "a7_allosteric",
+      "name": "\u03b17-nAChR allosteric continuum proxy",
+      "ROI": "allosteric locus",
+      "titratable": false,
+      "pKa": "",
+      "notes": "Classical only; not structural/pharmacological",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "ID": "D",
+      "preset": "a7_orthosteric",
+      "name": "\u03b17-like orthosteric continuum proxy",
+      "ROI": "orthosteric / aromatic-cage locus",
+      "titratable": false,
+      "pKa": "",
+      "notes": "Classical only; not structural/pharmacological",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    }
+  ],
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "model": "MoleculoSphere5D_continuum_v1"
+}
