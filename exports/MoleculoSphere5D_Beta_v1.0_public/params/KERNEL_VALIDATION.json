@@ -1,0 +1,52 @@
+{
+  "test_name": "KERNEL_VALIDATION",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "scientific_framing": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support.",
+  "pair": {
+    "q1": 1.0,
+    "q2": 1.0
+  },
+  "params": {
+    "coulombK": 1.15,
+    "lambda_D_nm": 0.8,
+    "debyeNm": 0.8,
+    "force_cutoff_nm": 3.2,
+    "seed": 20260805
+  },
+  "evaluations_before_dynamics": [
+    {
+      "r_nm": 1.0,
+      "U_kT": 0.3294805163892186,
+      "F_mag_kT_per_nm": 0.7413311618757419,
+      "within_cutoff": true
+    },
+    {
+      "r_nm": 3.1,
+      "U_kT": 0.007699189856372484,
+      "F_mag_kT_per_nm": 0.012107596951553501,
+      "within_cutoff": true
+    },
+    {
+      "r_nm": 3.3,
+      "U_kT": 0.0,
+      "F_mag_kT_per_nm": 0.0,
+      "within_cutoff": false
+    }
+  ],
+  "reference": {
+    "r_1.0_nm": {
+      "U_kT": 0.3294805163892186,
+      "F_mag": 0.7413311618757419
+    },
+    "r_3.1_nm": {
+      "U_kT": 0.007699189856372484,
+      "F_mag": 0.012107596951553501
+    },
+    "r_3.3_nm": {
+      "U_kT": 0.0,
+      "F_mag": 0.0
+    }
+  },
+  "generated_at": "2026-08-06T20:01:14.725796+00:00"
+}

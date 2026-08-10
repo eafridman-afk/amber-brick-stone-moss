@@ -1,0 +1,6 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+ID,preset,name,ROI,titratable,pKa,notes,disclaimer
+A,furin,Furin catalytic triad,His194,True,6.2,Asp153=−1 · His194=θ · Ser368=0,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+B,acidic_pore,Generic acidic pore constriction,most-negative ring site,False,,Continuum proxy only; not a specific toxin pore,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+C,a7_allosteric,α7-nAChR allosteric continuum proxy,allosteric locus,False,,Classical only; not structural/pharmacological,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+D,a7_orthosteric,α7-like orthosteric continuum proxy,orthosteric / aromatic-cage locus,False,,Classical only; not structural/pharmacological,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.

@@ -1,0 +1,54 @@
+{
+  "programme": "PUB_MATRIX_Cu_EF",
+  "receptors": [
+    "atp7a_wt",
+    "atp7a_menkes"
+  ],
+  "ligands": [
+    "L_HM_Cu"
+  ],
+  "ligand_species": [
+    "Cu2+"
+  ],
+  "pH": [
+    7.4,
+    6.2,
+    5.0
+  ],
+  "n_rep": 10,
+  "n_unit": 15,
+  "respawn": false,
+  "out": "/mnt/c/Users/13478/5H_EAF_Furin_Continuum_OpenTool_v1/exports/validation_package_MoleculoSphere5D/PUB_MATRIX_Cu",
+  "locked_physics": {
+    "lambda_D_nm": 0.8,
+    "coulombK": 1.15,
+    "force_cutoff_nm": 3.2,
+    "short_range_well": false,
+    "friction": 1.917,
+    "fCap": 16.2,
+    "dt": 0.012,
+    "noiseScale": 0.35,
+    "kT": 1.0,
+    "n_frames_fixed_pH": 2500,
+    "n_frames_pH_ramp": 1500,
+    "n_replicates": 10,
+    "rng_seed_master": 20260805,
+    "proximity_r_nm": 1.0,
+    "hold_frames": 3,
+    "hh_theta_on": 0.5,
+    "pKa": 6.2,
+    "r_min_nm": 0.12,
+    "box_nm": 4.0,
+    "energy_force_units": "nm_Yukawa_with_coulombK",
+    "integrator": "overdamped_Langevin_continuum",
+    "coordinate_source": "diagnostics/diag_Build_initial_coords_SCALED_nm.json",
+    "coordinate_units": "absolute_nm_SCALED_nm",
+    "public_assets_only": true,
+    "forbidden_paths": [
+      "nanotoxicity"
+    ]
+  },
+  "public_disclosure": "5H-EAF and private nanotoxicity analyses are excluded from this public package.",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "scientific_framing": "MoleculoSphere 5D supplies classical continuum electrostatic observables (Yukawa energies, pH-dependent titration, multi-ligand competition, event counts). It is an educational and hypothesis-generation tool. It does not replace MD, experiment or biological validation. No claim of pore block, receptor antagonism or therapeutic effect is made without independent biological support. 5H-EAF and private nanotoxicity analyses are excluded from this public package."
+}

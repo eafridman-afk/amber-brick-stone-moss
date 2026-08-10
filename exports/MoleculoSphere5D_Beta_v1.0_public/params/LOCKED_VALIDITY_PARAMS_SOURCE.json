@@ -1,0 +1,57 @@
+{
+  "test_name": "Furin_His194_exclusive_peptide_baseline_validity_parity",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "receptor": {
+    "name": "Furin_catalytic_Asp153-His194-Ser368",
+    "label": "Furin catalytic triad continuum proxy \u2013 ROI centered on His194",
+    "Asp153_charge": -1.0,
+    "His194_pKa": 6.2,
+    "His194_charge": "theta (Henderson\u2013Hasselbalch)",
+    "Ser368_charge": 0.0,
+    "binary_ON": "theta >= 0.5",
+    "hisWorld_nm": {
+      "x": 0.0,
+      "y": 0.4,
+      "z": 0.303968
+    }
+  },
+  "baselines": {
+    "Baseline_KSRRRAR_50": {
+      "n": 50,
+      "q": 5.0,
+      "sequence": "KSRRRAR"
+    },
+    "Baseline_PRARR_50": {
+      "n": 50,
+      "q": 3.0,
+      "sequence": "PRARR"
+    }
+  },
+  "locked_physics": {
+    "lambda_D_nm": 0.8,
+    "coulombK": 1.15,
+    "force_cutoff_nm": 3.2,
+    "short_range_well": false,
+    "frictionScale": 1.35,
+    "speciesFriction": 1.42,
+    "friction": 1.917,
+    "fCap": 16.2,
+    "dt": 0.012,
+    "noiseScale": 0.35,
+    "kT": 1.0,
+    "frameNs": 100,
+    "n_frames_fixed_pH": 2500,
+    "n_frames_pH_ramp": 1500,
+    "n_replicates": 10,
+    "rng_seed_master": 20260805,
+    "proximity_r_nm": 1.0,
+    "hold_frames": 3,
+    "hh_theta_on": 0.5,
+    "response_time_metric": false,
+    "coordinate_source": "diag_Build_initial_coords_SCALED_nm.json",
+    "coordinate_units": "absolute_nm_SCALED_nm",
+    "energy_force_units": "nm_Yukawa_with_coulombK"
+  },
+  "theoretical_expectation": "KSRRRAR (+5) should produce higher |U| than PRARR (+3) under the same pH. Proximity ranking secondary.",
+  "parity": "Identical SCALED_nm source, nm kernels, friction, fCap, seed for Build and WSL."
+}
