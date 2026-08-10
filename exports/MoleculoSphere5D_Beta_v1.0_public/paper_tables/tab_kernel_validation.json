@@ -1,0 +1,40 @@
+{
+  "table": "tab_kernel_validation",
+  "rows": [
+    {
+      "r_nm": 1.0,
+      "U_kT": 0.3294805163892186,
+      "F_mag_kT_per_nm": 0.7413311618757419,
+      "within_cutoff": true,
+      "q1": 1.0,
+      "q2": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "r_nm": 3.1,
+      "U_kT": 0.007699189856372484,
+      "F_mag_kT_per_nm": 0.012107596951553501,
+      "within_cutoff": true,
+      "q1": 1.0,
+      "q2": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "r_nm": 3.3,
+      "U_kT": 0.0,
+      "F_mag_kT_per_nm": 0.0,
+      "within_cutoff": false,
+      "q1": 1.0,
+      "q2": 1.0,
+      "coulombK": 1.15,
+      "lambda_D_nm": 0.8,
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    }
+  ],
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "model": "MoleculoSphere5D_continuum_v1"
+}

@@ -1,0 +1,38 @@
+{
+  "table": "tab_MULTI_exclusive_ranking",
+  "public_figure": "Fig2_MULTI_ranking",
+  "public_KEEP_only": true,
+  "dropped": [
+    "L4_5H-EAF",
+    "L3_ACh"
+  ],
+  "rows": [
+    {
+      "Rank": 1,
+      "Ligand_ID": "L2",
+      "Ligand": "KSRRRAR",
+      "U_pH5.0_kT": -21.3,
+      "U_pH7.4_kT": -18.9,
+      "U_pH5.0_exact": -21.334,
+      "U_pH7.4_exact": -18.88,
+      "public_action": "KEEP",
+      "rank_rule": "most_negative_U_at_pH_5.0_public_KEEP_only",
+      "dropped_from_public_figure": "L4_5H-EAF; L3_ACh_optional_omitted",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    },
+    {
+      "Rank": 2,
+      "Ligand_ID": "L1",
+      "Ligand": "Pb\u00b2\u207a",
+      "U_pH5.0_kT": -4.1,
+      "U_pH7.4_kT": -6.1,
+      "U_pH5.0_exact": -4.089,
+      "U_pH7.4_exact": -6.066,
+      "public_action": "KEEP",
+      "rank_rule": "most_negative_U_at_pH_5.0_public_KEEP_only",
+      "dropped_from_public_figure": "L4_5H-EAF; L3_ACh_optional_omitted",
+      "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+    }
+  ],
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation."
+}

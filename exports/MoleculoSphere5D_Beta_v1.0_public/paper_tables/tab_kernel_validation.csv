@@ -1,0 +1,5 @@
+# Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+r_nm,U_kT,F_mag_kT_per_nm,within_cutoff,q1,q2,coulombK,lambda_D_nm,disclaimer
+1.0,0.3294805163892186,0.7413311618757419,True,1.0,1.0,1.15,0.8,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+3.1,0.007699189856372484,0.012107596951553501,True,1.0,1.0,1.15,0.8,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
+3.3,0.0,0.0,False,1.0,1.0,1.15,0.8,Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.
