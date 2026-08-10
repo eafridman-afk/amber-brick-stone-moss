@@ -1,4 +1,4 @@
-# MoleculoSphere 5D · Beta v1.0
+# MoleculoSphere 5D · Beta v1.1
 
 **Classical continuum electrostatics · Educational / hypothesis tool**
 
@@ -23,7 +23,7 @@ npm run build
 ## What you can do
 
 1. Choose receptor **A–F** (Furin triad, acidic pore, α7 allosteric, α7 orthosteric, ATP7A WT, ATP7A Menkes).
-2. Select exclusive public ligand: **Pb²⁺**, **Cu²⁺**, **KSRRRAR**, **PRARR**, or **SLLRST**.
+2. Select exclusive public ligand (**Pb²⁺**, **Cu²⁺**, **KSRRRAR**, **PRARR**, or **SLLRST**) or **Both** for L1+L2 combo (U_HM–pep + Competitive/Cooperative badge).
 3. Set **pH**, press **Play**, read **U_L–ROI** (continuum ligand–ROI energy in kT).
 4. Use **Event capture** at demo speed; single control changes do not full-reseed the scene.
 5. **Run suite + export · public** downloads public CSV/JSON only.
@@ -55,6 +55,8 @@ Path: `exports/validation_package_MoleculoSphere5D/`
 
 | File | Content |
 | --- | --- |
+| `PUB_COMBO_mean_sd.csv` | B/E/F × HM+peptide combo mean±sd (v1.1) |
+| `PUB_COMBO_vs_exclusive.csv` | Combo vs exclusive baselines |
 | `PUB_MATRIX_mean_sd.csv` | A–F × Pb + peptides × pH mean±sd |
 | `PUB_MATRIX_ranking_per_receptor.csv` | Ranking by \|U\| |
 | `PUB_MATRIX_E_vs_F_Menkes.csv` | E vs F continuum contrast (Pb + peptides) |
@@ -67,8 +69,12 @@ Path: `exports/validation_package_MoleculoSphere5D/`
 
 In-app: **Download public validation path list** under Quick start.
 
+## Charges (docs only)
+
+Live path uses **formal / HH** numeric charges only (`chargeSource: formal`). No orbital integrator or live quantum solver. Offline DFT may refine charges outside this app.
+
 ## Disclaimer
 
 Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.
 
-**MoleculoSphere 5D · Beta v1.0**
+**MoleculoSphere 5D · Beta v1.1**

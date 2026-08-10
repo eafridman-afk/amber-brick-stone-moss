@@ -269,6 +269,11 @@ type UiState = {
     frames?: number;
     replicates?: number;
   }) => string;
+  runPubCombo: (opts?: {
+    nMolecules?: number;
+    frames?: number;
+    replicates?: number;
+  }) => string;
   /** @deprecated use runPubMatrixCuEF */
   runPubMatrixCuPbEF: (opts?: {
     nMolecules?: number;
@@ -614,6 +619,24 @@ export const useSimStore = create<UiState>((set, get) => ({
       dl("PUB_MATRIX_Cu_E_vs_F_contrast.csv", r.contrastCsv, "text/csv");
       dl("PUB_MATRIX_ranking_E_F_with_Cu.csv", r.rankingEFCsv, "text/csv");
       dl("PUB_MATRIX_Cu_E_F.json", r.json, "application/json");
+    } catch {
+      /* ignore */
+    }
+    set({ lastProgrammeSummary: r.summary, ...engineSlice(), lastScientificJson: r.json });
+    return r.summary;
+  },
+  runPubCombo: (opts) => {
+    const r = simEngine.runPubCombo(opts);
+    try {
+      const dl = (name: string, body: string, mime: string) => {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([body], { type: mime }));
+        a.download = name;
+        a.click();
+      };
+      dl("PUB_COMBO_mean_sd.csv", r.csv, "text/csv");
+      dl("PUB_COMBO_vs_exclusive.csv", r.vsExclusiveCsv, "text/csv");
+      dl("PUB_COMBO.json", r.json, "application/json");
     } catch {
       /* ignore */
     }

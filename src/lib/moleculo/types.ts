@@ -1,6 +1,6 @@
 /**
  * MoleculoSphere 5D shared types & constants.
- * Classical continuum electrostatics only. Physics params locked for Beta v1.0.
+ * Classical continuum electrostatics only. Physics params locked (Beta v1.1 public multi-ligand).
  */
 
 export type MoleculeKind =
@@ -25,13 +25,18 @@ export type LigandBaselineMode = "ligand1" | "ligand2" | "both";
 
 export type PeptideVariant = "ksrrrar" | "prarr" | "sllrst" | "off";
 
+/** Docs/metadata only — live path always uses numeric formal/HH q. No quantum engine. */
+export type ChargeSource = "formal" | "HH";
+export const DEFAULT_CHARGE_SOURCE: ChargeSource = "formal";
+
 export type ProgrammeId =
   | "prog1_metal"
   | "prog2_pore"
   | "prog3_ach"
   | "prog4_multi_pore"
   | "prog5_peptide3_furin"
-  | "prog_pub_matrix";
+  | "prog_pub_matrix"
+  | "prog_pub_combo";
 
 export type PhRegime =
   | "physiological"
@@ -52,7 +57,7 @@ export const PUBLIC_PACKAGE_DISCLOSURE = PUBLICATION_DISCLAIMER;
 export const PUBLIC_BUILD_DEFAULT = true as const;
 
 /** In-app / export version tag. */
-export const APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.0" as const;
+export const APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.1" as const;
 
 /** Subtitle under app title (UI + README). */
 export const APP_SUBTITLE =

@@ -168,6 +168,7 @@ export function ControlPanel() {
   const lastRespawnFlash = useSimStore((s) => s.lastRespawnFlash);
   const runPubMatrix = useSimStore((s) => s.runPubMatrix);
   const runPubMatrixCuEF = useSimStore((s) => s.runPubMatrixCuEF);
+  const runPubCombo = useSimStore((s) => s.runPubCombo);
 
   const [ioMsg, setIoMsg] = useState<string | null>(null);
   const [validityMsg, setValidityMsg] = useState<string | null>(null);
@@ -191,21 +192,35 @@ export function ControlPanel() {
         ? "SLLRST"
         : "KSRRRAR";
   const hmLabel = heavyMetalLabel(metalMode);
+  const comboActive = pbActive && pepActive;
   const statusLine = [
     `${hmLabel} ${pbActive ? `×${moleculeCount}` : "absent"}`,
     pepActive
       ? ligandBaseline === "ligand2"
         ? `L2 ${pepLabel} ×${ligand2Count} exclusive`
-        : `L2 ${pepLabel} ×${ligand2Count}`
+        : comboActive
+          ? `L2 ${pepLabel} ×${ligand2Count} · combo`
+          : `L2 ${pepLabel} ×${ligand2Count}`
       : "peptide absent",
   ].join(" · ");
 
-  /** Public HUD total = active public L–ROI terms only (no private channels). */
+  const uHmPep = Number(roiEnergy?.energyL1L2) || 0;
+  const comboBadge =
+    !comboActive
+      ? null
+      : uHmPep > 0.05
+        ? "Competitive"
+        : uHmPep < -0.05
+          ? "Cooperative"
+          : "Neutral";
+
+  /** Public HUD total = active public continuum terms only (no private channels). */
   const publicUTot = (() => {
-    let t = 0;
-    if (pbActive) t += Number(roiEnergy?.energyL1His) || 0;
-    if (pepActive) t += Number(roiEnergy?.energyL2His) || 0;
-    return t;
+    let tot = 0;
+    if (pbActive) tot += Number(roiEnergy?.energyL1His) || 0;
+    if (pepActive) tot += Number(roiEnergy?.energyL2His) || 0;
+    if (comboActive) tot += uHmPep;
+    return tot;
   })();
 
   const downloadValidationManifest = () => {
@@ -217,6 +232,8 @@ export function ControlPanel() {
       VALIDATION_PACKAGE_PATH + "/",
       "",
       "Key public CSVs:",
+      "  PUB_COMBO_mean_sd.csv",
+      "  PUB_COMBO_vs_exclusive.csv",
       "  PUB_MATRIX_mean_sd.csv",
       "  PUB_MATRIX_ranking_per_receptor.csv",
       "  PUB_MATRIX_E_vs_F_Menkes.csv",
@@ -229,12 +246,14 @@ export function ControlPanel() {
       "  paper_figures/",
       "",
       "Primary metric: U_L–ROI = mean continuum Yukawa energy of exclusive ligand L at the receptor ROI (kT).",
+      "Combo: U_HM–pep = pairwise HM–peptide continuum term near ROI; Competitive if >0, Cooperative if <0.",
+      "Charges are formal / HH (chargeSource: formal). DFT may refine offline — no live quantum solver.",
       "Private analyses are excluded from this public package.",
       "Not MD, docking, coordination chemistry, or a biological claim.",
     ].join("\n");
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([body], { type: "text/plain" }));
-    a.download = "MoleculoSphere5D_Beta_v1.0_public_validation_paths.txt";
+    a.download = "MoleculoSphere5D_Beta_v1.1_public_validation_paths.txt";
     a.click();
     setIoMsg("Validation package path list downloaded");
   };
@@ -261,8 +280,13 @@ export function ControlPanel() {
           <span className="text-sm font-medium">Quick start</span>
         </div>
         <ol className="list-decimal space-y-1 pl-4 text-[9px] leading-relaxed text-subtle">
-          <li>Pick receptor A–F and exclusive ligand (Pb²⁺ / Cu²⁺ / peptide).</li>
-          <li>Set pH; Play — U_L–ROI is the continuum ligand–ROI energy (kT).</li>
+          <li>
+            Pick receptor A–F. Exclusive ligand or combo: Both = one HM + one peptide.
+          </li>
+          <li>
+            Set pH; Play — U_L–ROI (and U_HM–pep in combo) are continuum Yukawa energies
+            (kT).
+          </li>
           <li>Event tape records proximity + HH-binary frames (demo speed OK).</li>
           <li>
             Export · public writes only public ligands/columns. Frozen CSVs live under{" "}
@@ -391,7 +415,24 @@ export function ControlPanel() {
 
       {/* Energy HUD — public ligands only; hard exclusion when toggled off */}
       <section className="space-y-1.5 rounded-lg border border-border bg-surface/70 p-2.5">
-        <p className="text-[11px] font-medium text-fg">Energy HUD (kT)</p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[11px] font-medium text-fg">Energy HUD (kT)</p>
+          {comboBadge && (
+            <span
+              className={[
+                "rounded border px-1.5 py-0.5 text-[9px] font-medium",
+                comboBadge === "Competitive"
+                  ? "border-amber-400/50 bg-amber-950/40 text-amber-100"
+                  : comboBadge === "Cooperative"
+                    ? "border-emerald-400/50 bg-emerald-950/40 text-emerald-100"
+                    : "border-border bg-surface text-muted",
+              ].join(" ")}
+              title="Educational continuum label from sign of U_HM–pep only — not a biological claim"
+            >
+              {comboBadge}
+            </span>
+          )}
+        </div>
         <div className="space-y-0.5 font-mono text-[10px]">
           {pbActive && (
             <div className="flex justify-between">
@@ -405,10 +446,18 @@ export function ControlPanel() {
               <span className="tabular text-fg">{fmtE(roiEnergy?.energyL2His)}</span>
             </div>
           )}
-          <div className="flex justify-between border-t border-border/60 pt-0.5">
-            <span className="text-muted">U_tot</span>
-            <span className="tabular text-fg">{fmtE(publicUTot)}</span>
-          </div>
+          {comboActive && (
+            <div className="flex justify-between">
+              <span className="text-muted">U_HM–pep</span>
+              <span className="tabular text-fg">{fmtE(uHmPep)}</span>
+            </div>
+          )}
+          {(pbActive || pepActive) && (
+            <div className="flex justify-between border-t border-border/60 pt-0.5">
+              <span className="text-muted">U_tot</span>
+              <span className="tabular text-fg">{fmtE(publicUTot)}</span>
+            </div>
+          )}
           <div className="flex justify-between text-subtle">
             <span>His θ / switch</span>
             <span className="tabular">
@@ -416,9 +465,16 @@ export function ControlPanel() {
             </span>
           </div>
         </div>
+        {comboActive && (
+          <p className="text-[8px] leading-snug text-subtle">
+            Combo mode: Competitive if U_HM–pep positive · Cooperative if negative
+            (continuum only).
+          </p>
+        )}
         {!pbActive && !pepActive && (
           <p className="text-[9px] text-subtle">
-            No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide to see U_L–ROI rows.
+            No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide (or Both) to see U_L–ROI
+            rows.
           </p>
         )}
       </section>
@@ -603,6 +659,25 @@ export function ControlPanel() {
         >
           Run suite + export · public (Cu · E/F)
         </button>
+        <button
+          type="button"
+          onClick={() => {
+            setValidityMsg("Running PUB_COMBO v1.1 (B/E/F × HM+peptide × 3 pH)…");
+            try {
+              const summary = runPubCombo({
+                nMolecules: 12,
+                frames: 120,
+                replicates: 5,
+              });
+              setValidityMsg(summary);
+            } catch (e) {
+              setValidityMsg(String(e));
+            }
+          }}
+          className="w-full rounded-md border border-fuchsia-400/40 bg-fuchsia-950/30 px-2 py-1.5 text-[10px] text-fuchsia-100"
+        >
+          Run suite + export · public (COMBO L1+L2)
+        </button>
         {validityMsg && (
           <p className="whitespace-pre-wrap text-[9px] text-muted">{validityMsg}</p>
         )}
@@ -725,7 +800,7 @@ export function ControlPanel() {
       </section>
 
       <section className="space-y-2 rounded-lg border border-border bg-surface/70 p-3">
-        <span className="text-sm font-medium">Ligands · public exclusive</span>
+        <span className="text-sm font-medium">Ligands · public (exclusive or combo)</span>
         <div className="flex flex-wrap gap-1">
           {(
             [

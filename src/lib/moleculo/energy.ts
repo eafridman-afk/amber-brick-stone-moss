@@ -292,22 +292,18 @@ export function computeRoiEnergy(
     else energyCanyon += e;
   }
 
-  // Inter-ligand competition near ROI — all class pairs (not gated on L1)
+  // Inter-ligand HM–peptide continuum term near ROI (public U_HM–pep).
+  // Pairwise Yukawa, same form as exclusive L–ROI; only L1×L2 (no private classes).
   const roi = roiWorldPos(prot);
   const nearRoi = (p: Particle) =>
     Math.hypot(p.x - roi.x, p.y - roi.y, p.z - roi.z) <= shell * 2;
-  const classes: Particle[][] = [l1, l2, l3, l4];
-  for (let i = 0; i < classes.length; i++) {
-    for (let j = i + 1; j < classes.length; j++) {
-      for (const a of classes[i]!) {
-        if (!nearRoi(a)) continue;
-        for (const b of classes[j]!) {
-          const r = Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
-          if (r > shell * 2) continue;
-          energyL1L2 += yukawaEnergy(a.q, b.q, r, k, lambda);
-          forceMagL1L2 += yukawaForceMag(a.q, b.q, r, k, lambda);
-        }
-      }
+  for (const a of l1) {
+    if (!nearRoi(a)) continue;
+    for (const b of l2) {
+      const r = Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
+      if (r > shell * 2) continue;
+      energyL1L2 += yukawaEnergy(a.q, b.q, r, k, lambda);
+      forceMagL1L2 += yukawaForceMag(a.q, b.q, r, k, lambda);
     }
   }
 

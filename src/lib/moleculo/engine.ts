@@ -107,6 +107,7 @@ import {
   defaultProgrammeRun,
   programmeExportMeta,
   meanSd,
+  setToMetalMode,
   type LigandSetSpec,
 } from "./programmes";
 import { SCENARIOS, type ScenarioId, type ScenarioBanner } from "./scenarios";
@@ -1532,10 +1533,11 @@ export class SimEngine {
 
   applyLigandSetSpec(set: LigandSetSpec) {
     this.moleculeCount = set.pb;
+    this.metalMode = setToMetalMode(set);
     this.peptideVariant = set.peptide;
     this.ligand2Count = set.peptideCount;
     this.ligand2Enabled = set.peptide !== "off" && set.peptideCount > 0;
-    // Public Beta v1.0: never activate non-public ligand channels from programme sets
+    // Public Beta: never activate non-public ligand channels from programme sets
     if (PUBLIC_BUILD_DEFAULT) {
       this.ligand3Count = 0;
       this.ligand3Enabled = false;
@@ -1609,6 +1611,7 @@ export class SimEngine {
           const prox: number[] = [];
           const uPb: number[] = [];
           const uPep: number[] = [];
+          const uLl: number[] = [];
           const uTot: number[] = [];
           const dTrig: number[] = [];
           for (let r = 0; r < nRep; r++) {
@@ -1626,6 +1629,7 @@ export class SimEngine {
             this.eventScrub = null;
             let sumUPb = 0,
               sumUPep = 0,
+              sumULl = 0,
               sumUTot = 0,
               nU = 0;
             for (let f = 0; f < frames; f++) {
@@ -1635,9 +1639,11 @@ export class SimEngine {
               if (re) {
                 const e1 = Number(re.energyL1His) || 0;
                 const e2 = Number(re.energyL2His) || 0;
+                const e12 = Number(re.energyL1L2) || 0;
                 sumUPb += e1;
                 sumUPep += e2;
-                sumUTot += e1 + e2;
+                sumULl += e12;
+                sumUTot += e1 + e2 + e12;
                 nU += 1;
               }
             }
@@ -1645,6 +1651,7 @@ export class SimEngine {
             const inv = nU || 1;
             uPb.push(sumUPb / inv);
             uPep.push(sumUPep / inv);
+            uLl.push(sumULl / inv);
             uTot.push(sumUTot / inv);
             const td = this.behaviorStats.triggerDistancesNm;
             if (td.length) dTrig.push(td.reduce((a, b) => a + b, 0) / td.length);
@@ -1662,6 +1669,7 @@ export class SimEngine {
             meanTriggerDistNm: meanSd(dTrig),
             U_Pb_ROI: meanSd(uPb),
             U_pep_ROI: meanSd(uPep),
+            U_HM_pep: meanSd(uLl),
             U_tot: meanSd(uTot),
           });
         }
@@ -1669,6 +1677,7 @@ export class SimEngine {
           const prox: number[] = [];
           const uPb: number[] = [];
           const uPep: number[] = [];
+          const uLl: number[] = [];
           const uTot: number[] = [];
           for (let r = 0; r < nRep; r++) {
             this.rngSeed = baseSeed + r * 997 + 5000;
@@ -1684,6 +1693,7 @@ export class SimEngine {
             const rampFrames = Math.min(400, frames);
             let sumUPb = 0,
               sumUPep = 0,
+              sumULl = 0,
               sumUTot = 0,
               nU = 0;
             for (let f = 0; f < rampFrames; f++) {
@@ -1695,9 +1705,11 @@ export class SimEngine {
               if (re) {
                 const e1 = Number(re.energyL1His) || 0;
                 const e2 = Number(re.energyL2His) || 0;
+                const e12 = Number(re.energyL1L2) || 0;
                 sumUPb += e1;
                 sumUPep += e2;
-                sumUTot += e1 + e2;
+                sumULl += e12;
+                sumUTot += e1 + e2 + e12;
                 nU += 1;
               }
             }
@@ -1705,6 +1717,7 @@ export class SimEngine {
             prox.push(this.behaviorStats.proximityEvents);
             uPb.push(sumUPb / inv);
             uPep.push(sumUPep / inv);
+            uLl.push(sumULl / inv);
             uTot.push(sumUTot / inv);
           }
           rows.push({
@@ -1720,6 +1733,7 @@ export class SimEngine {
             meanTriggerDistNm: meanSd([]),
             U_Pb_ROI: meanSd(uPb),
             U_pep_ROI: meanSd(uPep),
+            U_HM_pep: meanSd(uLl),
             U_tot: meanSd(uTot),
           });
         }
@@ -1771,6 +1785,8 @@ export class SimEngine {
       "U_HM_ROI_sd",
       "U_pep_ROI_mean",
       "U_pep_ROI_sd",
+      "U_HM_pep_mean",
+      "U_HM_pep_sd",
       "U_tot_mean",
       "U_tot_sd",
     ];
@@ -1783,6 +1799,7 @@ export class SimEngine {
       const pe = row.proximityEvents as { mean: number; sd: number } | undefined;
       const up = row.U_Pb_ROI as { mean: number; sd: number } | undefined;
       const ue = row.U_pep_ROI as { mean: number; sd: number } | undefined;
+      const ul = row.U_HM_pep as { mean: number; sd: number } | undefined;
       const ut = row.U_tot as { mean: number; sd: number } | undefined;
       csvLines.push(
         [
@@ -1800,6 +1817,8 @@ export class SimEngine {
           num(up, "sd"),
           num(ue, "mean"),
           num(ue, "sd"),
+          num(ul, "mean"),
+          num(ul, "sd"),
           num(ut, "mean"),
           num(ut, "sd"),
         ].join(","),
@@ -2836,6 +2855,367 @@ export class SimEngine {
     this.lastScientificJson = json;
     this.emitUi();
     return { meanSdCsv, contrastCsv, rankingEFCsv, json, summary };
+  }
+
+
+  /**
+   * PUB_COMBO v1.1 — public multi-ligand HM + peptide pairs.
+   * Receptors B (acidic pore), E (ATP7A WT), F (ATP7A Menkes).
+   * Pairs: Pb+KSRRRAR, Cu+KSRRRAR, Pb+PRARR × pH 7.4/6.2/5.0.
+   * Exports mean±sd U_HM–ROI, U_pep–ROI, U_HM–pep, U_tot + exclusive baselines.
+   * Locked Yukawa; respawn OFF. No private ligands.
+   */
+  runPubCombo(opts?: {
+    nMolecules?: number;
+    frames?: number;
+    replicates?: number;
+  }): {
+    csv: string;
+    vsExclusiveCsv: string;
+    json: string;
+    summary: string;
+  } {
+    const nMol = opts?.nMolecules ?? 12;
+    const frames = opts?.frames ?? 150;
+    const nRep = opts?.replicates ?? 5;
+    const receptors: ReceptorGeometryId[] = [
+      "acidicPore",
+      "atp7aWt",
+      "atp7aMenkes",
+    ];
+    const pairs: {
+      id: string;
+      label: string;
+      metal: MetalMode;
+      peptide: PeptideVariant;
+      pepLabel: string;
+    }[] = [
+      {
+        id: "Pb_KS",
+        label: "Pb2+ + KSRRRAR",
+        metal: "pb",
+        peptide: "ksrrrar",
+        pepLabel: "KSRRRAR",
+      },
+      {
+        id: "Cu_KS",
+        label: "Cu2+ + KSRRRAR",
+        metal: "cu",
+        peptide: "ksrrrar",
+        pepLabel: "KSRRRAR",
+      },
+      {
+        id: "Pb_PR",
+        label: "Pb2+ + PRARR",
+        metal: "pb",
+        peptide: "prarr",
+        pepLabel: "PRARR",
+      },
+    ];
+    const pHs = [7.4, 6.2, 5.0] as const;
+    const ms = (xs: number[]) => {
+      const mean = xs.reduce((a, b) => a + b, 0) / (xs.length || 1);
+      if (xs.length < 2) return { mean, sd: 0 };
+      const varr =
+        xs.reduce((a, b) => a + (b - mean) ** 2, 0) / (xs.length - 1);
+      return { mean, sd: Math.sqrt(varr) };
+    };
+
+    type ComboRow = {
+      receptorId: string;
+      receptorLabel: string;
+      pairId: string;
+      pairLabel: string;
+      metal: string;
+      peptide: string;
+      pH: number;
+      n: number;
+      frames: number;
+      mode: "combo" | "exclusive_HM" | "exclusive_pep";
+      U_HM_ROI_mean: number;
+      U_HM_ROI_sd: number;
+      U_pep_ROI_mean: number;
+      U_pep_ROI_sd: number;
+      U_HM_pep_mean: number;
+      U_HM_pep_sd: number;
+      U_tot_mean: number;
+      U_tot_sd: number;
+      badge: string;
+    };
+    const rows: ComboRow[] = [];
+    const savedRespawn = this.respawnOnBinding;
+    this.setRespawnOnBinding(false);
+
+    const runMode = (
+      rec: ReceptorGeometryId,
+      pair: (typeof pairs)[0],
+      pH: number,
+      mode: "combo" | "exclusive_HM" | "exclusive_pep",
+      cell: number,
+    ): ComboRow => {
+      const uHm: number[] = [];
+      const uPep: number[] = [];
+      const uLl: number[] = [];
+      const uTot: number[] = [];
+      for (let r = 0; r < nRep; r++) {
+        const seed =
+          VALIDITY_LOCKED.baseSeed +
+          r * 997 +
+          rec.length * 31 +
+          pair.id.charCodeAt(0) * 17 +
+          Math.round(pH * 100) +
+          cell * 5 +
+          (mode === "combo" ? 0 : mode === "exclusive_HM" ? 1 : 2);
+        this.rngSeed = seed;
+        this.rng = makeRng(seed);
+        this.spawnSeed = seed;
+        this.setReceptorGeometry(rec);
+        this.ligand3Enabled = false;
+        this.ligand3Count = 0;
+        this.ligand4Enabled = false;
+        this.ligand4Count = 0;
+        this.metalMode = pair.metal;
+        if (mode === "combo") {
+          this.ligandBaseline = "both";
+          this.moleculeCount = nMol;
+          this.peptideVariant = pair.peptide;
+          this.ligand2Count = nMol;
+          this.ligand2Enabled = true;
+          this.bootstrap(nMol, pH);
+        } else if (mode === "exclusive_HM") {
+          this.ligandBaseline = "ligand1";
+          this.moleculeCount = nMol;
+          this.peptideVariant = "off";
+          this.ligand2Count = 0;
+          this.ligand2Enabled = false;
+          this.bootstrap(nMol, pH);
+        } else {
+          this.ligandBaseline = "ligand2";
+          this.moleculeCount = 0;
+          this.peptideVariant = pair.peptide;
+          this.ligand2Count = nMol;
+          this.ligand2Enabled = true;
+          this.bootstrap(0, pH);
+        }
+        this.enforceExclusiveParticles();
+        this.applyValidityLockedParams(pH);
+        this.applyPH(pH);
+        this.resetBehaviorCounters();
+        this.playing = true;
+        let sHm = 0,
+          sPep = 0,
+          sLl = 0,
+          sTot = 0,
+          nU = 0;
+        for (let f = 0; f < frames; f++) {
+          this.step();
+          this.refreshRoiEnergy();
+          const re = this.roiEnergy;
+          if (re) {
+            const hm = Number(re.energyL1His) || 0;
+            const pep = Number(re.energyL2His) || 0;
+            const ll = Number(re.energyL1L2) || 0;
+            sHm += hm;
+            sPep += pep;
+            sLl += ll;
+            if (mode === "combo") sTot += hm + pep + ll;
+            else if (mode === "exclusive_HM") sTot += hm;
+            else sTot += pep;
+            nU++;
+          }
+        }
+        const inv = nU || 1;
+        uHm.push(sHm / inv);
+        uPep.push(sPep / inv);
+        uLl.push(sLl / inv);
+        uTot.push(sTot / inv);
+      }
+      const hm = ms(uHm);
+      const pep = ms(uPep);
+      const ll = ms(uLl);
+      const tot = ms(uTot);
+      const badge =
+        mode !== "combo"
+          ? "—"
+          : ll.mean > 0.05
+            ? "Competitive"
+            : ll.mean < -0.05
+              ? "Cooperative"
+              : "Neutral";
+      const meta = RECEPTOR_GEOMETRIES[rec];
+      return {
+        receptorId: rec,
+        receptorLabel: meta?.shortLabel ?? rec,
+        pairId: pair.id,
+        pairLabel: pair.label,
+        metal: pair.metal === "cu" ? "Cu2+" : "Pb2+",
+        peptide: pair.pepLabel,
+        pH,
+        n: nRep,
+        frames,
+        mode,
+        U_HM_ROI_mean: hm.mean,
+        U_HM_ROI_sd: hm.sd,
+        U_pep_ROI_mean: pep.mean,
+        U_pep_ROI_sd: pep.sd,
+        U_HM_pep_mean: ll.mean,
+        U_HM_pep_sd: ll.sd,
+        U_tot_mean: tot.mean,
+        U_tot_sd: tot.sd,
+        badge,
+      };
+    };
+
+    let cell = 0;
+    for (const rec of receptors) {
+      for (const pair of pairs) {
+        for (const pH of pHs) {
+          rows.push(runMode(rec, pair, pH, "combo", cell));
+          rows.push(runMode(rec, pair, pH, "exclusive_HM", cell));
+          rows.push(runMode(rec, pair, pH, "exclusive_pep", cell));
+          cell++;
+        }
+      }
+    }
+    this.setRespawnOnBinding(savedRespawn);
+
+    const disclaimer =
+      "# " +
+      PUBLICATION_DISCLAIMER +
+      "\n# MoleculoSphere 5D · Beta v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
+    const comboRows = rows.filter((r) => r.mode === "combo");
+    const header = [
+      "receptorId",
+      "receptorLabel",
+      "pairId",
+      "pairLabel",
+      "metal",
+      "peptide",
+      "pH",
+      "n",
+      "frames",
+      "U_HM_ROI_mean",
+      "U_HM_ROI_sd",
+      "U_pep_ROI_mean",
+      "U_pep_ROI_sd",
+      "U_HM_pep_mean",
+      "U_HM_pep_sd",
+      "U_tot_mean",
+      "U_tot_sd",
+      "badge",
+    ].join(",");
+    const csvBody = comboRows
+      .map((r) =>
+        [
+          r.receptorId,
+          r.receptorLabel,
+          r.pairId,
+          JSON.stringify(r.pairLabel),
+          r.metal,
+          r.peptide,
+          r.pH,
+          r.n,
+          r.frames,
+          r.U_HM_ROI_mean.toFixed(6),
+          r.U_HM_ROI_sd.toFixed(6),
+          r.U_pep_ROI_mean.toFixed(6),
+          r.U_pep_ROI_sd.toFixed(6),
+          r.U_HM_pep_mean.toFixed(6),
+          r.U_HM_pep_sd.toFixed(6),
+          r.U_tot_mean.toFixed(6),
+          r.U_tot_sd.toFixed(6),
+          r.badge,
+        ].join(","),
+      )
+      .join("\n");
+    const csv = `${disclaimer}\n${header}\n${csvBody}\n`;
+
+    const vsHeader = [
+      "receptorId",
+      "pairId",
+      "pairLabel",
+      "pH",
+      "U_HM_combo_mean",
+      "U_pep_combo_mean",
+      "U_HM_pep_mean",
+      "U_tot_combo_mean",
+      "badge",
+      "U_HM_exclusive_mean",
+      "U_pep_exclusive_mean",
+      "delta_HM_combo_minus_excl",
+      "delta_pep_combo_minus_excl",
+    ].join(",");
+    const vsLines: string[] = [disclaimer, vsHeader];
+    for (const rec of receptors) {
+      for (const pair of pairs) {
+        for (const pH of pHs) {
+          const c = rows.find(
+            (r) =>
+              r.mode === "combo" &&
+              r.receptorId === rec &&
+              r.pairId === pair.id &&
+              r.pH === pH,
+          );
+          const eh = rows.find(
+            (r) =>
+              r.mode === "exclusive_HM" &&
+              r.receptorId === rec &&
+              r.pairId === pair.id &&
+              r.pH === pH,
+          );
+          const ep = rows.find(
+            (r) =>
+              r.mode === "exclusive_pep" &&
+              r.receptorId === rec &&
+              r.pairId === pair.id &&
+              r.pH === pH,
+          );
+          if (!c || !eh || !ep) continue;
+          vsLines.push(
+            [
+              rec,
+              pair.id,
+              JSON.stringify(pair.label),
+              pH,
+              c.U_HM_ROI_mean.toFixed(6),
+              c.U_pep_ROI_mean.toFixed(6),
+              c.U_HM_pep_mean.toFixed(6),
+              c.U_tot_mean.toFixed(6),
+              c.badge,
+              eh.U_HM_ROI_mean.toFixed(6),
+              ep.U_pep_ROI_mean.toFixed(6),
+              (c.U_HM_ROI_mean - eh.U_HM_ROI_mean).toFixed(6),
+              (c.U_pep_ROI_mean - ep.U_pep_ROI_mean).toFixed(6),
+            ].join(","),
+          );
+        }
+      }
+    }
+    const vsExclusiveCsv = vsLines.join("\n") + "\n";
+
+    const nCompetitive = comboRows.filter((r) => r.badge === "Competitive").length;
+    const nCoop = comboRows.filter((r) => r.badge === "Cooperative").length;
+    const summary = `PUB_COMBO v1.1: ${comboRows.length} combo cells · n=${nRep} · frames=${frames} · Competitive ${nCompetitive} · Cooperative ${nCoop} · ${PUBLICATION_DISCLAIMER}`;
+    const payload = {
+      schema: "moleculosphere5d.pub_combo.v1_1",
+      disclaimer: PUBLICATION_DISCLAIMER,
+      version: "Beta v1.1",
+      locked: { ...VALIDITY_LOCKED },
+      chargeSource: "formal" as const,
+      receptors,
+      pairs: pairs.map((x) => x.label),
+      pH: [...pHs],
+      respawn: false,
+      nMolecules: nMol,
+      frames,
+      replicates: nRep,
+      comboRows,
+      allRows: rows,
+    };
+    const json = JSON.stringify(payload, null, 2);
+    this.lastScientificJson = json;
+    this.emitUi();
+    return { csv, vsExclusiveCsv, json, summary };
   }
 
   /** @deprecated alias — Beta v1.0 uses runPubMatrixCuEF */

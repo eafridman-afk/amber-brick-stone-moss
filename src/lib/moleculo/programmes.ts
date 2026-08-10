@@ -4,8 +4,8 @@
  * Engine ligand classes (internal):
  *   L1 = Pb²⁺ · L2 = peptide · L3 = (internal) · L4 = (internal)
  *
- * User-facing public L numbering (Beta v1.0):
- *   L1 = Pb²⁺ / Cu²⁺ · L2 = KSRRRAR | PRARR | SLLRST
+ * User-facing public L numbering (Beta v1.1):
+ *   L1 = Pb²⁺ / Cu²⁺ · L2 = KSRRRAR | PRARR | SLLRST · combo L1+L2 allowed
  * Flags in MULTI_LIGAND_PRESETS map onto engine classes via LigandSetSpec.
  *
  * Private programmes (privateNanotoxicity: true) are never shown on the public
@@ -24,12 +24,15 @@ import { VALIDITY_LOCKED } from "./validity-test";
 export type LigandSetSpec = {
   id: string;
   label: string;
+  /** Heavy-metal ion count (L1). Identity via metal field. */
   pb: number;
+  /** L1 identity when pb > 0. Default "pb". */
+  metal?: MetalMode;
   peptide: PeptideVariant;
   peptideCount: number;
-  /** Engine L3 internal count (private) */
+  /** Engine L3 internal count (private — always 0 on public surface) */
   his5: number;
-  /** Engine L4 internal count (not a public Beta v1.0 ligand) */
+  /** Engine L4 internal count (private — always 0 on public surface) */
   ach: number;
 };
 
@@ -462,10 +465,65 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
     publicationCandidate: true,
     privateNanotoxicity: false,
   },
+  prog_pub_combo: {
+    id: "prog_pub_combo",
+    shortLabel: "COMBO · L1+L2 v1.1",
+    label:
+      "Programme PUB_COMBO v1.1 – Public multi-ligand HM + peptide pairs",
+    hypothesis:
+      "Simultaneous Pb²⁺/Cu²⁺ and polycationic peptide continuum energies (U_HM–ROI, U_pep–ROI, U_HM–pep) rank competition vs cooperation under locked Debye–Hückel parameters.",
+    note: "Public L1+L2 only. Badge: Competitive if U_HM–pep > 0; Cooperative if U_HM–pep < 0 (educational continuum labels). Respawn OFF for energy ranking.",
+    receptors: ["acidicPore", "atp7aWt", "atp7aMenkes"],
+    ligandSets: [
+      {
+        id: "Pb_KS",
+        label: "Pb²⁺ + KSRRRAR",
+        pb: 12,
+        metal: "pb",
+        peptide: "ksrrrar",
+        peptideCount: 12,
+        his5: 0,
+        ach: 0,
+      },
+      {
+        id: "Cu_KS",
+        label: "Cu²⁺ + KSRRRAR",
+        pb: 12,
+        metal: "cu",
+        peptide: "ksrrrar",
+        peptideCount: 12,
+        his5: 0,
+        ach: 0,
+      },
+      {
+        id: "Pb_PR",
+        label: "Pb²⁺ + PRARR",
+        pb: 12,
+        metal: "pb",
+        peptide: "prarr",
+        peptideCount: 12,
+        his5: 0,
+        ach: 0,
+      },
+    ],
+    pHFixed: [7.4, 6.2, 5.0],
+    ramp: false,
+    respawnDefault: false,
+    primaryReadouts: [
+      "U_HM–ROI",
+      "U_pep–ROI",
+      "U_HM–pep",
+      "U_tot",
+      "Competitive / Cooperative badge",
+    ],
+    publicationCandidate: true,
+    privateNanotoxicity: false,
+  },
 };
 
 /** Full catalogue (includes private nanotoxicity programmes). */
 export const PROGRAMME_ORDER: ProgrammeId[] = [
+  "prog_pub_combo",
   "prog_pub_matrix",
   "prog1_metal",
   "prog5_peptide3_furin",
@@ -474,8 +532,9 @@ export const PROGRAMME_ORDER: ProgrammeId[] = [
   "prog4_multi_pore",
 ];
 
-/** Public UI order — matrix + Pb + peptide public suites only. */
+/** Public UI order — combo + matrix + Pb + peptide public suites. */
 export const PUBLIC_PROGRAMME_ORDER: ProgrammeId[] = [
+  "prog_pub_combo",
   "prog_pub_matrix",
   "prog1_metal",
   "prog5_peptide3_furin",
@@ -555,7 +614,9 @@ export function programmeExportMeta(cfg: ProgrammeRunConfig) {
 
 /** Convenience: public baseline metal mode from a set. */
 export function setToMetalMode(set: LigandSetSpec): MetalMode {
-  return set.pb > 0 ? "pb" : "off";
+  if (set.pb <= 0) return "off";
+  const m = set.metal ?? "pb";
+  return m === "cu" ? "cu" : m === "off" ? "off" : "pb";
 }
 
 /** Convenience: public baseline mode. */

@@ -4,7 +4,7 @@ import { a as Play, c as Focus, d as Beaker, i as RotateCcw, l as Download, o as
 import { i as SliderTrack, n as SliderRange, r as SliderThumb, t as Slider$1 } from "../_libs/@radix-ui/react-slider+[...].mjs";
 import { a as useFrame, c as Color, d as RGBAFormat, f as Vector3, i as Canvas, l as DataTexture, n as Line, o as useThree, r as Html, t as OrbitControls, u as LinearFilter } from "../_libs/@react-three/drei+[...].mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/App-CnRME7Rz.js
+//#region node_modules/.nitro/vite/services/ssr/assets/App-CBwn-JUU.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...parts) {
@@ -22,7 +22,7 @@ function Slider({ className, ...props }) {
 }
 var PUBLICATION_DISCLAIMER = "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.";
 /** In-app / export version tag. */
-var APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.0";
+var APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.1";
 /** Subtitle under app title (UI + README). */
 var APP_SUBTITLE = "Classical continuum electrostatics · Educational / hypothesis tool";
 /** Frozen public validation package root (workspace-relative). */
@@ -2697,15 +2697,9 @@ function computeRoiEnergy(prot, particles, params) {
 	}
 	const roi = roiWorldPos(prot);
 	const nearRoi = (p) => Math.hypot(p.x - roi.x, p.y - roi.y, p.z - roi.z) <= shell * 2;
-	const classes = [
-		l1,
-		l2,
-		l3,
-		l4
-	];
-	for (let i = 0; i < classes.length; i++) for (let j = i + 1; j < classes.length; j++) for (const a of classes[i]) {
+	for (const a of l1) {
 		if (!nearRoi(a)) continue;
-		for (const b of classes[j]) {
+		for (const b of l2) {
 			const r = Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
 			if (r > shell * 2) continue;
 			energyL1L2 += yukawaEnergy(a.q, b.q, r, k, lambda);
@@ -3539,10 +3533,71 @@ var PROGRAMMES = {
 		],
 		publicationCandidate: true,
 		privateNanotoxicity: false
+	},
+	prog_pub_combo: {
+		id: "prog_pub_combo",
+		shortLabel: "COMBO · L1+L2 v1.1",
+		label: "Programme PUB_COMBO v1.1 – Public multi-ligand HM + peptide pairs",
+		hypothesis: "Simultaneous Pb²⁺/Cu²⁺ and polycationic peptide continuum energies (U_HM–ROI, U_pep–ROI, U_HM–pep) rank competition vs cooperation under locked Debye–Hückel parameters.",
+		note: "Public L1+L2 only. Badge: Competitive if U_HM–pep > 0; Cooperative if U_HM–pep < 0 (educational continuum labels). Respawn OFF for energy ranking.",
+		receptors: [
+			"acidicPore",
+			"atp7aWt",
+			"atp7aMenkes"
+		],
+		ligandSets: [
+			{
+				id: "Pb_KS",
+				label: "Pb²⁺ + KSRRRAR",
+				pb: 12,
+				metal: "pb",
+				peptide: "ksrrrar",
+				peptideCount: 12,
+				his5: 0,
+				ach: 0
+			},
+			{
+				id: "Cu_KS",
+				label: "Cu²⁺ + KSRRRAR",
+				pb: 12,
+				metal: "cu",
+				peptide: "ksrrrar",
+				peptideCount: 12,
+				his5: 0,
+				ach: 0
+			},
+			{
+				id: "Pb_PR",
+				label: "Pb²⁺ + PRARR",
+				pb: 12,
+				metal: "pb",
+				peptide: "prarr",
+				peptideCount: 12,
+				his5: 0,
+				ach: 0
+			}
+		],
+		pHFixed: [
+			7.4,
+			6.2,
+			5
+		],
+		ramp: false,
+		respawnDefault: false,
+		primaryReadouts: [
+			"U_HM–ROI",
+			"U_pep–ROI",
+			"U_HM–pep",
+			"U_tot",
+			"Competitive / Cooperative badge"
+		],
+		publicationCandidate: true,
+		privateNanotoxicity: false
 	}
 };
-/** Public UI order — matrix + Pb + peptide public suites only. */
+/** Public UI order — combo + matrix + Pb + peptide public suites. */
 var PUBLIC_PROGRAMME_ORDER = [
+	"prog_pub_combo",
 	"prog_pub_matrix",
 	"prog1_metal",
 	"prog5_peptide3_furin"
@@ -3550,6 +3605,12 @@ var PUBLIC_PROGRAMME_ORDER = [
 /** Public surface always uses the public programme list. */
 function visibleProgrammeOrder(_showPrivate) {
 	return PUBLIC_PROGRAMME_ORDER;
+}
+/** Convenience: public baseline metal mode from a set. */
+function setToMetalMode(set) {
+	if (set.pb <= 0) return "off";
+	const m = set.metal ?? "pb";
+	return m === "cu" ? "cu" : m === "off" ? "off" : "pb";
 }
 function meanSd(xs) {
 	if (!xs.length) return {
@@ -5114,6 +5175,7 @@ var SimEngine = class {
 	}
 	applyLigandSetSpec(set) {
 		this.moleculeCount = set.pb;
+		this.metalMode = setToMetalMode(set);
 		this.peptideVariant = set.peptide;
 		this.ligand2Count = set.peptideCount;
 		this.ligand2Enabled = set.peptide !== "off" && set.peptideCount > 0;
@@ -5165,6 +5227,7 @@ var SimEngine = class {
 				const prox = [];
 				const uPb = [];
 				const uPep = [];
+				const uLl = [];
 				const uTot = [];
 				const dTrig = [];
 				for (let r = 0; r < nRep; r++) {
@@ -5180,7 +5243,7 @@ var SimEngine = class {
 					this.playing = true;
 					this.scrubIndex = null;
 					this.eventScrub = null;
-					let sumUPb = 0, sumUPep = 0, sumUTot = 0, nU = 0;
+					let sumUPb = 0, sumUPep = 0, sumULl = 0, sumUTot = 0, nU = 0;
 					for (let f = 0; f < frames; f++) {
 						this.step();
 						this.refreshRoiEnergy();
@@ -5188,9 +5251,11 @@ var SimEngine = class {
 						if (re) {
 							const e1 = Number(re.energyL1His) || 0;
 							const e2 = Number(re.energyL2His) || 0;
+							const e12 = Number(re.energyL1L2) || 0;
 							sumUPb += e1;
 							sumUPep += e2;
-							sumUTot += e1 + e2;
+							sumULl += e12;
+							sumUTot += e1 + e2 + e12;
 							nU += 1;
 						}
 					}
@@ -5198,6 +5263,7 @@ var SimEngine = class {
 					const inv = nU || 1;
 					uPb.push(sumUPb / inv);
 					uPep.push(sumUPep / inv);
+					uLl.push(sumULl / inv);
 					uTot.push(sumUTot / inv);
 					const td = this.behaviorStats.triggerDistancesNm;
 					if (td.length) dTrig.push(td.reduce((a, b) => a + b, 0) / td.length);
@@ -5215,6 +5281,7 @@ var SimEngine = class {
 					meanTriggerDistNm: meanSd(dTrig),
 					U_Pb_ROI: meanSd(uPb),
 					U_pep_ROI: meanSd(uPep),
+					U_HM_pep: meanSd(uLl),
 					U_tot: meanSd(uTot)
 				});
 			}
@@ -5222,6 +5289,7 @@ var SimEngine = class {
 				const prox = [];
 				const uPb = [];
 				const uPep = [];
+				const uLl = [];
 				const uTot = [];
 				for (let r = 0; r < nRep; r++) {
 					this.rngSeed = baseSeed + r * 997 + 5e3;
@@ -5235,7 +5303,7 @@ var SimEngine = class {
 					this.resetBehaviorCounters();
 					this.playing = true;
 					const rampFrames = Math.min(400, frames);
-					let sumUPb = 0, sumUPep = 0, sumUTot = 0, nU = 0;
+					let sumUPb = 0, sumUPep = 0, sumULl = 0, sumUTot = 0, nU = 0;
 					for (let f = 0; f < rampFrames; f++) {
 						const t = f / Math.max(1, rampFrames - 1);
 						this.applyPH(7.4 + (5 - 7.4) * t);
@@ -5245,9 +5313,11 @@ var SimEngine = class {
 						if (re) {
 							const e1 = Number(re.energyL1His) || 0;
 							const e2 = Number(re.energyL2His) || 0;
+							const e12 = Number(re.energyL1L2) || 0;
 							sumUPb += e1;
 							sumUPep += e2;
-							sumUTot += e1 + e2;
+							sumULl += e12;
+							sumUTot += e1 + e2 + e12;
 							nU += 1;
 						}
 					}
@@ -5255,6 +5325,7 @@ var SimEngine = class {
 					prox.push(this.behaviorStats.proximityEvents);
 					uPb.push(sumUPb / inv);
 					uPep.push(sumUPep / inv);
+					uLl.push(sumULl / inv);
 					uTot.push(sumUTot / inv);
 				}
 				rows.push({
@@ -5270,6 +5341,7 @@ var SimEngine = class {
 					meanTriggerDistNm: meanSd([]),
 					U_Pb_ROI: meanSd(uPb),
 					U_pep_ROI: meanSd(uPep),
+					U_HM_pep: meanSd(uLl),
 					U_tot: meanSd(uTot)
 				});
 			}
@@ -5314,6 +5386,8 @@ var SimEngine = class {
 				"U_HM_ROI_sd",
 				"U_pep_ROI_mean",
 				"U_pep_ROI_sd",
+				"U_HM_pep_mean",
+				"U_HM_pep_sd",
 				"U_tot_mean",
 				"U_tot_sd"
 			].join(",")
@@ -5322,6 +5396,7 @@ var SimEngine = class {
 			const pe = row.proximityEvents;
 			const up = row.U_Pb_ROI;
 			const ue = row.U_pep_ROI;
+			const ul = row.U_HM_pep;
 			const ut = row.U_tot;
 			csvLines.push([
 				row.programme,
@@ -5338,6 +5413,8 @@ var SimEngine = class {
 				num(up, "sd"),
 				num(ue, "mean"),
 				num(ue, "sd"),
+				num(ul, "mean"),
+				num(ul, "sd"),
 				num(ut, "mean"),
 				num(ut, "sd")
 			].join(","));
@@ -6116,6 +6193,274 @@ var SimEngine = class {
 			meanSdCsv,
 			contrastCsv,
 			rankingEFCsv,
+			json,
+			summary
+		};
+	}
+	/**
+	* PUB_COMBO v1.1 — public multi-ligand HM + peptide pairs.
+	* Receptors B (acidic pore), E (ATP7A WT), F (ATP7A Menkes).
+	* Pairs: Pb+KSRRRAR, Cu+KSRRRAR, Pb+PRARR × pH 7.4/6.2/5.0.
+	* Exports mean±sd U_HM–ROI, U_pep–ROI, U_HM–pep, U_tot + exclusive baselines.
+	* Locked Yukawa; respawn OFF. No private ligands.
+	*/
+	runPubCombo(opts) {
+		const nMol = opts?.nMolecules ?? 12;
+		const frames = opts?.frames ?? 150;
+		const nRep = opts?.replicates ?? 5;
+		const receptors = [
+			"acidicPore",
+			"atp7aWt",
+			"atp7aMenkes"
+		];
+		const pairs = [
+			{
+				id: "Pb_KS",
+				label: "Pb2+ + KSRRRAR",
+				metal: "pb",
+				peptide: "ksrrrar",
+				pepLabel: "KSRRRAR"
+			},
+			{
+				id: "Cu_KS",
+				label: "Cu2+ + KSRRRAR",
+				metal: "cu",
+				peptide: "ksrrrar",
+				pepLabel: "KSRRRAR"
+			},
+			{
+				id: "Pb_PR",
+				label: "Pb2+ + PRARR",
+				metal: "pb",
+				peptide: "prarr",
+				pepLabel: "PRARR"
+			}
+		];
+		const pHs = [
+			7.4,
+			6.2,
+			5
+		];
+		const ms = (xs) => {
+			const mean = xs.reduce((a, b) => a + b, 0) / (xs.length || 1);
+			if (xs.length < 2) return {
+				mean,
+				sd: 0
+			};
+			const varr = xs.reduce((a, b) => a + (b - mean) ** 2, 0) / (xs.length - 1);
+			return {
+				mean,
+				sd: Math.sqrt(varr)
+			};
+		};
+		const rows = [];
+		const savedRespawn = this.respawnOnBinding;
+		this.setRespawnOnBinding(false);
+		const runMode = (rec, pair, pH, mode, cell) => {
+			const uHm = [];
+			const uPep = [];
+			const uLl = [];
+			const uTot = [];
+			for (let r = 0; r < nRep; r++) {
+				const seed = VALIDITY_LOCKED.baseSeed + r * 997 + rec.length * 31 + pair.id.charCodeAt(0) * 17 + Math.round(pH * 100) + cell * 5 + (mode === "combo" ? 0 : mode === "exclusive_HM" ? 1 : 2);
+				this.rngSeed = seed;
+				this.rng = makeRng(seed);
+				this.spawnSeed = seed;
+				this.setReceptorGeometry(rec);
+				this.ligand3Enabled = false;
+				this.ligand3Count = 0;
+				this.ligand4Enabled = false;
+				this.ligand4Count = 0;
+				this.metalMode = pair.metal;
+				if (mode === "combo") {
+					this.ligandBaseline = "both";
+					this.moleculeCount = nMol;
+					this.peptideVariant = pair.peptide;
+					this.ligand2Count = nMol;
+					this.ligand2Enabled = true;
+					this.bootstrap(nMol, pH);
+				} else if (mode === "exclusive_HM") {
+					this.ligandBaseline = "ligand1";
+					this.moleculeCount = nMol;
+					this.peptideVariant = "off";
+					this.ligand2Count = 0;
+					this.ligand2Enabled = false;
+					this.bootstrap(nMol, pH);
+				} else {
+					this.ligandBaseline = "ligand2";
+					this.moleculeCount = 0;
+					this.peptideVariant = pair.peptide;
+					this.ligand2Count = nMol;
+					this.ligand2Enabled = true;
+					this.bootstrap(0, pH);
+				}
+				this.enforceExclusiveParticles();
+				this.applyValidityLockedParams(pH);
+				this.applyPH(pH);
+				this.resetBehaviorCounters();
+				this.playing = true;
+				let sHm = 0, sPep = 0, sLl = 0, sTot = 0, nU = 0;
+				for (let f = 0; f < frames; f++) {
+					this.step();
+					this.refreshRoiEnergy();
+					const re = this.roiEnergy;
+					if (re) {
+						const hm = Number(re.energyL1His) || 0;
+						const pep = Number(re.energyL2His) || 0;
+						const ll = Number(re.energyL1L2) || 0;
+						sHm += hm;
+						sPep += pep;
+						sLl += ll;
+						if (mode === "combo") sTot += hm + pep + ll;
+						else if (mode === "exclusive_HM") sTot += hm;
+						else sTot += pep;
+						nU++;
+					}
+				}
+				const inv = nU || 1;
+				uHm.push(sHm / inv);
+				uPep.push(sPep / inv);
+				uLl.push(sLl / inv);
+				uTot.push(sTot / inv);
+			}
+			const hm = ms(uHm);
+			const pep = ms(uPep);
+			const ll = ms(uLl);
+			const tot = ms(uTot);
+			const badge = mode !== "combo" ? "—" : ll.mean > .05 ? "Competitive" : ll.mean < -.05 ? "Cooperative" : "Neutral";
+			return {
+				receptorId: rec,
+				receptorLabel: RECEPTOR_GEOMETRIES[rec]?.shortLabel ?? rec,
+				pairId: pair.id,
+				pairLabel: pair.label,
+				metal: pair.metal === "cu" ? "Cu2+" : "Pb2+",
+				peptide: pair.pepLabel,
+				pH,
+				n: nRep,
+				frames,
+				mode,
+				U_HM_ROI_mean: hm.mean,
+				U_HM_ROI_sd: hm.sd,
+				U_pep_ROI_mean: pep.mean,
+				U_pep_ROI_sd: pep.sd,
+				U_HM_pep_mean: ll.mean,
+				U_HM_pep_sd: ll.sd,
+				U_tot_mean: tot.mean,
+				U_tot_sd: tot.sd,
+				badge
+			};
+		};
+		let cell = 0;
+		for (const rec of receptors) for (const pair of pairs) for (const pH of pHs) {
+			rows.push(runMode(rec, pair, pH, "combo", cell));
+			rows.push(runMode(rec, pair, pH, "exclusive_HM", cell));
+			rows.push(runMode(rec, pair, pH, "exclusive_pep", cell));
+			cell++;
+		}
+		this.setRespawnOnBinding(savedRespawn);
+		const disclaimer = "# " + PUBLICATION_DISCLAIMER + "\n# MoleculoSphere 5D · Beta v1.1 · PUB_COMBO · locked Yukawa · respawn OFF";
+		const comboRows = rows.filter((r) => r.mode === "combo");
+		const csv = `${disclaimer}\n${[
+			"receptorId",
+			"receptorLabel",
+			"pairId",
+			"pairLabel",
+			"metal",
+			"peptide",
+			"pH",
+			"n",
+			"frames",
+			"U_HM_ROI_mean",
+			"U_HM_ROI_sd",
+			"U_pep_ROI_mean",
+			"U_pep_ROI_sd",
+			"U_HM_pep_mean",
+			"U_HM_pep_sd",
+			"U_tot_mean",
+			"U_tot_sd",
+			"badge"
+		].join(",")}\n${comboRows.map((r) => [
+			r.receptorId,
+			r.receptorLabel,
+			r.pairId,
+			JSON.stringify(r.pairLabel),
+			r.metal,
+			r.peptide,
+			r.pH,
+			r.n,
+			r.frames,
+			r.U_HM_ROI_mean.toFixed(6),
+			r.U_HM_ROI_sd.toFixed(6),
+			r.U_pep_ROI_mean.toFixed(6),
+			r.U_pep_ROI_sd.toFixed(6),
+			r.U_HM_pep_mean.toFixed(6),
+			r.U_HM_pep_sd.toFixed(6),
+			r.U_tot_mean.toFixed(6),
+			r.U_tot_sd.toFixed(6),
+			r.badge
+		].join(",")).join("\n")}\n`;
+		const vsLines = [disclaimer, [
+			"receptorId",
+			"pairId",
+			"pairLabel",
+			"pH",
+			"U_HM_combo_mean",
+			"U_pep_combo_mean",
+			"U_HM_pep_mean",
+			"U_tot_combo_mean",
+			"badge",
+			"U_HM_exclusive_mean",
+			"U_pep_exclusive_mean",
+			"delta_HM_combo_minus_excl",
+			"delta_pep_combo_minus_excl"
+		].join(",")];
+		for (const rec of receptors) for (const pair of pairs) for (const pH of pHs) {
+			const c = rows.find((r) => r.mode === "combo" && r.receptorId === rec && r.pairId === pair.id && r.pH === pH);
+			const eh = rows.find((r) => r.mode === "exclusive_HM" && r.receptorId === rec && r.pairId === pair.id && r.pH === pH);
+			const ep = rows.find((r) => r.mode === "exclusive_pep" && r.receptorId === rec && r.pairId === pair.id && r.pH === pH);
+			if (!c || !eh || !ep) continue;
+			vsLines.push([
+				rec,
+				pair.id,
+				JSON.stringify(pair.label),
+				pH,
+				c.U_HM_ROI_mean.toFixed(6),
+				c.U_pep_ROI_mean.toFixed(6),
+				c.U_HM_pep_mean.toFixed(6),
+				c.U_tot_mean.toFixed(6),
+				c.badge,
+				eh.U_HM_ROI_mean.toFixed(6),
+				ep.U_pep_ROI_mean.toFixed(6),
+				(c.U_HM_ROI_mean - eh.U_HM_ROI_mean).toFixed(6),
+				(c.U_pep_ROI_mean - ep.U_pep_ROI_mean).toFixed(6)
+			].join(","));
+		}
+		const vsExclusiveCsv = vsLines.join("\n") + "\n";
+		const nCompetitive = comboRows.filter((r) => r.badge === "Competitive").length;
+		const nCoop = comboRows.filter((r) => r.badge === "Cooperative").length;
+		const summary = `PUB_COMBO v1.1: ${comboRows.length} combo cells · n=${nRep} · frames=${frames} · Competitive ${nCompetitive} · Cooperative ${nCoop} · ${PUBLICATION_DISCLAIMER}`;
+		const payload = {
+			schema: "moleculosphere5d.pub_combo.v1_1",
+			disclaimer: PUBLICATION_DISCLAIMER,
+			version: "Beta v1.1",
+			locked: { ...VALIDITY_LOCKED },
+			chargeSource: "formal",
+			receptors,
+			pairs: pairs.map((x) => x.label),
+			pH: [...pHs],
+			respawn: false,
+			nMolecules: nMol,
+			frames,
+			replicates: nRep,
+			comboRows,
+			allRows: rows
+		};
+		const json = JSON.stringify(payload, null, 2);
+		this.lastScientificJson = json;
+		this.emitUi();
+		return {
+			csv,
+			vsExclusiveCsv,
 			json,
 			summary
 		};
@@ -6953,6 +7298,26 @@ var useSimStore = create((set, get) => ({
 		});
 		return r.summary;
 	},
+	runPubCombo: (opts) => {
+		const r = simEngine.runPubCombo(opts);
+		try {
+			const dl = (name, body, mime) => {
+				const a = document.createElement("a");
+				a.href = URL.createObjectURL(new Blob([body], { type: mime }));
+				a.download = name;
+				a.click();
+			};
+			dl("PUB_COMBO_mean_sd.csv", r.csv, "text/csv");
+			dl("PUB_COMBO_vs_exclusive.csv", r.vsExclusiveCsv, "text/csv");
+			dl("PUB_COMBO.json", r.json, "application/json");
+		} catch {}
+		set({
+			lastProgrammeSummary: r.summary,
+			...engineSlice(),
+			lastScientificJson: r.json
+		});
+		return r.summary;
+	},
 	runPubMatrixCuPbEF: (opts) => {
 		return get().runPubMatrixCuEF(opts);
 	},
@@ -7380,6 +7745,7 @@ function ControlPanel() {
 	const lastRespawnFlash = useSimStore((s) => s.lastRespawnFlash);
 	const runPubMatrix = useSimStore((s) => s.runPubMatrix);
 	const runPubMatrixCuEF = useSimStore((s) => s.runPubMatrixCuEF);
+	const runPubCombo = useSimStore((s) => s.runPubCombo);
 	const [ioMsg, setIoMsg] = (0, import_react.useState)(null);
 	const [validityMsg, setValidityMsg] = (0, import_react.useState)(null);
 	const pHColor = colorCss(pHToT(pH));
@@ -7394,13 +7760,17 @@ function ControlPanel() {
 	const pepActive = ligandBaseline !== "ligand1" && peptideVariant !== "off";
 	const pepLabel = peptideVariant === "prarr" ? "PRARR" : peptideVariant === "sllrst" ? "SLLRST" : "KSRRRAR";
 	const hmLabel = heavyMetalLabel(metalMode);
-	const statusLine = [`${hmLabel} ${pbActive ? `×${moleculeCount}` : "absent"}`, pepActive ? ligandBaseline === "ligand2" ? `L2 ${pepLabel} ×${ligand2Count} exclusive` : `L2 ${pepLabel} ×${ligand2Count}` : "peptide absent"].join(" · ");
-	/** Public HUD total = active public L–ROI terms only (no private channels). */
+	const comboActive = pbActive && pepActive;
+	const statusLine = [`${hmLabel} ${pbActive ? `×${moleculeCount}` : "absent"}`, pepActive ? ligandBaseline === "ligand2" ? `L2 ${pepLabel} ×${ligand2Count} exclusive` : comboActive ? `L2 ${pepLabel} ×${ligand2Count} · combo` : `L2 ${pepLabel} ×${ligand2Count}` : "peptide absent"].join(" · ");
+	const uHmPep = Number(roiEnergy?.energyL1L2) || 0;
+	const comboBadge = !comboActive ? null : uHmPep > .05 ? "Competitive" : uHmPep < -.05 ? "Cooperative" : "Neutral";
+	/** Public HUD total = active public continuum terms only (no private channels). */
 	const publicUTot = (() => {
-		let t = 0;
-		if (pbActive) t += Number(roiEnergy?.energyL1His) || 0;
-		if (pepActive) t += Number(roiEnergy?.energyL2His) || 0;
-		return t;
+		let tot = 0;
+		if (pbActive) tot += Number(roiEnergy?.energyL1His) || 0;
+		if (pepActive) tot += Number(roiEnergy?.energyL2His) || 0;
+		if (comboActive) tot += uHmPep;
+		return tot;
 	})();
 	const downloadValidationManifest = () => {
 		const body = [
@@ -7411,6 +7781,8 @@ function ControlPanel() {
 			VALIDATION_PACKAGE_PATH + "/",
 			"",
 			"Key public CSVs:",
+			"  PUB_COMBO_mean_sd.csv",
+			"  PUB_COMBO_vs_exclusive.csv",
 			"  PUB_MATRIX_mean_sd.csv",
 			"  PUB_MATRIX_ranking_per_receptor.csv",
 			"  PUB_MATRIX_E_vs_F_Menkes.csv",
@@ -7423,12 +7795,14 @@ function ControlPanel() {
 			"  paper_figures/",
 			"",
 			"Primary metric: U_L–ROI = mean continuum Yukawa energy of exclusive ligand L at the receptor ROI (kT).",
+			"Combo: U_HM–pep = pairwise HM–peptide continuum term near ROI; Competitive if >0, Cooperative if <0.",
+			"Charges are formal / HH (chargeSource: formal). DFT may refine offline — no live quantum solver.",
 			"Private analyses are excluded from this public package.",
 			"Not MD, docking, coordination chemistry, or a biological claim."
 		].join("\n");
 		const a = document.createElement("a");
 		a.href = URL.createObjectURL(new Blob([body], { type: "text/plain" }));
-		a.download = "MoleculoSphere5D_Beta_v1.0_public_validation_paths.txt";
+		a.download = "MoleculoSphere5D_Beta_v1.1_public_validation_paths.txt";
 		a.click();
 		setIoMsg("Validation package path list downloaded");
 	};
@@ -7473,8 +7847,8 @@ function ControlPanel() {
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ol", {
 						className: "list-decimal space-y-1 pl-4 text-[9px] leading-relaxed text-subtle",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Pick receptor A–F and exclusive ligand (Pb²⁺ / Cu²⁺ / peptide)." }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Set pH; Play — U_L–ROI is the continuum ligand–ROI energy (kT)." }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Pick receptor A–F. Exclusive ligand or combo: Both = one HM + one peptide." }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Set pH; Play — U_L–ROI (and U_HM–pep in combo) are continuum Yukawa energies (kT)." }),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Event tape records proximity + HH-binary frames (demo speed OK)." }),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
 								"Export · public writes only public ligands/columns. Frozen CSVs live under",
@@ -7636,9 +8010,16 @@ function ControlPanel() {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 				className: "space-y-1.5 rounded-lg border border-border bg-surface/70 p-2.5",
 				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-[11px] font-medium text-fg",
-						children: "Energy HUD (kT)"
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center justify-between gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-[11px] font-medium text-fg",
+							children: "Energy HUD (kT)"
+						}), comboBadge && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: ["rounded border px-1.5 py-0.5 text-[9px] font-medium", comboBadge === "Competitive" ? "border-amber-400/50 bg-amber-950/40 text-amber-100" : comboBadge === "Cooperative" ? "border-emerald-400/50 bg-emerald-950/40 text-emerald-100" : "border-border bg-surface text-muted"].join(" "),
+							title: "Educational continuum label from sign of U_HM–pep only — not a biological claim",
+							children: comboBadge
+						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "space-y-0.5 font-mono text-[10px]",
@@ -7663,7 +8044,17 @@ function ControlPanel() {
 									children: fmtE(roiEnergy?.energyL2His)
 								})]
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							comboActive && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-muted",
+									children: "U_HM–pep"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "tabular text-fg",
+									children: fmtE(uHmPep)
+								})]
+							}),
+							(pbActive || pepActive) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 								className: "flex justify-between border-t border-border/60 pt-0.5",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 									className: "text-muted",
@@ -7686,9 +8077,13 @@ function ControlPanel() {
 							})
 						]
 					}),
+					comboActive && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-[8px] leading-snug text-subtle",
+						children: "Combo mode: Competitive if U_HM–pep positive · Cooperative if negative (continuum only)."
+					}),
 					!pbActive && !pepActive && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-[9px] text-subtle",
-						children: "No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide to see U_L–ROI rows."
+						children: "No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide (or Both) to see U_L–ROI rows."
 					})
 				]
 			}),
@@ -7885,6 +8280,24 @@ function ControlPanel() {
 						className: "w-full rounded-md border border-amber-400/40 bg-amber-950/30 px-2 py-1.5 text-[10px] text-amber-100",
 						children: "Run suite + export · public (Cu · E/F)"
 					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						type: "button",
+						onClick: () => {
+							setValidityMsg("Running PUB_COMBO v1.1 (B/E/F × HM+peptide × 3 pH)…");
+							try {
+								const summary = runPubCombo({
+									nMolecules: 12,
+									frames: 120,
+									replicates: 5
+								});
+								setValidityMsg(summary);
+							} catch (e) {
+								setValidityMsg(String(e));
+							}
+						},
+						className: "w-full rounded-md border border-fuchsia-400/40 bg-fuchsia-950/30 px-2 py-1.5 text-[10px] text-fuchsia-100",
+						children: "Run suite + export · public (COMBO L1+L2)"
+					}),
 					validityMsg && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "whitespace-pre-wrap text-[9px] text-muted",
 						children: validityMsg
@@ -8023,7 +8436,7 @@ function ControlPanel() {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-sm font-medium",
-						children: "Ligands · public exclusive"
+						children: "Ligands · public (exclusive or combo)"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "flex flex-wrap gap-1",
