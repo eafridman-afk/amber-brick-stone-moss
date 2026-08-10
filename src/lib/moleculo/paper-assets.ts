@@ -93,8 +93,11 @@ export function buildPublicDisclosureTxt(): string {
     "Public continuum observables only — not MD, docking, or clinical prediction.",
     "Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.",
     "Public receptors A–F; Cu2+ Menkes analysis uses E and F only.",
+    "Combo (v1.1): simultaneous HM + peptide → U_HM–ROI, U_pep–ROI, U_HM–pep, U_tot.",
+    "Charges: formal / HH (chargeSource: formal). No live quantum solver.",
     "Private analyses are excluded from this public package.",
-  ].join("\n");
+  ].join("
+");
 }
 
 /** Download paper table CSVs (client-side). Full figure package is prebuilt offline. */
