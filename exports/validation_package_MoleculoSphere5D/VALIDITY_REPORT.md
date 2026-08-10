@@ -133,7 +133,6 @@ Classical continuum electrostatics only. Educational / hypothesis-generation too
 | `KERNEL_VALIDATION.json` | Analytic U/F pair + cutoff test |
 | `PUBLIC_PACKAGE_DISCLOSURE.txt` | Public-only disclosure |
 | `P1_Pb_across_receptors_*` | Pb across receptors × pH |
-| `P3_ACh_competition_*` | ACh educational competition |
 | `peptide3_furin_baselines_*` | P5 3-peptide furin baselines |
 | `ranking_KSRRRAR_vs_PRARR_vs_SLLRST.*` | PEP3 charge ladder |
 | `PUB_MATRIX_*` | Full A–F × 4 ligands × 3 pH matrix |

@@ -1,13 +1,13 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, o as require_react } from "../_libs/@radix-ui/react-collection+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-C0ZLRBFN.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-cqwGrNCB.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Home() {
 	const [App, setApp] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
 		let cancelled = false;
-		import("./App-BxcyiCRZ.mjs").then((mod) => {
+		import("./App-CnRME7Rz.mjs").then((mod) => {
 			if (!cancelled) setApp(() => mod.default);
 		});
 		return () => {
@@ -21,10 +21,10 @@ function Home() {
 			className: "space-y-2 text-center",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-sm font-medium text-fg",
-				children: "Loading MoleculoSphere…"
+				children: "Loading MoleculoSphere 5D · Beta v1.0…"
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 				className: "text-xs text-subtle",
-				children: "Initializing hierarchical WebGL scene"
+				children: "Classical continuum electrostatics · Educational / hypothesis tool"
 			})]
 		})
 	});

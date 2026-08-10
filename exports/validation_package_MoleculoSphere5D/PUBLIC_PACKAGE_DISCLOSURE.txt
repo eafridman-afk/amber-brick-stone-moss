@@ -5,3 +5,4 @@ Classical continuum electrostatics only. Educational / hypothesis-generation too
 Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.
 Public receptors A–F. Cu2+ Menkes analysis uses E and F only.
 Locked kernel: λ_D = 0.8 nm · coulombK = 1.15 · cutoff = 3.2 nm · seed = 20260805
+Private analyses are excluded from this public package.

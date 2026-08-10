@@ -31,6 +31,7 @@ import {
   MAX_MOLECULES,
   MAX_TRAJECTORY_FRAMES,
   METAL_HIS_PREF_DEFAULT,
+  PUBLIC_BUILD_DEFAULT,
   PUBLICATION_DISCLAIMER,
   RECEPTOR_GEOMETRIES,
   SHORT_RANGE_WELL_CUTOFF_NM,
@@ -1534,11 +1535,19 @@ export class SimEngine {
     this.peptideVariant = set.peptide;
     this.ligand2Count = set.peptideCount;
     this.ligand2Enabled = set.peptide !== "off" && set.peptideCount > 0;
-    this.ligand3Count = set.his5;
-    this.ligand3Enabled = set.his5 > 0;
-    this.ligand4Count = set.ach;
-    this.ligand4Enabled = set.ach > 0;
-    if (set.pb > 0 && (set.peptide !== "off" || set.his5 > 0 || set.ach > 0)) {
+    // Public Beta v1.0: never activate non-public ligand channels from programme sets
+    if (PUBLIC_BUILD_DEFAULT) {
+      this.ligand3Count = 0;
+      this.ligand3Enabled = false;
+      this.ligand4Count = 0;
+      this.ligand4Enabled = false;
+    } else {
+      this.ligand3Count = set.his5;
+      this.ligand3Enabled = set.his5 > 0;
+      this.ligand4Count = set.ach;
+      this.ligand4Enabled = set.ach > 0;
+    }
+    if (set.pb > 0 && set.peptide !== "off") {
       this.ligandBaseline = "both";
     } else if (set.pb > 0) {
       this.ligandBaseline = "ligand1";
@@ -1572,8 +1581,9 @@ export class SimEngine {
   }
 
   /**
-   * Run publication programme matrix. Always writes numeric U_L1..U_L4/U_tot
-   * for every cell — never gated on L1/Pb presence.
+   * Run publication programme matrix.
+   * Public Beta v1.0 exports write only public ligand columns:
+   * U_HM–ROI, U_pep–ROI, U_tot — never private L3/L4 channels.
    */
   runProgrammeSuite(
     programmeId: ProgrammeId,
@@ -1599,8 +1609,6 @@ export class SimEngine {
           const prox: number[] = [];
           const uPb: number[] = [];
           const uPep: number[] = [];
-          const u5h: number[] = [];
-          const uAch: number[] = [];
           const uTot: number[] = [];
           const dTrig: number[] = [];
           for (let r = 0; r < nRep; r++) {
@@ -1618,21 +1626,18 @@ export class SimEngine {
             this.eventScrub = null;
             let sumUPb = 0,
               sumUPep = 0,
-              sumU5 = 0,
-              sumUAch = 0,
               sumUTot = 0,
               nU = 0;
             for (let f = 0; f < frames; f++) {
               this.step();
-              // Always refresh + accumulate every energy channel (no L1 gate)
               this.refreshRoiEnergy();
               const re = this.roiEnergy;
               if (re) {
-                sumUPb += Number(re.energyL1His) || 0;
-                sumUPep += Number(re.energyL2His) || 0;
-                sumU5 += Number(re.energyL3His) || 0;
-                sumUAch += Number(re.energyL4His) || 0;
-                sumUTot += Number(re.energyTotal) || 0;
+                const e1 = Number(re.energyL1His) || 0;
+                const e2 = Number(re.energyL2His) || 0;
+                sumUPb += e1;
+                sumUPep += e2;
+                sumUTot += e1 + e2;
                 nU += 1;
               }
             }
@@ -1640,8 +1645,6 @@ export class SimEngine {
             const inv = nU || 1;
             uPb.push(sumUPb / inv);
             uPep.push(sumUPep / inv);
-            u5h.push(sumU5 / inv);
-            uAch.push(sumUAch / inv);
             uTot.push(sumUTot / inv);
             const td = this.behaviorStats.triggerDistancesNm;
             if (td.length) dTrig.push(td.reduce((a, b) => a + b, 0) / td.length);
@@ -1659,8 +1662,6 @@ export class SimEngine {
             meanTriggerDistNm: meanSd(dTrig),
             U_Pb_ROI: meanSd(uPb),
             U_pep_ROI: meanSd(uPep),
-            U_L3_ROI: meanSd(u5h),
-            U_ACh_ROI: meanSd(uAch),
             U_tot: meanSd(uTot),
           });
         }
@@ -1668,8 +1669,6 @@ export class SimEngine {
           const prox: number[] = [];
           const uPb: number[] = [];
           const uPep: number[] = [];
-          const u5h: number[] = [];
-          const uAch: number[] = [];
           const uTot: number[] = [];
           for (let r = 0; r < nRep; r++) {
             this.rngSeed = baseSeed + r * 997 + 5000;
@@ -1685,8 +1684,6 @@ export class SimEngine {
             const rampFrames = Math.min(400, frames);
             let sumUPb = 0,
               sumUPep = 0,
-              sumU5 = 0,
-              sumUAch = 0,
               sumUTot = 0,
               nU = 0;
             for (let f = 0; f < rampFrames; f++) {
@@ -1696,11 +1693,11 @@ export class SimEngine {
               this.refreshRoiEnergy();
               const re = this.roiEnergy;
               if (re) {
-                sumUPb += Number(re.energyL1His) || 0;
-                sumUPep += Number(re.energyL2His) || 0;
-                sumU5 += Number(re.energyL3His) || 0;
-                sumUAch += Number(re.energyL4His) || 0;
-                sumUTot += Number(re.energyTotal) || 0;
+                const e1 = Number(re.energyL1His) || 0;
+                const e2 = Number(re.energyL2His) || 0;
+                sumUPb += e1;
+                sumUPep += e2;
+                sumUTot += e1 + e2;
                 nU += 1;
               }
             }
@@ -1708,8 +1705,6 @@ export class SimEngine {
             prox.push(this.behaviorStats.proximityEvents);
             uPb.push(sumUPb / inv);
             uPep.push(sumUPep / inv);
-            u5h.push(sumU5 / inv);
-            uAch.push(sumUAch / inv);
             uTot.push(sumUTot / inv);
           }
           rows.push({
@@ -1725,8 +1720,6 @@ export class SimEngine {
             meanTriggerDistNm: meanSd([]),
             U_Pb_ROI: meanSd(uPb),
             U_pep_ROI: meanSd(uPep),
-            U_L3_ROI: meanSd(u5h),
-            U_ACh_ROI: meanSd(uAch),
             U_tot: meanSd(uTot),
           });
         }
@@ -1735,13 +1728,13 @@ export class SimEngine {
 
     const payload = {
       disclaimer: PUBLICATION_DISCLAIMER,
+      publicNote: "Private analyses are excluded from this public package.",
       programme: {
         id: prog.id,
         label: prog.label,
         hypothesis: prog.hypothesis,
         note: prog.note ?? null,
       },
-      locked: programmeExportMeta(defaultProgrammeRun(programmeId)).locked,
       results: rows,
       exportedAt: new Date().toISOString(),
     };
@@ -1774,24 +1767,22 @@ export class SimEngine {
       "n",
       "proximity_mean",
       "proximity_sd",
-      "U_L1_Pb_mean",
-      "U_L1_Pb_sd",
-      "U_L2_pep_mean",
-      "U_L2_pep_sd",
-      "U_L3_mean",
-      "U_L3_sd",
-      "U_L4_ACh_mean",
-      "U_L4_ACh_sd",
+      "U_HM_ROI_mean",
+      "U_HM_ROI_sd",
+      "U_pep_ROI_mean",
+      "U_pep_ROI_sd",
       "U_tot_mean",
       "U_tot_sd",
     ];
-    const csvLines = [headers.join(",")];
+    const csvLines = [
+      `# ${PUBLICATION_DISCLAIMER}`,
+      `# Private analyses are excluded from this public package.`,
+      headers.join(","),
+    ];
     for (const row of rows) {
       const pe = row.proximityEvents as { mean: number; sd: number } | undefined;
       const up = row.U_Pb_ROI as { mean: number; sd: number } | undefined;
       const ue = row.U_pep_ROI as { mean: number; sd: number } | undefined;
-      const u5 = row.U_L3_ROI as { mean: number; sd: number } | undefined;
-      const ua = row.U_ACh_ROI as { mean: number; sd: number } | undefined;
       const ut = row.U_tot as { mean: number; sd: number } | undefined;
       csvLines.push(
         [
@@ -1809,17 +1800,13 @@ export class SimEngine {
           num(up, "sd"),
           num(ue, "mean"),
           num(ue, "sd"),
-          num(u5, "mean"),
-          num(u5, "sd"),
-          num(ua, "mean"),
-          num(ua, "sd"),
           num(ut, "mean"),
           num(ut, "sd"),
         ].join(","),
       );
     }
     const csv = csvLines.join("\n");
-    const summary = `${prog.shortLabel}: ${rows.length} cells · n=${nRep} · frames=${frames} · ${PUBLICATION_DISCLAIMER.slice(0, 80)}…`;
+    const summary = `${prog.shortLabel}: ${rows.length} cells · n=${nRep} · frames=${frames} · public columns only`;
     this.emitUi();
     return { json, csv, summary };
   }
@@ -1845,10 +1832,7 @@ export class SimEngine {
                 ? "SLLRST"
                 : "KSRRRAR"
           } ×${this.ligand2Count}${this.ligandBaseline === "ligand2" ? " exclusive" : ""}`;
-    const ach = this.ligand4Enabled
-      ? `ACh ×${this.ligand4Count}`
-      : "ACh absent";
-    return `${pb} · ${pep} · ${ach}`;
+    return `${pb} · ${pep}`;
   }
 
   // —— Validity suite (KSRRRAR vs PRARR exclusive) ——

@@ -23,7 +23,7 @@ npm run build
 ## What you can do
 
 1. Choose receptor **A–F** (Furin triad, acidic pore, α7 allosteric, α7 orthosteric, ATP7A WT, ATP7A Menkes).
-2. Select exclusive public ligand: **Pb²⁺**, **Cu²⁺**, **KSRRRAR**, **PRARR**, or **SLLRST** (plus optional ACh as L3 for competition demos).
+2. Select exclusive public ligand: **Pb²⁺**, **Cu²⁺**, **KSRRRAR**, **PRARR**, or **SLLRST**.
 3. Set **pH**, press **Play**, read **U_L–ROI** (continuum ligand–ROI energy in kT).
 4. Use **Event capture** at demo speed; single control changes do not full-reseed the scene.
 5. **Run suite + export · public** downloads public CSV/JSON only.

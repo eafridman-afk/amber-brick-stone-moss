@@ -240,7 +240,7 @@ export function computeRoiEnergy(
       if (r < nearestDist) {
         nearestDist = r;
         nearestKind = "peptide";
-        nearestLabel = "ACh";
+        nearestLabel = "L4";
       }
       if (r < shell) {
         eL4 += yukawaEnergy(site.charge, p.q, r, k, lambda);

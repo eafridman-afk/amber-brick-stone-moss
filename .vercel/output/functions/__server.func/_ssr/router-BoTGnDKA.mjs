@@ -2,7 +2,7 @@ import { i as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, o as require_react } from "../_libs/@radix-ui/react-collection+[...].mjs";
 import { n as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { c as HeadContent, d as Outlet, f as lazyRouteComponent, m as createRootRoute, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-BOvolHnR.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-BoTGnDKA.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function AppErrorComponent({ error }) {
@@ -139,8 +139,8 @@ function CreatedWithGrokBanner() {
 		]
 	})] });
 }
-var styles_default = "/assets/styles-WbyKPqTr.css";
-var APP_NAME = "MoleculoSphere 5D";
+var styles_default = "/assets/styles-BNcCj5j4.css";
+var APP_NAME = "MoleculoSphere 5D · Beta v1.0";
 var Route$1 = createRootRoute({
 	head: () => ({
 		meta: [
@@ -151,7 +151,7 @@ var Route$1 = createRootRoute({
 			},
 			{
 				name: "description",
-				content: "Hierarchical multi-scale electrostatic dynamics of highly charged (+3) small molecules under pH regimes relevant to protein behavior."
+				content: "MoleculoSphere 5D · Beta v1.0 — classical continuum electrostatics (Yukawa / Debye–Hückel). Educational / hypothesis-generation tool. No biological claim without independent validation."
 			},
 			{ title: APP_NAME },
 			...[]
@@ -177,7 +177,7 @@ function RootDocument() {
 		})]
 	});
 }
-var $$splitComponentImporter = () => import("./routes-C0ZLRBFN.mjs");
+var $$splitComponentImporter = () => import("./routes-cqwGrNCB.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",

@@ -102,6 +102,19 @@ var Beaker = createLucideIcon("beaker", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var BookOpen = createLucideIcon("book-open", [["path", {
+	d: "M12 7v14",
+	key: "1akyts"
+}], ["path", {
+	d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+	key: "ruj8y"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Download = createLucideIcon("download", [
 	["path", {
 		d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
@@ -219,32 +232,6 @@ var RotateCcw = createLucideIcon("rotate-ccw", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
-var Shapes = createLucideIcon("shapes", [
-	["path", {
-		d: "M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z",
-		key: "1bo67w"
-	}],
-	["rect", {
-		x: "3",
-		y: "14",
-		width: "7",
-		height: "7",
-		rx: "1",
-		key: "1bkyp8"
-	}],
-	["circle", {
-		cx: "17.5",
-		cy: "17.5",
-		r: "3.5",
-		key: "w3z12y"
-	}]
-]);
-/**
-* @license lucide-react v0.510.0 - ISC
-*
-* This source code is licensed under the ISC license.
-* See the LICENSE file in the root directory of this source tree.
-*/
 var SlidersHorizontal = createLucideIcon("sliders-horizontal", [
 	["line", {
 		x1: "21",
@@ -344,4 +331,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { RotateCcw as a, Menu as c, Beaker as d, Shapes as i, Focus as l, TriangleAlert as n, Play as o, SlidersHorizontal as r, Pause as s, X as t, Download as u };
+export { Play as a, Focus as c, Beaker as d, RotateCcw as i, Download as l, TriangleAlert as n, Pause as o, SlidersHorizontal as r, Menu as s, X as t, BookOpen as u };

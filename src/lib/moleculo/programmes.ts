@@ -1,16 +1,19 @@
 /**
- * Publication-oriented experimental programmes (classical continuum only).
- * Shared locked kernel: VALIDITY_LOCKED nm-unit Yukawa + dual events.
+ * Publication programmes — public continuum surface + private nanotoxicity (gated).
  *
- * Engine ligand classes (unchanged):
- *   L1 = Pb²⁺ · L2 = peptide · L3 = (internal) · L4 = ACh
+ * Engine ligand classes (internal):
+ *   L1 = Pb²⁺ · L2 = peptide · L3 = (internal) · L4 = (internal)
  *
- * Programme 4 multi-ligand pore nomenclature (user-facing):
- *   L1 = Pb²⁺ · L2 = KSRRRAR · L3 = ACh · L4 = L3-int (internal)
+ * User-facing public L numbering (Beta v1.0):
+ *   L1 = Pb²⁺ / Cu²⁺ · L2 = KSRRRAR | PRARR | SLLRST
  * Flags in MULTI_LIGAND_PRESETS map onto engine classes via LigandSetSpec.
+ *
+ * Private programmes (privateNanotoxicity: true) are never shown on the public
+ * surface and never appear in public exports.
  */
-
 import type {
+  LigandBaselineMode,
+  MetalMode,
   PeptideVariant,
   ProgrammeId,
   ReceptorGeometryId,
@@ -21,13 +24,12 @@ import { VALIDITY_LOCKED } from "./validity-test";
 export type LigandSetSpec = {
   id: string;
   label: string;
-  /** Engine L1 Pb²⁺ count (0 = absent) */
   pb: number;
   peptide: PeptideVariant;
   peptideCount: number;
-  /** Engine L3 internal count (not public) */
+  /** Engine L3 internal count (private) */
   his5: number;
-  /** Engine L4 ACh count */
+  /** Engine L4 internal count (not a public Beta v1.0 ligand) */
   ach: number;
 };
 
@@ -48,97 +50,96 @@ export type ProgrammeDef = {
   privateNanotoxicity?: boolean;
 };
 
-/** Count used when a multi-ligand flag is on (solo / pair / multi). */
-const SOLO_N = 18;
+const SOLO_N = 20;
 const PAIR_N = 12;
 const MULTI_N = 8;
 
 /**
- * Programme: Multi-ligand competition at pore constriction.
- * User-facing L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=ACh, L4=(internal).
- * Values 0/1 are presence flags (not absolute molecule counts).
+ * Multi-ligand presets (engine internal / private MULTI suite).
+ * User-facing L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=(internal), L4=(internal).
+ * Not exposed on the public Beta v1.0 surface.
  */
 export const MULTI_LIGAND_PRESETS: Record<
   string,
-  { Pb: number; peptide: number; ACh: number; L3_int: number; label: string }
+  { Pb: number; peptide: number; L4: number; L3_int: number; label: string }
 > = {
-  L1_baseline: {
+  L1: {
     Pb: 1,
     peptide: 0,
-    ACh: 0,
-    "L3_int": 0,
+    L4: 0,
+    L3_int: 0,
     label: "L1 · Pb²⁺ alone",
   },
-  L2_baseline: {
+  L2: {
     Pb: 0,
     peptide: 1,
-    ACh: 0,
-    "L3_int": 0,
+    L4: 0,
+    L3_int: 0,
     label: "L2 · KSRRRAR alone",
   },
-  L3_baseline: {
+  L3: {
     Pb: 0,
     peptide: 0,
-    ACh: 1,
-    "L3_int": 0,
-    label: "L3 · ACh alone",
+    L4: 1,
+    L3_int: 0,
+    label: "L3 · L4-int alone",
   },
-  L4_baseline: {
+  L4: {
     Pb: 0,
     peptide: 0,
-    ACh: 0,
-    "L3_int": 1,
+    L4: 0,
+    L3_int: 1,
     label: "L4 · L3-int alone",
   },
   "1+3": {
     Pb: 1,
     peptide: 0,
-    ACh: 1,
-    "L3_int": 0,
-    label: "1+3 · Pb²⁺ + ACh",
+    L4: 1,
+    L3_int: 0,
+    label: "1+3 · Pb²⁺ + L4-int",
   },
   "2+3": {
     Pb: 0,
     peptide: 1,
-    ACh: 1,
-    "L3_int": 0,
-    label: "2+3 · KSRRRAR + ACh",
+    L4: 1,
+    L3_int: 0,
+    label: "2+3 · KSRRRAR + L4-int",
   },
   "1+2+3": {
     Pb: 1,
     peptide: 1,
-    ACh: 1,
-    "L3_int": 0,
-    label: "1+2+3 · Pb²⁺ + KSRRRAR + ACh",
+    L4: 1,
+    L3_int: 0,
+    label: "1+2+3 · Pb²⁺ + KSRRRAR + L4-int",
   },
   "3+4": {
     Pb: 0,
     peptide: 0,
-    ACh: 1,
-    "L3_int": 1,
-    label: "3+4 · ACh + L3-int",
+    L4: 1,
+    L3_int: 1,
+    label: "3+4 · L4-int + L3-int",
   },
   "2+3+4": {
     Pb: 0,
     peptide: 1,
-    ACh: 1,
-    "L3_int": 1,
-    label: "2+3+4 · KSRRRAR + ACh + L3-int",
+    L4: 1,
+    L3_int: 1,
+    label: "2+3+4 · KSRRRAR + L4-int + L3-int",
   },
   "1+2+3+4": {
     Pb: 1,
     peptide: 1,
-    ACh: 1,
-    "L3_int": 1,
-    label: "1+2+3+4 · Full competition",
+    L4: 1,
+    L3_int: 1,
+    label: "1+2+3+4 · full set",
   },
 };
 
 export const MULTI_LIGAND_PRESET_ORDER = [
-  "L1_baseline",
-  "L2_baseline",
-  "L3_baseline",
-  "L4_baseline",
+  "L1",
+  "L2",
+  "L3",
+  "L4",
   "1+3",
   "2+3",
   "1+2+3",
@@ -147,7 +148,6 @@ export const MULTI_LIGAND_PRESET_ORDER = [
   "1+2+3+4",
 ] as const;
 
-/** Convert presence flags → LigandSetSpec with density scaled by # active species. */
 export function multiLigandPresetToSet(id: string): LigandSetSpec {
   const f = MULTI_LIGAND_PRESETS[id];
   if (!f) {
@@ -161,7 +161,7 @@ export function multiLigandPresetToSet(id: string): LigandSetSpec {
       ach: 0,
     };
   }
-  const nActive = f.Pb + f.peptide + f.ACh + f["L3_int"];
+  const nActive = f.Pb + f.peptide + f.L4 + f["L3_int"];
   const n = nActive <= 1 ? SOLO_N : nActive === 2 ? PAIR_N : MULTI_N;
   return {
     id,
@@ -169,10 +169,9 @@ export function multiLigandPresetToSet(id: string): LigandSetSpec {
     pb: f.Pb ? n : 0,
     peptide: f.peptide ? "ksrrrar" : "off",
     peptideCount: f.peptide ? n : 0,
-    // Engine: his5 = L3 (internal), ach = L4 (ACh)
-    // Programme-4 user L3=ACh → ach, user L4=(internal) → his5
+    // Engine: his5 = L3 (internal), ach = L4 (internal)
     his5: f["L3_int"] ? n : 0,
-    ach: f.ACh ? n : 0,
+    ach: f.L4 ? n : 0,
   };
 }
 
@@ -183,10 +182,11 @@ export function multiLigandSets(): LigandSetSpec[] {
 export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
   prog1_metal: {
     id: "prog1_metal",
-    shortLabel: "P1 · Heavy metal",
-    label: "Programme 1 – Heavy-metal electrostatic binding across domains",
+    shortLabel: "P1 · Pb across A–F",
+    label: "Programme 1 – Pb²⁺ continuum ranking across public receptors A–F",
     hypothesis:
-      "Pb²⁺ interacts with continuum electrostatic fields of protein domains; interaction is potentiated under stress pH and further altered under pathological pH.",
+      "Divalent heavy-metal continuum energy (U_Pb–ROI) ranks across receptor electrostatic environments A–F under locked Debye–Hückel parameters.",
+    note: "Public continuum ranking only — not a structural or pharmacological claim.",
     receptors: [
       "furin",
       "acidicPore",
@@ -296,75 +296,55 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
   },
   prog3_ach: {
     id: "prog3_ach",
-    shortLabel: "P3 · α7 ACh",
-    label: "Programme 3 – Allosteric competition with acetylcholine",
+    shortLabel: "P3 · α7 competition (private)",
+    label: "Programme 3 – Allosteric competition baseline (private)",
     hypothesis:
-      "Heavy metals or polycationic peptides alter continuum electrostatics at an α7 allosteric (or orthosteric) site and thereby compete with acetylcholine.",
-    note: "Continuum ranking of electrostatic competition against ACh only — not a claim of receptor antagonism without independent biological support.",
+      "Heavy metals or polycationic peptides alter continuum electrostatics at an α7 allosteric (or orthosteric) site.",
+    note: "Private analyses are excluded from this public package.",
     receptors: ["alpha7Allo", "alpha7Ortho"],
     ligandSets: [
       {
-        id: "L4",
-        label: "ACh exclusive",
-        pb: 0,
+        id: "L1",
+        label: "Pb²⁺ exclusive",
+        pb: 20,
         peptide: "off",
         peptideCount: 0,
         his5: 0,
-        ach: 20,
+        ach: 0,
       },
       {
-        id: "L4L1",
-        label: "ACh + Pb²⁺",
+        id: "L1L2",
+        label: "Pb²⁺ + KSRRRAR",
         pb: 12,
-        peptide: "off",
-        peptideCount: 0,
-        his5: 0,
-        ach: 15,
-      },
-      {
-        id: "L4L2",
-        label: "ACh + KSRRRAR",
-        pb: 0,
         peptide: "ksrrrar",
         peptideCount: 12,
         his5: 0,
-        ach: 15,
+        ach: 0,
       },
     ],
     pHFixed: [7.4, 6.2, 5.0],
-    ramp: true,
+    ramp: false,
     respawnDefault: false,
-    primaryReadouts: [
-      "U_ACh–ROI",
-      "U_competitor–ROI",
-      "proximity events ACh vs competitor",
-      "ACh accessibility change with competitor",
-    ],
-    publicationCandidate: true,
-    privateNanotoxicity: false,
+    primaryReadouts: ["U_Pb–ROI", "U_pep–ROI", "proximity events"],
+    publicationCandidate: false,
+    privateNanotoxicity: true,
   },
   prog4_multi_pore: {
     id: "prog4_multi_pore",
     shortLabel: "MULTI · Pore multi-ligand",
-    label:
-      "Programme 4 – Multi-ligand competition at acidic pore constriction",
+    label: "Programme 4 – Multi-ligand pore competition (private)",
     hypothesis:
-      "Pb²⁺, KSRRRAR, acetylcholine and L3-int compete electrostatically at a generic acidic pore constriction; exclusive baselines rank continuum accessibility, while multi-ligand sets reveal additive/subtractive Yukawa competition.",
-    note:
-      "User L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=ACh, L4=(internal). Receptor = acidic pore only. Classical continuum only — no biological pore-block claim.",
+      "Multiple cationic ligands compete for continuum electrostatic access to an acidic pore ROI.",
+    note: "Private analyses are excluded from this public package.",
     receptors: ["acidicPore"],
     ligandSets: multiLigandSets(),
     pHFixed: [7.4, 6.2, 5.0],
     ramp: true,
     respawnDefault: true,
     primaryReadouts: [
-      "U_Pb–pore",
       "U_pep–pore",
-      "U_ACh–pore",
-      "U_L3–pore",
       "U_tot",
-      "proximity events per species (if respawn ON)",
-      "ranking of exclusive baselines vs multi-ligand sets",
+      "proximity/respawn events",
     ],
     publicationCandidate: false,
     privateNanotoxicity: true,
@@ -372,16 +352,16 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
   prog5_peptide3_furin: {
     id: "prog5_peptide3_furin",
     shortLabel: "P5 · Peptide3 furin",
-    label: "Programme 5 – Three-peptide exclusive baselines at furin His194",
+    label:
+      "Programme 5 – KSRRRAR / PRARR / SLLRST exclusive baselines at furin triad",
     hypothesis:
-      "Under locked continuum Yukawa, exclusive L2 baselines rank by nominal charge: |U|(KSRRRAR +5) > |U|(PRARR +3) > |U|(SLLRST +1) at fixed pH 7.4 / 6.2 / 5.0. Energy ranking is primary.",
-    note:
-      "Exclusive L2 only (no heavy metal, no ACh). Respawn OFF. SLLRST is a continuum single-Arg educational contrast — not a viral infectivity claim.",
+      "Charge ladder (+5 / +3 / +1) ranks on |U_pep–His| under locked continuum parameters at the furin triad ROI.",
+    note: "Exclusive L2 only (no heavy metal). Respawn OFF. SLLRST is a continuum single-Arg educational contrast — not a viral infectivity claim.",
     receptors: ["furin"],
     ligandSets: [
       {
-        id: "L2_ksrrrar",
-        label: "KSRRRAR exclusive (+5)",
+        id: "KS",
+        label: "KSRRRAR exclusive",
         pb: 0,
         peptide: "ksrrrar",
         peptideCount: 20,
@@ -389,8 +369,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
         ach: 0,
       },
       {
-        id: "L2_prarr",
-        label: "PRARR exclusive (+3)",
+        id: "PR",
+        label: "PRARR exclusive",
         pb: 0,
         peptide: "prarr",
         peptideCount: 20,
@@ -398,8 +378,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
         ach: 0,
       },
       {
-        id: "L2_sllrst",
-        label: "SLLRST exclusive (+1)",
+        id: "SL",
+        label: "SLLRST exclusive",
         pb: 0,
         peptide: "sllrst",
         peptideCount: 20,
@@ -412,20 +392,19 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
     respawnDefault: false,
     primaryReadouts: [
       "U_pep–His (mean ± sd)",
-      "ranking |U| KSRRRAR > PRARR > SLLRST",
+      "ranking |U| charge ladder",
     ],
     publicationCandidate: true,
     privateNanotoxicity: false,
   },
   prog_pub_matrix: {
     id: "prog_pub_matrix",
-    shortLabel: "PUB · Matrix A–F",
+    shortLabel: "PUB · A–F matrix",
     label:
-      "Public validation matrix – exclusive baselines on receptors A–F",
+      "Public matrix – A–F × Pb + peptides × pH (locked continuum)",
     hypothesis:
-      "Under locked continuum Yukawa, exclusive cationic ligands rank by interaction strength at each public receptor (A–F); E (ATP7A WT) is more electronegative than F (Menkes), so |U| for cations is larger on E than F.",
-    note:
-      "Public exclusive ligands: Pb²⁺, Cu²⁺ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST. Respawn OFF. Continuum observables only.",
+      "Public receptor × public ligand continuum energy matrix under locked Debye–Hückel parameters.",
+    note: "Primary public suite. Cu²⁺ Menkes E/F contrast is a separate export.",
     receptors: [
       "furin",
       "acidicPore",
@@ -436,8 +415,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
     ],
     ligandSets: [
       {
-        id: "L_HM",
-        label: "Pb²⁺ exclusive (+2)",
+        id: "Pb",
+        label: "Pb²⁺ exclusive",
         pb: 20,
         peptide: "off",
         peptideCount: 0,
@@ -445,8 +424,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
         ach: 0,
       },
       {
-        id: "L_PB5",
-        label: "KSRRRAR exclusive (+5)",
+        id: "KS",
+        label: "KSRRRAR exclusive",
         pb: 0,
         peptide: "ksrrrar",
         peptideCount: 20,
@@ -454,8 +433,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
         ach: 0,
       },
       {
-        id: "L_PB3",
-        label: "PRARR exclusive (+3)",
+        id: "PR",
+        label: "PRARR exclusive",
         pb: 0,
         peptide: "prarr",
         peptideCount: 20,
@@ -463,8 +442,8 @@ export const PROGRAMMES: Record<ProgrammeId, ProgrammeDef> = {
         ach: 0,
       },
       {
-        id: "L_MB1",
-        label: "SLLRST exclusive (+1)",
+        id: "SL",
+        label: "SLLRST exclusive",
         pb: 0,
         peptide: "sllrst",
         peptideCount: 20,
@@ -495,17 +474,17 @@ export const PROGRAMME_ORDER: ProgrammeId[] = [
   "prog4_multi_pore",
 ];
 
-/** Public UI order. */
+/** Public UI order — matrix + Pb + peptide public suites only. */
 export const PUBLIC_PROGRAMME_ORDER: ProgrammeId[] = [
   "prog_pub_matrix",
   "prog1_metal",
   "prog5_peptide3_furin",
-  "prog3_ach",
 ];
 
 /** Internal-only programme ids (never shown on public surface). */
 export const PRIVATE_NANOXICITY_PROGRAMME_ORDER: ProgrammeId[] = [
   "prog2_pore",
+  "prog3_ach",
   "prog4_multi_pore",
 ];
 
@@ -518,8 +497,6 @@ export function visibleProgrammeOrder(_showPrivate?: boolean): ProgrammeId[] {
   void _showPrivate;
   return PUBLIC_PROGRAMME_ORDER;
 }
-
-
 
 export type ProgrammeRunConfig = {
   programmeId: ProgrammeId;
@@ -571,35 +548,21 @@ export function programmeExportMeta(cfg: ProgrammeRunConfig) {
       disclaimer: rec.disclaimer,
     },
     ligandSet: set ?? null,
-    multiLigandNomenclature:
-      cfg.programmeId === "prog4_multi_pore"
-        ? {
-            L1: "Pb²⁺",
-            L2: "KSRRRAR",
-            L3: "ACh",
-            L4: "L3_int",
-            engineMap: {
-              L1: "ligand1 (Pb)",
-              L2: "ligand2 (peptide)",
-              L3_user_ACh: "ligand4 (ACh)",
-              L4_user_internal: "ligand3 (L3-int)",
-            },
-          }
-        : null,
-    locked: {
-      debyeNm: VALIDITY_LOCKED.debyeNm,
-      coulombK: VALIDITY_LOCKED.coulombK,
-      forceCutoffNm: VALIDITY_LOCKED.forceCutoffNm,
-      frictionScale: VALIDITY_LOCKED.frictionScale,
-      baseSeed: VALIDITY_LOCKED.baseSeed,
-      coordScaleToNm: VALIDITY_LOCKED.coordScaleToNm,
-    },
-    protocol: cfg.protocol,
-    pH: cfg.pH,
-    frames: cfg.frames,
-    replicates: cfg.replicates,
-    respawnOnBinding: cfg.respawnOnBinding,
+    multiLigandNomenclature: null as null,
+    publicNote: "Private analyses are excluded from this public package.",
   };
+}
+
+/** Convenience: public baseline metal mode from a set. */
+export function setToMetalMode(set: LigandSetSpec): MetalMode {
+  return set.pb > 0 ? "pb" : "off";
+}
+
+/** Convenience: public baseline mode. */
+export function setToBaseline(set: LigandSetSpec): LigandBaselineMode {
+  if (set.pb > 0 && set.peptide !== "off") return "both";
+  if (set.pb > 0) return "ligand1";
+  return "ligand2";
 }
 
 export function meanSd(xs: number[]): { mean: number; sd: number } {
@@ -609,3 +572,4 @@ export function meanSd(xs: number[]): { mean: number; sd: number } {
   const v = xs.reduce((a, b) => a + (b - mean) ** 2, 0) / (xs.length - 1);
   return { mean, sd: Math.sqrt(v) };
 }
+

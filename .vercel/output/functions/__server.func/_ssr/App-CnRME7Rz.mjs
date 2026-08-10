@@ -1,10 +1,10 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { a as require_jsx_runtime, o as require_react } from "../_libs/@radix-ui/react-collection+[...].mjs";
-import { a as RotateCcw, c as Menu, d as Beaker, i as Shapes, l as Focus, o as Play, r as SlidersHorizontal, s as Pause, t as X, u as Download } from "../_libs/lucide-react.mjs";
+import { a as Play, c as Focus, d as Beaker, i as RotateCcw, l as Download, o as Pause, r as SlidersHorizontal, s as Menu, t as X, u as BookOpen } from "../_libs/lucide-react.mjs";
 import { i as SliderTrack, n as SliderRange, r as SliderThumb, t as Slider$1 } from "../_libs/@radix-ui/react-slider+[...].mjs";
 import { a as useFrame, c as Color, d as RGBAFormat, f as Vector3, i as Canvas, l as DataTexture, n as Line, o as useThree, r as Html, t as OrbitControls, u as LinearFilter } from "../_libs/@react-three/drei+[...].mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/App-BxcyiCRZ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/App-CnRME7Rz.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...parts) {
@@ -23,6 +23,18 @@ function Slider({ className, ...props }) {
 var PUBLICATION_DISCLAIMER = "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological claim without independent validation.";
 /** In-app / export version tag. */
 var APP_VERSION_BANNER = "MoleculoSphere 5D · Beta v1.0";
+/** Subtitle under app title (UI + README). */
+var APP_SUBTITLE = "Classical continuum electrostatics · Educational / hypothesis tool";
+/** Frozen public validation package root (workspace-relative). */
+var VALIDATION_PACKAGE_PATH = "exports/validation_package_MoleculoSphere5D";
+/** Public exclusive ligand names (UI + exports). */
+var PUBLIC_LIGANDS = [
+	"Pb²⁺",
+	"Cu²⁺",
+	"KSRRRAR",
+	"PRARR",
+	"SLLRST"
+];
 var DOMAIN_RADIUS = 3.2;
 var METAL_HIS_PREF_DEFAULT = 1.8;
 var SHORT_RANGE_WELL_SIGMA_NM = .4;
@@ -53,6 +65,7 @@ var CLAMP_ZOOM_LABELS = {
 	"50": "50%",
 	"25": "25%"
 };
+var HIS_APPROACH_FAR_NM = 1.4;
 var HIS_SITE_LABELS = ["His194"];
 var PROTEIN_BASE_RGB = [
 	.52,
@@ -1819,7 +1832,7 @@ function updateProteinResponses(proteins, particles, pH, params) {
 	const stress = nonPhysStress(pH);
 	const k = params?.coulombK ?? 4.2;
 	const lambda = Math.max(params?.debyeNm ?? (params?.debyeLength != null ? params.debyeLength * 4 : .8), 1e-9);
-	const shell = nmToScene(1) * 1.8;
+	const shell = nmToScene(HIS_APPROACH_FAR_NM) * 1.8;
 	const prefOn = params?.metalHisPrefEnabled ?? true;
 	const prefFactor = params?.metalHisPrefFactor ?? 1.8;
 	for (const prot of proteins) {
@@ -1867,7 +1880,7 @@ function updateProteinResponses(proteins, particles, pH, params) {
 					eSite += u;
 					eL1 += u;
 				}
-				if (d < nmToScene(1)) occL1 += 1;
+				if (d < nmToScene(1.4)) occL1 += 1;
 			}
 			for (const p of peptides) {
 				const d = Math.hypot(p.x - pos.x, p.y - pos.y, p.z - pos.z);
@@ -1877,7 +1890,7 @@ function updateProteinResponses(proteins, particles, pH, params) {
 					eSite += u;
 					eL2 += u;
 				}
-				if (d < nmToScene(1)) occL2 += 1;
+				if (d < nmToScene(1.4)) occL2 += 1;
 			}
 			site.localEnergy = eSite;
 			site.nearestMetal = nMetal;
@@ -1925,7 +1938,7 @@ function hisSiteForces(particles, proteins, params, outFx, outFy, outFz) {
 	const k = params.coulombK;
 	const lambdaNm = Math.max(params.debyeNm ?? (params.debyeLength != null ? params.debyeLength * 4 : .8), 1e-9);
 	const invL = 1 / lambdaNm;
-	const maxRScene = Math.max(nmToScene(1) * 3.5, nmToScene(lambdaNm * 5));
+	const maxRScene = Math.max(nmToScene(HIS_APPROACH_FAR_NM) * 3.5, nmToScene(lambdaNm * 5));
 	const prefOn = params.metalHisPrefEnabled ?? true;
 	const prefFactor = params.metalHisPrefFactor ?? 1.8;
 	const wellOn = params.shortRangeWellEnabled ?? false;
@@ -2214,7 +2227,7 @@ var SPECIES = [
 	},
 	{
 		id: "acetylcholine",
-		label: "ACh",
+		label: "L4-int",
 		kind: "ach",
 		ligandClass: "ligand4",
 		radius: .048,
@@ -2507,7 +2520,7 @@ function spawnParticles(count, pH, metalMode = "pb", seed = 1, ligand2Count = 0,
 	place(l4Sp, ligand4Count, .85, 2.5);
 	return out;
 }
-var OCCUPANCY_R = () => nmToScene(1);
+var OCCUPANCY_R = () => nmToScene(HIS_APPROACH_FAR_NM);
 function computeRoiEnergy(prot, particles, params) {
 	const k = params.coulombK;
 	const lambda = Math.max(params.debyeNm || sceneToNm(params.debyeLength), 1e-9);
@@ -2637,7 +2650,7 @@ function computeRoiEnergy(prot, particles, params) {
 			if (r < nearestDist) {
 				nearestDist = r;
 				nearestKind = "peptide";
-				nearestLabel = "ACh";
+				nearestLabel = "L4";
 			}
 			if (r < shell) eL4 += yukawaEnergy(site.charge, p.q, r, k, lambda);
 		}
@@ -3116,92 +3129,91 @@ function aggregateReplicates(a, b, c) {
 		replicates: reps
 	};
 }
-/** Count used when a multi-ligand flag is on (solo / pair / multi). */
-var SOLO_N = 18;
+var SOLO_N = 20;
 var PAIR_N = 12;
 var MULTI_N = 8;
 /**
-* Programme: Multi-ligand competition at pore constriction.
-* User-facing L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=ACh, L4=(internal).
-* Values 0/1 are presence flags (not absolute molecule counts).
+* Multi-ligand presets (engine internal / private MULTI suite).
+* User-facing L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=(internal), L4=(internal).
+* Not exposed on the public Beta v1.0 surface.
 */
 var MULTI_LIGAND_PRESETS = {
-	L1_baseline: {
+	L1: {
 		Pb: 1,
 		peptide: 0,
-		ACh: 0,
-		"L3_int": 0,
+		L4: 0,
+		L3_int: 0,
 		label: "L1 · Pb²⁺ alone"
 	},
-	L2_baseline: {
+	L2: {
 		Pb: 0,
 		peptide: 1,
-		ACh: 0,
-		"L3_int": 0,
+		L4: 0,
+		L3_int: 0,
 		label: "L2 · KSRRRAR alone"
 	},
-	L3_baseline: {
+	L3: {
 		Pb: 0,
 		peptide: 0,
-		ACh: 1,
-		"L3_int": 0,
-		label: "L3 · ACh alone"
+		L4: 1,
+		L3_int: 0,
+		label: "L3 · L4-int alone"
 	},
-	L4_baseline: {
+	L4: {
 		Pb: 0,
 		peptide: 0,
-		ACh: 0,
-		"L3_int": 1,
+		L4: 0,
+		L3_int: 1,
 		label: "L4 · L3-int alone"
 	},
 	"1+3": {
 		Pb: 1,
 		peptide: 0,
-		ACh: 1,
-		"L3_int": 0,
-		label: "1+3 · Pb²⁺ + ACh"
+		L4: 1,
+		L3_int: 0,
+		label: "1+3 · Pb²⁺ + L4-int"
 	},
 	"2+3": {
 		Pb: 0,
 		peptide: 1,
-		ACh: 1,
-		"L3_int": 0,
-		label: "2+3 · KSRRRAR + ACh"
+		L4: 1,
+		L3_int: 0,
+		label: "2+3 · KSRRRAR + L4-int"
 	},
 	"1+2+3": {
 		Pb: 1,
 		peptide: 1,
-		ACh: 1,
-		"L3_int": 0,
-		label: "1+2+3 · Pb²⁺ + KSRRRAR + ACh"
+		L4: 1,
+		L3_int: 0,
+		label: "1+2+3 · Pb²⁺ + KSRRRAR + L4-int"
 	},
 	"3+4": {
 		Pb: 0,
 		peptide: 0,
-		ACh: 1,
-		"L3_int": 1,
-		label: "3+4 · ACh + L3-int"
+		L4: 1,
+		L3_int: 1,
+		label: "3+4 · L4-int + L3-int"
 	},
 	"2+3+4": {
 		Pb: 0,
 		peptide: 1,
-		ACh: 1,
-		"L3_int": 1,
-		label: "2+3+4 · KSRRRAR + ACh + L3-int"
+		L4: 1,
+		L3_int: 1,
+		label: "2+3+4 · KSRRRAR + L4-int + L3-int"
 	},
 	"1+2+3+4": {
 		Pb: 1,
 		peptide: 1,
-		ACh: 1,
-		"L3_int": 1,
-		label: "1+2+3+4 · Full competition"
+		L4: 1,
+		L3_int: 1,
+		label: "1+2+3+4 · full set"
 	}
 };
 var MULTI_LIGAND_PRESET_ORDER = [
-	"L1_baseline",
-	"L2_baseline",
-	"L3_baseline",
-	"L4_baseline",
+	"L1",
+	"L2",
+	"L3",
+	"L4",
 	"1+3",
 	"2+3",
 	"1+2+3",
@@ -3209,7 +3221,6 @@ var MULTI_LIGAND_PRESET_ORDER = [
 	"2+3+4",
 	"1+2+3+4"
 ];
-/** Convert presence flags → LigandSetSpec with density scaled by # active species. */
 function multiLigandPresetToSet(id) {
 	const f = MULTI_LIGAND_PRESETS[id];
 	if (!f) return {
@@ -3221,7 +3232,7 @@ function multiLigandPresetToSet(id) {
 		his5: 0,
 		ach: 0
 	};
-	const nActive = f.Pb + f.peptide + f.ACh + f["L3_int"];
+	const nActive = f.Pb + f.peptide + f.L4 + f["L3_int"];
 	const n = nActive <= 1 ? SOLO_N : nActive === 2 ? PAIR_N : MULTI_N;
 	return {
 		id,
@@ -3230,7 +3241,7 @@ function multiLigandPresetToSet(id) {
 		peptide: f.peptide ? "ksrrrar" : "off",
 		peptideCount: f.peptide ? n : 0,
 		his5: f["L3_int"] ? n : 0,
-		ach: f.ACh ? n : 0
+		ach: f.L4 ? n : 0
 	};
 }
 function multiLigandSets() {
@@ -3239,9 +3250,10 @@ function multiLigandSets() {
 var PROGRAMMES = {
 	prog1_metal: {
 		id: "prog1_metal",
-		shortLabel: "P1 · Heavy metal",
-		label: "Programme 1 – Heavy-metal electrostatic binding across domains",
-		hypothesis: "Pb²⁺ interacts with continuum electrostatic fields of protein domains; interaction is potentiated under stress pH and further altered under pathological pH.",
+		shortLabel: "P1 · Pb across A–F",
+		label: "Programme 1 – Pb²⁺ continuum ranking across public receptors A–F",
+		hypothesis: "Divalent heavy-metal continuum energy (U_Pb–ROI) ranks across receptor electrostatic environments A–F under locked Debye–Hückel parameters.",
+		note: "Public continuum ranking only — not a structural or pharmacological claim.",
 		receptors: [
 			"furin",
 			"acidicPore",
@@ -3354,62 +3366,49 @@ var PROGRAMMES = {
 	},
 	prog3_ach: {
 		id: "prog3_ach",
-		shortLabel: "P3 · α7 ACh",
-		label: "Programme 3 – Allosteric competition with acetylcholine",
-		hypothesis: "Heavy metals or polycationic peptides alter continuum electrostatics at an α7 allosteric (or orthosteric) site and thereby compete with acetylcholine.",
-		note: "Continuum ranking of electrostatic competition against ACh only — not a claim of receptor antagonism without independent biological support.",
+		shortLabel: "P3 · α7 competition (private)",
+		label: "Programme 3 – Allosteric competition baseline (private)",
+		hypothesis: "Heavy metals or polycationic peptides alter continuum electrostatics at an α7 allosteric (or orthosteric) site.",
+		note: "Private analyses are excluded from this public package.",
 		receptors: ["alpha7Allo", "alpha7Ortho"],
-		ligandSets: [
-			{
-				id: "L4",
-				label: "ACh exclusive",
-				pb: 0,
-				peptide: "off",
-				peptideCount: 0,
-				his5: 0,
-				ach: 20
-			},
-			{
-				id: "L4L1",
-				label: "ACh + Pb²⁺",
-				pb: 12,
-				peptide: "off",
-				peptideCount: 0,
-				his5: 0,
-				ach: 15
-			},
-			{
-				id: "L4L2",
-				label: "ACh + KSRRRAR",
-				pb: 0,
-				peptide: "ksrrrar",
-				peptideCount: 12,
-				his5: 0,
-				ach: 15
-			}
-		],
+		ligandSets: [{
+			id: "L1",
+			label: "Pb²⁺ exclusive",
+			pb: 20,
+			peptide: "off",
+			peptideCount: 0,
+			his5: 0,
+			ach: 0
+		}, {
+			id: "L1L2",
+			label: "Pb²⁺ + KSRRRAR",
+			pb: 12,
+			peptide: "ksrrrar",
+			peptideCount: 12,
+			his5: 0,
+			ach: 0
+		}],
 		pHFixed: [
 			7.4,
 			6.2,
 			5
 		],
-		ramp: true,
+		ramp: false,
 		respawnDefault: false,
 		primaryReadouts: [
-			"U_ACh–ROI",
-			"U_competitor–ROI",
-			"proximity events ACh vs competitor",
-			"ACh accessibility change with competitor"
+			"U_Pb–ROI",
+			"U_pep–ROI",
+			"proximity events"
 		],
-		publicationCandidate: true,
-		privateNanotoxicity: false
+		publicationCandidate: false,
+		privateNanotoxicity: true
 	},
 	prog4_multi_pore: {
 		id: "prog4_multi_pore",
 		shortLabel: "MULTI · Pore multi-ligand",
-		label: "Programme 4 – Multi-ligand competition at acidic pore constriction",
-		hypothesis: "Pb²⁺, KSRRRAR, acetylcholine and L3-int compete electrostatically at a generic acidic pore constriction; exclusive baselines rank continuum accessibility, while multi-ligand sets reveal additive/subtractive Yukawa competition.",
-		note: "User L numbering: L1=Pb²⁺, L2=KSRRRAR, L3=ACh, L4=(internal). Receptor = acidic pore only. Classical continuum only — no biological pore-block claim.",
+		label: "Programme 4 – Multi-ligand pore competition (private)",
+		hypothesis: "Multiple cationic ligands compete for continuum electrostatic access to an acidic pore ROI.",
+		note: "Private analyses are excluded from this public package.",
 		receptors: ["acidicPore"],
 		ligandSets: multiLigandSets(),
 		pHFixed: [
@@ -3420,13 +3419,9 @@ var PROGRAMMES = {
 		ramp: true,
 		respawnDefault: true,
 		primaryReadouts: [
-			"U_Pb–pore",
 			"U_pep–pore",
-			"U_ACh–pore",
-			"U_L3–pore",
 			"U_tot",
-			"proximity events per species (if respawn ON)",
-			"ranking of exclusive baselines vs multi-ligand sets"
+			"proximity/respawn events"
 		],
 		publicationCandidate: false,
 		privateNanotoxicity: true
@@ -3434,14 +3429,14 @@ var PROGRAMMES = {
 	prog5_peptide3_furin: {
 		id: "prog5_peptide3_furin",
 		shortLabel: "P5 · Peptide3 furin",
-		label: "Programme 5 – Three-peptide exclusive baselines at furin His194",
-		hypothesis: "Under locked continuum Yukawa, exclusive L2 baselines rank by nominal charge: |U|(KSRRRAR +5) > |U|(PRARR +3) > |U|(SLLRST +1) at fixed pH 7.4 / 6.2 / 5.0. Energy ranking is primary.",
-		note: "Exclusive L2 only (no heavy metal, no ACh). Respawn OFF. SLLRST is a continuum single-Arg educational contrast — not a viral infectivity claim.",
+		label: "Programme 5 – KSRRRAR / PRARR / SLLRST exclusive baselines at furin triad",
+		hypothesis: "Charge ladder (+5 / +3 / +1) ranks on |U_pep–His| under locked continuum parameters at the furin triad ROI.",
+		note: "Exclusive L2 only (no heavy metal). Respawn OFF. SLLRST is a continuum single-Arg educational contrast — not a viral infectivity claim.",
 		receptors: ["furin"],
 		ligandSets: [
 			{
-				id: "L2_ksrrrar",
-				label: "KSRRRAR exclusive (+5)",
+				id: "KS",
+				label: "KSRRRAR exclusive",
 				pb: 0,
 				peptide: "ksrrrar",
 				peptideCount: 20,
@@ -3449,8 +3444,8 @@ var PROGRAMMES = {
 				ach: 0
 			},
 			{
-				id: "L2_prarr",
-				label: "PRARR exclusive (+3)",
+				id: "PR",
+				label: "PRARR exclusive",
 				pb: 0,
 				peptide: "prarr",
 				peptideCount: 20,
@@ -3458,8 +3453,8 @@ var PROGRAMMES = {
 				ach: 0
 			},
 			{
-				id: "L2_sllrst",
-				label: "SLLRST exclusive (+1)",
+				id: "SL",
+				label: "SLLRST exclusive",
 				pb: 0,
 				peptide: "sllrst",
 				peptideCount: 20,
@@ -3474,16 +3469,16 @@ var PROGRAMMES = {
 		],
 		ramp: false,
 		respawnDefault: false,
-		primaryReadouts: ["U_pep–His (mean ± sd)", "ranking |U| KSRRRAR > PRARR > SLLRST"],
+		primaryReadouts: ["U_pep–His (mean ± sd)", "ranking |U| charge ladder"],
 		publicationCandidate: true,
 		privateNanotoxicity: false
 	},
 	prog_pub_matrix: {
 		id: "prog_pub_matrix",
-		shortLabel: "PUB · Matrix A–F",
-		label: "Public validation matrix – exclusive baselines on receptors A–F",
-		hypothesis: "Under locked continuum Yukawa, exclusive cationic ligands rank by interaction strength at each public receptor (A–F); E (ATP7A WT) is more electronegative than F (Menkes), so |U| for cations is larger on E than F.",
-		note: "Public exclusive ligands: Pb²⁺, Cu²⁺ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST. Respawn OFF. Continuum observables only.",
+		shortLabel: "PUB · A–F matrix",
+		label: "Public matrix – A–F × Pb + peptides × pH (locked continuum)",
+		hypothesis: "Public receptor × public ligand continuum energy matrix under locked Debye–Hückel parameters.",
+		note: "Primary public suite. Cu²⁺ Menkes E/F contrast is a separate export.",
 		receptors: [
 			"furin",
 			"acidicPore",
@@ -3494,8 +3489,8 @@ var PROGRAMMES = {
 		],
 		ligandSets: [
 			{
-				id: "L_HM",
-				label: "Pb²⁺ exclusive (+2)",
+				id: "Pb",
+				label: "Pb²⁺ exclusive",
 				pb: 20,
 				peptide: "off",
 				peptideCount: 0,
@@ -3503,8 +3498,8 @@ var PROGRAMMES = {
 				ach: 0
 			},
 			{
-				id: "L_PB5",
-				label: "KSRRRAR exclusive (+5)",
+				id: "KS",
+				label: "KSRRRAR exclusive",
 				pb: 0,
 				peptide: "ksrrrar",
 				peptideCount: 20,
@@ -3512,8 +3507,8 @@ var PROGRAMMES = {
 				ach: 0
 			},
 			{
-				id: "L_PB3",
-				label: "PRARR exclusive (+3)",
+				id: "PR",
+				label: "PRARR exclusive",
 				pb: 0,
 				peptide: "prarr",
 				peptideCount: 20,
@@ -3521,8 +3516,8 @@ var PROGRAMMES = {
 				ach: 0
 			},
 			{
-				id: "L_MB1",
-				label: "SLLRST exclusive (+1)",
+				id: "SL",
+				label: "SLLRST exclusive",
 				pb: 0,
 				peptide: "sllrst",
 				peptideCount: 20,
@@ -3546,76 +3541,15 @@ var PROGRAMMES = {
 		privateNanotoxicity: false
 	}
 };
-/** Public UI order. */
+/** Public UI order — matrix + Pb + peptide public suites only. */
 var PUBLIC_PROGRAMME_ORDER = [
 	"prog_pub_matrix",
 	"prog1_metal",
-	"prog5_peptide3_furin",
-	"prog3_ach"
+	"prog5_peptide3_furin"
 ];
 /** Public surface always uses the public programme list. */
 function visibleProgrammeOrder(_showPrivate) {
 	return PUBLIC_PROGRAMME_ORDER;
-}
-function defaultProgrammeRun(programmeId, ligandSetId, receptorId) {
-	const prog = PROGRAMMES[programmeId];
-	return {
-		programmeId,
-		ligandSetId: ligandSetId ?? prog.ligandSets[0].id,
-		receptorId: receptorId ?? prog.receptors[0],
-		pH: 7.4,
-		protocol: "fixed-pH",
-		frames: Math.min(800, VALIDITY_LOCKED.runFrames),
-		replicates: VALIDITY_LOCKED.replicates,
-		seed: VALIDITY_LOCKED.baseSeed,
-		respawnOnBinding: prog.respawnDefault
-	};
-}
-function programmeExportMeta(cfg) {
-	const prog = PROGRAMMES[cfg.programmeId];
-	const set = prog.ligandSets.find((s) => s.id === cfg.ligandSetId);
-	const rec = RECEPTOR_GEOMETRIES[cfg.receptorId];
-	return {
-		disclaimer: PUBLICATION_DISCLAIMER,
-		programme: {
-			id: prog.id,
-			label: prog.label,
-			hypothesis: prog.hypothesis,
-			note: prog.note ?? null
-		},
-		receptor: {
-			id: rec.id,
-			label: rec.label,
-			character: rec.character,
-			disclaimer: rec.disclaimer
-		},
-		ligandSet: set ?? null,
-		multiLigandNomenclature: cfg.programmeId === "prog4_multi_pore" ? {
-			L1: "Pb²⁺",
-			L2: "KSRRRAR",
-			L3: "ACh",
-			L4: "L3_int",
-			engineMap: {
-				L1: "ligand1 (Pb)",
-				L2: "ligand2 (peptide)",
-				L3_user_ACh: "ligand4 (ACh)",
-				L4_user_internal: "ligand3 (L3-int)"
-			}
-		} : null,
-		locked: {
-			debyeNm: VALIDITY_LOCKED.debyeNm,
-			coulombK: VALIDITY_LOCKED.coulombK,
-			forceCutoffNm: VALIDITY_LOCKED.forceCutoffNm,
-			frictionScale: VALIDITY_LOCKED.frictionScale,
-			baseSeed: VALIDITY_LOCKED.baseSeed,
-			coordScaleToNm: VALIDITY_LOCKED.coordScaleToNm
-		},
-		protocol: cfg.protocol,
-		pH: cfg.pH,
-		frames: cfg.frames,
-		replicates: cfg.replicates,
-		respawnOnBinding: cfg.respawnOnBinding
-	};
 }
 function meanSd(xs) {
 	if (!xs.length) return {
@@ -5183,11 +5117,11 @@ var SimEngine = class {
 		this.peptideVariant = set.peptide;
 		this.ligand2Count = set.peptideCount;
 		this.ligand2Enabled = set.peptide !== "off" && set.peptideCount > 0;
-		this.ligand3Count = set.his5;
-		this.ligand3Enabled = set.his5 > 0;
-		this.ligand4Count = set.ach;
-		this.ligand4Enabled = set.ach > 0;
-		if (set.pb > 0 && (set.peptide !== "off" || set.his5 > 0 || set.ach > 0)) this.ligandBaseline = "both";
+		this.ligand3Count = 0;
+		this.ligand3Enabled = false;
+		this.ligand4Count = 0;
+		this.ligand4Enabled = false;
+		if (set.pb > 0 && set.peptide !== "off") this.ligandBaseline = "both";
 		else if (set.pb > 0) this.ligandBaseline = "ligand1";
 		else this.ligandBaseline = "ligand2";
 		this.reseedClasses([
@@ -5214,8 +5148,9 @@ var SimEngine = class {
 		this.emitUi();
 	}
 	/**
-	* Run publication programme matrix. Always writes numeric U_L1..U_L4/U_tot
-	* for every cell — never gated on L1/Pb presence.
+	* Run publication programme matrix.
+	* Public Beta v1.0 exports write only public ligand columns:
+	* U_HM–ROI, U_pep–ROI, U_tot — never private L3/L4 channels.
 	*/
 	runProgrammeSuite(programmeId, opts) {
 		const prog = PROGRAMMES[programmeId];
@@ -5230,8 +5165,6 @@ var SimEngine = class {
 				const prox = [];
 				const uPb = [];
 				const uPep = [];
-				const u5h = [];
-				const uAch = [];
 				const uTot = [];
 				const dTrig = [];
 				for (let r = 0; r < nRep; r++) {
@@ -5247,17 +5180,17 @@ var SimEngine = class {
 					this.playing = true;
 					this.scrubIndex = null;
 					this.eventScrub = null;
-					let sumUPb = 0, sumUPep = 0, sumU5 = 0, sumUAch = 0, sumUTot = 0, nU = 0;
+					let sumUPb = 0, sumUPep = 0, sumUTot = 0, nU = 0;
 					for (let f = 0; f < frames; f++) {
 						this.step();
 						this.refreshRoiEnergy();
 						const re = this.roiEnergy;
 						if (re) {
-							sumUPb += Number(re.energyL1His) || 0;
-							sumUPep += Number(re.energyL2His) || 0;
-							sumU5 += Number(re.energyL3His) || 0;
-							sumUAch += Number(re.energyL4His) || 0;
-							sumUTot += Number(re.energyTotal) || 0;
+							const e1 = Number(re.energyL1His) || 0;
+							const e2 = Number(re.energyL2His) || 0;
+							sumUPb += e1;
+							sumUPep += e2;
+							sumUTot += e1 + e2;
 							nU += 1;
 						}
 					}
@@ -5265,8 +5198,6 @@ var SimEngine = class {
 					const inv = nU || 1;
 					uPb.push(sumUPb / inv);
 					uPep.push(sumUPep / inv);
-					u5h.push(sumU5 / inv);
-					uAch.push(sumUAch / inv);
 					uTot.push(sumUTot / inv);
 					const td = this.behaviorStats.triggerDistancesNm;
 					if (td.length) dTrig.push(td.reduce((a, b) => a + b, 0) / td.length);
@@ -5284,8 +5215,6 @@ var SimEngine = class {
 					meanTriggerDistNm: meanSd(dTrig),
 					U_Pb_ROI: meanSd(uPb),
 					U_pep_ROI: meanSd(uPep),
-					U_L3_ROI: meanSd(u5h),
-					U_ACh_ROI: meanSd(uAch),
 					U_tot: meanSd(uTot)
 				});
 			}
@@ -5293,8 +5222,6 @@ var SimEngine = class {
 				const prox = [];
 				const uPb = [];
 				const uPep = [];
-				const u5h = [];
-				const uAch = [];
 				const uTot = [];
 				for (let r = 0; r < nRep; r++) {
 					this.rngSeed = baseSeed + r * 997 + 5e3;
@@ -5308,7 +5235,7 @@ var SimEngine = class {
 					this.resetBehaviorCounters();
 					this.playing = true;
 					const rampFrames = Math.min(400, frames);
-					let sumUPb = 0, sumUPep = 0, sumU5 = 0, sumUAch = 0, sumUTot = 0, nU = 0;
+					let sumUPb = 0, sumUPep = 0, sumUTot = 0, nU = 0;
 					for (let f = 0; f < rampFrames; f++) {
 						const t = f / Math.max(1, rampFrames - 1);
 						this.applyPH(7.4 + (5 - 7.4) * t);
@@ -5316,11 +5243,11 @@ var SimEngine = class {
 						this.refreshRoiEnergy();
 						const re = this.roiEnergy;
 						if (re) {
-							sumUPb += Number(re.energyL1His) || 0;
-							sumUPep += Number(re.energyL2His) || 0;
-							sumU5 += Number(re.energyL3His) || 0;
-							sumUAch += Number(re.energyL4His) || 0;
-							sumUTot += Number(re.energyTotal) || 0;
+							const e1 = Number(re.energyL1His) || 0;
+							const e2 = Number(re.energyL2His) || 0;
+							sumUPb += e1;
+							sumUPep += e2;
+							sumUTot += e1 + e2;
 							nU += 1;
 						}
 					}
@@ -5328,8 +5255,6 @@ var SimEngine = class {
 					prox.push(this.behaviorStats.proximityEvents);
 					uPb.push(sumUPb / inv);
 					uPep.push(sumUPep / inv);
-					u5h.push(sumU5 / inv);
-					uAch.push(sumUAch / inv);
 					uTot.push(sumUTot / inv);
 				}
 				rows.push({
@@ -5345,21 +5270,19 @@ var SimEngine = class {
 					meanTriggerDistNm: meanSd([]),
 					U_Pb_ROI: meanSd(uPb),
 					U_pep_ROI: meanSd(uPep),
-					U_L3_ROI: meanSd(u5h),
-					U_ACh_ROI: meanSd(uAch),
 					U_tot: meanSd(uTot)
 				});
 			}
 		}
 		const payload = {
 			disclaimer: PUBLICATION_DISCLAIMER,
+			publicNote: "Private analyses are excluded from this public package.",
 			programme: {
 				id: prog.id,
 				label: prog.label,
 				hypothesis: prog.hypothesis,
 				note: prog.note ?? null
 			},
-			locked: programmeExportMeta(defaultProgrammeRun(programmeId)).locked,
 			results: rows,
 			exportedAt: (/* @__PURE__ */ new Date()).toISOString()
 		};
@@ -5373,34 +5296,32 @@ var SimEngine = class {
 			const x = v?.[field];
 			return Number.isFinite(x) ? x.toFixed(3) : "0.000";
 		};
-		const csvLines = [[
-			"programme",
-			"receptor",
-			"ligandSet",
-			"ligandLabel",
-			"protocol",
-			"pH",
-			"frames",
-			"n",
-			"proximity_mean",
-			"proximity_sd",
-			"U_L1_Pb_mean",
-			"U_L1_Pb_sd",
-			"U_L2_pep_mean",
-			"U_L2_pep_sd",
-			"U_L3_mean",
-			"U_L3_sd",
-			"U_L4_ACh_mean",
-			"U_L4_ACh_sd",
-			"U_tot_mean",
-			"U_tot_sd"
-		].join(",")];
+		const csvLines = [
+			`# ${PUBLICATION_DISCLAIMER}`,
+			`# Private analyses are excluded from this public package.`,
+			[
+				"programme",
+				"receptor",
+				"ligandSet",
+				"ligandLabel",
+				"protocol",
+				"pH",
+				"frames",
+				"n",
+				"proximity_mean",
+				"proximity_sd",
+				"U_HM_ROI_mean",
+				"U_HM_ROI_sd",
+				"U_pep_ROI_mean",
+				"U_pep_ROI_sd",
+				"U_tot_mean",
+				"U_tot_sd"
+			].join(",")
+		];
 		for (const row of rows) {
 			const pe = row.proximityEvents;
 			const up = row.U_Pb_ROI;
 			const ue = row.U_pep_ROI;
-			const u5 = row.U_L3_ROI;
-			const ua = row.U_ACh_ROI;
 			const ut = row.U_tot;
 			csvLines.push([
 				row.programme,
@@ -5417,16 +5338,12 @@ var SimEngine = class {
 				num(up, "sd"),
 				num(ue, "mean"),
 				num(ue, "sd"),
-				num(u5, "mean"),
-				num(u5, "sd"),
-				num(ua, "mean"),
-				num(ua, "sd"),
 				num(ut, "mean"),
 				num(ut, "sd")
 			].join(","));
 		}
 		const csv = csvLines.join("\n");
-		const summary = `${prog.shortLabel}: ${rows.length} cells · n=${nRep} · frames=${frames} · ${PUBLICATION_DISCLAIMER.slice(0, 80)}…`;
+		const summary = `${prog.shortLabel}: ${rows.length} cells · n=${nRep} · frames=${frames} · public columns only`;
 		this.emitUi();
 		return {
 			json,
@@ -5436,7 +5353,7 @@ var SimEngine = class {
 	}
 	getLigandModeStatus() {
 		const hm = resolveHeavyMetal(this.metalMode);
-		return `${this.ligandBaseline === "ligand2" || hm === "off" || this.moleculeCount <= 0 ? `${hm === "off" ? "HM" : heavyMetalLabel(this.metalMode)} absent` : `${heavyMetalLabel(this.metalMode)} ×${this.moleculeCount}`} · ${this.ligandBaseline === "ligand1" || this.peptideVariant === "off" || this.ligand2Count <= 0 ? "peptide absent" : `L2 ${this.peptideVariant === "prarr" ? "PRARR" : this.peptideVariant === "sllrst" ? "SLLRST" : "KSRRRAR"} ×${this.ligand2Count}${this.ligandBaseline === "ligand2" ? " exclusive" : ""}`} · ${this.ligand4Enabled ? `ACh ×${this.ligand4Count}` : "ACh absent"}`;
+		return `${this.ligandBaseline === "ligand2" || hm === "off" || this.moleculeCount <= 0 ? `${hm === "off" ? "HM" : heavyMetalLabel(this.metalMode)} absent` : `${heavyMetalLabel(this.metalMode)} ×${this.moleculeCount}`} · ${this.ligandBaseline === "ligand1" || this.peptideVariant === "off" || this.ligand2Count <= 0 ? "peptide absent" : `L2 ${this.peptideVariant === "prarr" ? "PRARR" : this.peptideVariant === "sllrst" ? "SLLRST" : "KSRRRAR"} ×${this.ligand2Count}${this.ligandBaseline === "ligand2" ? " exclusive" : ""}`}`;
 	}
 	runValiditySuite(opts) {
 		const nRep = Math.min(VALIDITY_LOCKED.replicates, 5);
@@ -7331,7 +7248,8 @@ function buildPublicDisclosureTxt() {
 		"",
 		"Public continuum observables only — not MD, docking, or clinical prediction.",
 		"Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.",
-		"Public receptors A–F; Cu2+ Menkes analysis uses E and F only."
+		"Public receptors A–F; Cu2+ Menkes analysis uses E and F only.",
+		"Private analyses are excluded from this public package."
 	].join("\n");
 }
 /** Download paper table CSVs (client-side). Full figure package is prebuilt offline. */
@@ -7418,10 +7336,8 @@ function ControlPanel() {
 	const setLigand2Count = useSimStore((s) => s.setLigand2Count);
 	const ligand2ChargeScale = useSimStore((s) => s.ligand2ChargeScale);
 	const setLigand2ChargeScale = useSimStore((s) => s.setLigand2ChargeScale);
-	const ligand4Enabled = useSimStore((s) => s.ligand4Enabled);
 	const setLigand4Enabled = useSimStore((s) => s.setLigand4Enabled);
-	const ligand4Count = useSimStore((s) => s.ligand4Count);
-	const setLigand4Count = useSimStore((s) => s.setLigand4Count);
+	const setLigand3Enabled = useSimStore((s) => s.setLigand3Enabled);
 	const respawnOnBinding = useSimStore((s) => s.respawnOnBinding);
 	const setRespawnOnBinding = useSimStore((s) => s.setRespawnOnBinding);
 	const shortRangeWellEnabled = useSimStore((s) => s.shortRangeWellEnabled);
@@ -7469,16 +7385,53 @@ function ControlPanel() {
 	const pHColor = colorCss(pHToT(pH));
 	const tPrime = timeAccelerationFactor(displayDurationSec);
 	const recMeta = RECEPTOR_GEOMETRIES[receptorGeometry];
+	(0, import_react.useEffect)(() => {
+		setLigand4Enabled(false);
+		setLigand3Enabled(false);
+	}, [setLigand4Enabled, setLigand3Enabled]);
 	const hm = resolveHeavyMetal(metalMode);
 	const pbActive = ligandBaseline !== "ligand2" && hm !== "off";
 	const pepActive = ligandBaseline !== "ligand1" && peptideVariant !== "off";
 	const pepLabel = peptideVariant === "prarr" ? "PRARR" : peptideVariant === "sllrst" ? "SLLRST" : "KSRRRAR";
 	const hmLabel = heavyMetalLabel(metalMode);
-	const statusLine = [
-		`${hmLabel} ${pbActive ? `×${moleculeCount}` : "absent"}`,
-		pepActive ? ligandBaseline === "ligand2" ? `L2 ${pepLabel} ×${ligand2Count} exclusive` : `L2 ${pepLabel} ×${ligand2Count}` : "peptide absent",
-		`ACh ${ligand4Enabled ? `×${ligand4Count}` : "absent"}`
-	].join(" · ");
+	const statusLine = [`${hmLabel} ${pbActive ? `×${moleculeCount}` : "absent"}`, pepActive ? ligandBaseline === "ligand2" ? `L2 ${pepLabel} ×${ligand2Count} exclusive` : `L2 ${pepLabel} ×${ligand2Count}` : "peptide absent"].join(" · ");
+	/** Public HUD total = active public L–ROI terms only (no private channels). */
+	const publicUTot = (() => {
+		let t = 0;
+		if (pbActive) t += Number(roiEnergy?.energyL1His) || 0;
+		if (pepActive) t += Number(roiEnergy?.energyL2His) || 0;
+		return t;
+	})();
+	const downloadValidationManifest = () => {
+		const body = [
+			APP_VERSION_BANNER,
+			PUBLICATION_DISCLAIMER,
+			"",
+			"Frozen public validation package:",
+			VALIDATION_PACKAGE_PATH + "/",
+			"",
+			"Key public CSVs:",
+			"  PUB_MATRIX_mean_sd.csv",
+			"  PUB_MATRIX_ranking_per_receptor.csv",
+			"  PUB_MATRIX_E_vs_F_Menkes.csv",
+			"  PUB_MATRIX_Cu_E_F_mean_sd.csv",
+			"  PUB_MATRIX_Cu_E_vs_F_contrast.csv",
+			"  PUB_MATRIX_ranking_E_F_with_Cu.csv",
+			"  ranking_KSRRRAR_vs_PRARR_vs_SLLRST.csv",
+			"  peptide3_furin_baselines_mean_sd.csv",
+			"  paper_tables/",
+			"  paper_figures/",
+			"",
+			"Primary metric: U_L–ROI = mean continuum Yukawa energy of exclusive ligand L at the receptor ROI (kT).",
+			"Private analyses are excluded from this public package.",
+			"Not MD, docking, coordination chemistry, or a biological claim."
+		].join("\n");
+		const a = document.createElement("a");
+		a.href = URL.createObjectURL(new Blob([body], { type: "text/plain" }));
+		a.download = "MoleculoSphere5D_Beta_v1.0_public_validation_paths.txt";
+		a.click();
+		setIoMsg("Validation package path list downloaded");
+	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {
 		className: "panel-scroll flex max-h-full w-full flex-col gap-3 overflow-y-auto rounded-xl border border-border bg-panel/95 p-3.5 shadow-xl backdrop-blur-sm md:w-[340px] lg:w-[360px]",
 		"aria-label": "Simulation controls",
@@ -7492,11 +7445,61 @@ function ControlPanel() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
 						className: "text-lg font-semibold tracking-tight text-fg",
-						children: "MoleculoSphere 5D · Beta v1.0"
+						children: APP_VERSION_BANNER
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-[9px] text-subtle",
-						children: "Continuum observables only — not MD, docking, or clinical prediction."
+						className: "text-[10px] text-muted",
+						children: APP_SUBTITLE
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-[9px] leading-snug text-subtle",
+						children: PUBLICATION_DISCLAIMER
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "space-y-1.5 rounded-lg border border-cyan-500/25 bg-cyan-950/20 p-3",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(BookOpen, {
+							className: "size-4 text-cyan-300",
+							"aria-hidden": true
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-sm font-medium",
+							children: "Quick start"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ol", {
+						className: "list-decimal space-y-1 pl-4 text-[9px] leading-relaxed text-subtle",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Pick receptor A–F and exclusive ligand (Pb²⁺ / Cu²⁺ / peptide)." }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Set pH; Play — U_L–ROI is the continuum ligand–ROI energy (kT)." }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: "Event tape records proximity + HH-binary frames (demo speed OK)." }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+								"Export · public writes only public ligands/columns. Frozen CSVs live under",
+								" ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-fg",
+									children: VALIDATION_PACKAGE_PATH
+								}),
+								"."
+							] })
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "text-[9px] text-muted",
+						children: [
+							"Public ligands: ",
+							PUBLIC_LIGANDS.join(" · "),
+							". Not MD / docking / clinical."
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						type: "button",
+						onClick: downloadValidationManifest,
+						className: "w-full rounded-md border border-cyan-400/40 bg-cyan-950/30 px-2 py-1.5 text-[10px] text-cyan-100",
+						children: "Download public validation path list"
 					})
 				]
 			}),
@@ -7571,24 +7574,15 @@ function ControlPanel() {
 							className: "mb-1 flex justify-between text-[10px]",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-muted",
-								children: "Display window t′"
+								children: "Display duration (s)"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 								className: "tabular text-fg",
 								children: [
 									displayDurationSec.toFixed(0),
-									" s · ×",
+									" · t′ ×",
 									tPrime.toFixed(2)
 								]
 							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "mb-1 flex gap-1",
-							children: DISPLAY_DURATION_PRESETS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								type: "button",
-								onClick: () => setDisplayDurationSec(s),
-								className: ["flex-1 rounded border px-1 py-1 text-[10px]", displayDurationSec === s ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
-								children: [s, "s"]
-							}, s))
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
 							min: 5,
@@ -7596,7 +7590,16 @@ function ControlPanel() {
 							step: 1,
 							value: [displayDurationSec],
 							onValueChange: (v) => setDisplayDurationSec(v[0] ?? 10),
-							"aria-label": "Time acceleration display duration"
+							"aria-label": "Display duration"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "mt-1 flex flex-wrap gap-1",
+							children: DISPLAY_DURATION_PRESETS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								type: "button",
+								onClick: () => setDisplayDurationSec(s),
+								className: ["rounded border px-1.5 py-0.5 text-[9px]", displayDurationSec === s ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
+								children: [s, "s"]
+							}, s))
 						})
 					] }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
@@ -7604,14 +7607,14 @@ function ControlPanel() {
 							className: "mb-1 flex justify-between text-[10px]",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-muted",
-								children: "Demo speed (live UI only)"
+								children: "Demo speed"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 								className: "tabular text-fg",
-								children: ["×", demoSpeed.toFixed(2)]
+								children: ["×", demoSpeed]
 							})]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "flex gap-1",
+							className: "flex flex-wrap gap-1",
 							children: [
 								.25,
 								.5,
@@ -7619,7 +7622,7 @@ function ControlPanel() {
 							].map((m) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 								type: "button",
 								onClick: () => setDemoSpeed(m),
-								className: ["flex-1 rounded border px-1 py-1 text-[10px]", demoSpeed === m ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
+								className: ["rounded border px-2 py-1 text-[10px]", demoSpeed === m ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
 								children: ["×", m]
 							}, m))
 						}),
@@ -7632,60 +7635,75 @@ function ControlPanel() {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 				className: "space-y-1.5 rounded-lg border border-border bg-surface/70 p-2.5",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-[11px] font-medium text-fg",
-					children: "Energy HUD (kT)"
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "space-y-0.5 font-mono text-[10px]",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-muted",
-								children: "U_HM–ROI"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: fmtE(roiEnergy?.energyL1His) })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-muted",
-								children: "U_pep–ROI"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: fmtE(roiEnergy?.energyL2His) })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-muted",
-								children: "U_ACh–ROI"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: fmtE(roiEnergy?.energyL4His) })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between border-t border-border/60 pt-0.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-muted",
-								children: "U_tot"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-fg",
-								children: fmtE(roiEnergy?.energyTotal)
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex justify-between text-subtle",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "His θ / switch" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-								hisTheta.toFixed(2),
-								" · ",
-								switchDisplayOn ? "ON" : "OFF"
-							] })]
-						})
-					]
-				})]
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-[11px] font-medium text-fg",
+						children: "Energy HUD (kT)"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-0.5 font-mono text-[10px]",
+						children: [
+							pbActive && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-muted",
+									children: "U_HM–ROI"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "tabular text-fg",
+									children: fmtE(roiEnergy?.energyL1His)
+								})]
+							}),
+							pepActive && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-muted",
+									children: "U_pep–ROI"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "tabular text-fg",
+									children: fmtE(roiEnergy?.energyL2His)
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between border-t border-border/60 pt-0.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-muted",
+									children: "U_tot"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "tabular text-fg",
+									children: fmtE(publicUTot)
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-between text-subtle",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "His θ / switch" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+									className: "tabular",
+									children: [
+										hisTheta.toFixed(2),
+										" · ",
+										switchDisplayOn ? "ON" : "OFF"
+									]
+								})]
+							})
+						]
+					}),
+					!pbActive && !pepActive && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-[9px] text-subtle",
+						children: "No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide to see U_L–ROI rows."
+					})
+				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
 				className: "space-y-2 rounded-lg border border-emerald-500/25 bg-emerald-950/15 p-3",
 				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-sm font-medium",
-						children: "Scientific data"
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, {
+							className: "size-4 text-emerald-300",
+							"aria-hidden": true
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-sm font-medium",
+							children: "Scientific data"
+						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "grid grid-cols-2 gap-1 text-[10px]",
@@ -7711,7 +7729,7 @@ function ControlPanel() {
 									" ",
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 										className: "tabular text-fg",
-										children: meanTriggerDistNm != null ? `${meanTriggerDistNm.toFixed(2)} nm` : "—"
+										children: meanTriggerDistNm != null && meanTriggerDistNm > 0 ? `${meanTriggerDistNm.toFixed(2)} nm` : "—"
 									})
 								]
 							})
@@ -7741,7 +7759,11 @@ function ControlPanel() {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
 								onClick: () => {
-									exportScientificCsv();
+									const csv = exportScientificCsv();
+									const a = document.createElement("a");
+									a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+									a.download = "scientific_snapshot_public.csv";
+									a.click();
 									setIoMsg("Scientific CSV exported");
 								},
 								className: "rounded border border-emerald-400/40 bg-emerald-950/30 px-2 py-1 text-[10px] text-emerald-100",
@@ -7752,7 +7774,7 @@ function ControlPanel() {
 								onClick: async () => {
 									try {
 										const msg = await saveScientificToFolder();
-										setIoMsg(msg ?? "Saved");
+										setIoMsg(msg);
 									} catch (e) {
 										setIoMsg(String(e));
 									}
@@ -7763,16 +7785,28 @@ function ControlPanel() {
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
 								onClick: () => {
-									setIoMsg(exportPaperAssetTables());
+									const msg = exportPaperAssetTables();
+									setIoMsg(msg);
 								},
 								className: "rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted",
-								children: "Paper tables"
+								children: "Paper tables · public"
 							})
 						]
 					}),
 					ioMsg && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-[9px] text-subtle",
 						children: ioMsg
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "text-[9px] text-subtle",
+						children: [
+							"Suite exports write public columns only. Private analyses are excluded from this public package. Frozen package:",
+							" ",
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-fg",
+								children: VALIDATION_PACKAGE_PATH
+							})
+						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 						type: "button",
@@ -7908,7 +7942,7 @@ function ControlPanel() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 						className: "text-[9px] leading-relaxed text-subtle",
-						children: "Locked continuum (λ_D 0.8 nm, coulombK 1.15). Exports mean±sd."
+						children: "Public continuum programmes only (λ_D 0.8 nm, coulombK 1.15). Exports mean±sd · public columns only. Private analyses are excluded from this public package."
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "space-y-1.5",
@@ -7916,37 +7950,36 @@ function ControlPanel() {
 							const prog = PROGRAMMES[id];
 							const sets = prog.ligandSets.slice(0, 4);
 							return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: ["rounded-md border p-2", activeProgramme === id ? "border-fuchsia-400/50 bg-fuchsia-950/40" : "border-border bg-surface/60"].join(" "),
+								className: ["rounded-md border p-2", activeProgramme === id ? "border-fuchsia-400/40 bg-fuchsia-950/30" : "border-border bg-surface/40"].join(" "),
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] font-medium text-fg",
+										className: "text-[10px] font-medium text-fg",
 										children: prog.shortLabel
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "mt-0.5 text-[9px] text-subtle",
-										children: prog.hypothesis
+										className: "mb-1 text-[8px] leading-snug text-subtle",
+										children: prog.note
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: "mt-1.5 flex flex-wrap gap-1",
-										children: [sets.map((set) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										className: "flex flex-wrap gap-1",
+										children: [sets.map((set) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											type: "button",
 											onClick: () => applyProgrammeSetup(id, set.id, prog.receptors[0]),
-											className: "rounded border border-border bg-elevated px-1.5 py-1 text-[9px] text-muted hover:text-fg",
-											children: set.label
+											className: "rounded border border-border bg-elevated px-1.5 py-0.5 text-[9px] text-muted hover:text-fg",
+											children: ["Load ", set.label]
 										}, set.id)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 											type: "button",
-											onClick: () => {
-												(async () => {
-													try {
-														const summary = await runProgrammeSuite(id);
-														setValidityMsg(summary);
-													} catch (e) {
-														setValidityMsg(String(e));
-													}
-												})();
+											onClick: async () => {
+												setValidityMsg(`Running ${prog.shortLabel}…`);
+												try {
+													const summary = await runProgrammeSuite(id);
+													setValidityMsg(summary);
+												} catch (e) {
+													setValidityMsg(String(e));
+												}
 											},
-											className: "rounded border border-fuchsia-400/40 bg-fuchsia-950/30 px-1.5 py-1 text-[9px] text-fuchsia-100",
-											children: "Run suite + export"
+											className: "rounded border border-fuchsia-400/40 bg-fuchsia-950/30 px-1.5 py-0.5 text-[9px] text-fuchsia-100",
+											children: "Run suite"
 										})]
 									})
 								]
@@ -7956,65 +7989,31 @@ function ControlPanel() {
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				className: "space-y-2 rounded-lg border border-teal-500/25 bg-teal-950/15 p-3",
+				className: "space-y-2 rounded-lg border border-border bg-surface/70 p-3",
 				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shapes, {
-							className: "size-4 text-teal-300",
-							"aria-hidden": true
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-sm font-medium",
-							children: "Receptor geometry"
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-[10px] leading-relaxed text-subtle",
-						children: "Public continuum proxies. Single ROI label per preset."
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "text-sm font-medium",
+						children: "Receptor"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "grid grid-cols-1 gap-1",
+						className: "flex flex-wrap gap-1",
 						children: RECEPTOR_GEOMETRY_ORDER.map((id) => {
-							const meta = RECEPTOR_GEOMETRIES[id];
-							return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							const m = RECEPTOR_GEOMETRIES[id];
+							return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
+								title: m.label,
 								onClick: () => setReceptorGeometry(id),
-								className: ["rounded-md border px-2 py-2 text-left transition-colors", receptorGeometry === id ? "border-teal-400/50 bg-teal-950/40 ring-1 ring-teal-400/30" : "border-border bg-surface hover:bg-elevated"].join(" "),
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "text-[11px] font-medium text-fg",
-									children: [meta.shortLabel, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-										className: "ml-1 font-normal text-subtle",
-										children: ["· ", meta.roiLabel]
-									})]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "mt-0.5 block text-[9px] text-subtle",
-									children: meta.blurb
-								})]
+								className: ["rounded border px-1.5 py-1 text-[9px]", receptorGeometry === id ? "border-teal-400/50 bg-teal-950/40 text-teal-100" : "border-border bg-surface text-muted"].join(" "),
+								children: m.shortLabel
 							}, id);
 						})
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex gap-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							type: "button",
-							onClick: () => setShowL2(false),
-							className: ["flex-1 rounded border px-2 py-1 text-[10px]", !showL2 ? "border-teal-400/50 bg-teal-950/40 text-teal-100" : "border-border bg-surface text-muted"].join(" "),
-							children: "Sparse LOD"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							type: "button",
-							onClick: () => setShowL2(true),
-							className: ["flex-1 rounded border px-2 py-1 text-[10px]", showL2 ? "border-teal-400/50 bg-teal-950/40 text-teal-100" : "border-border bg-surface text-muted"].join(" "),
-							children: "Dense LOD"
-						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 						className: "text-[9px] text-subtle",
 						children: [
-							"Active: ",
-							recMeta.shortLabel,
-							" · label “",
-							recMeta.roiLabel,
-							"”"
+							recMeta?.label,
+							" · ROI ",
+							recMeta?.roiLabel
 						]
 					})
 				]
@@ -8024,7 +8023,7 @@ function ControlPanel() {
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-sm font-medium",
-						children: "Ligands (hard exclusion)"
+						children: "Ligands · public exclusive"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "flex flex-wrap gap-1",
@@ -8032,11 +8031,11 @@ function ControlPanel() {
 							["both", "Both"],
 							["ligand1", "L1 only"],
 							["ligand2", "L2 only"]
-						].map(([mode, label]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						].map(([mode, lab]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 							type: "button",
 							onClick: () => setLigandBaseline(mode),
-							className: ["rounded border px-2 py-1 text-[10px]", ligandBaseline === mode ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
-							children: label
+							className: ["rounded border px-1.5 py-1 text-[9px]", ligandBaseline === mode ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100" : "border-border bg-surface text-muted"].join(" "),
+							children: lab
 						}, mode))
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -8117,7 +8116,7 @@ function ControlPanel() {
 								].map(([v, lab, tip]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 									type: "button",
 									title: tip,
-									disabled: !pepActive && v !== "off" && ligandBaseline === "ligand1",
+									disabled: ligandBaseline === "ligand1" && v !== "off",
 									onClick: () => setPeptideVariant(v),
 									className: ["rounded border px-1.5 py-1 text-[9px]", peptideVariant === v ? "border-violet-400/50 bg-violet-950/40 text-violet-100" : "border-border bg-surface text-muted"].join(" "),
 									children: lab
@@ -8153,39 +8152,20 @@ function ControlPanel() {
 								})]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
-								min: .2,
+								min: .5,
 								max: 1.5,
 								step: .05,
 								value: [ligand2ChargeScale],
 								onValueChange: (v) => setLigand2ChargeScale(v[0] ?? 1),
 								disabled: !pepActive,
 								"aria-label": "Peptide charge scale"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToggleRow, {
+								label: "Show L2 beads",
+								checked: showL2,
+								onChange: setShowL2
 							})
 						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-1 rounded border border-border bg-elevated/40 p-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", {
-							className: "flex items-center justify-between text-[11px]",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "font-medium text-fg",
-								children: "L3 · ACh (+1)"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-								type: "checkbox",
-								checked: ligand4Enabled,
-								onChange: (e) => setLigand4Enabled(e.target.checked),
-								className: "size-3.5 accent-cyan-500",
-								"aria-label": "Enable ACh"
-							})]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
-							min: 0,
-							max: 30,
-							step: 1,
-							value: [ligand4Enabled ? ligand4Count : 0],
-							onValueChange: (v) => setLigand4Count(v[0] ?? 0),
-							disabled: !ligand4Enabled,
-							"aria-label": "ACh count"
-						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToggleRow, {
 						label: "Respawn on proximity",
@@ -8228,43 +8208,35 @@ function ControlPanel() {
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-wrap gap-1",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								type: "button",
-								onClick: () => spawnNearRoi("ligand1"),
-								disabled: !pbActive,
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted hover:text-fg disabled:opacity-40",
-								children: [
-									"Spawn ",
-									hmLabel === "off" ? "HM" : hmLabel,
-									" near ROI"
-								]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								type: "button",
-								onClick: () => spawnNearRoi("ligand2"),
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted hover:text-fg",
-								children: "Spawn peptide near ROI"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								type: "button",
-								onClick: () => spawnNearRoi("ligand4"),
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted hover:text-fg",
-								children: "Spawn ACh near ROI"
-							})
-						]
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							type: "button",
+							onClick: () => spawnNearRoi("ligand1"),
+							disabled: !pbActive,
+							className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted hover:text-fg disabled:opacity-40",
+							children: [
+								"Spawn ",
+								hmLabel === "off" ? "HM" : hmLabel,
+								" near ROI"
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							type: "button",
+							onClick: () => spawnNearRoi("ligand2"),
+							disabled: !pepActive,
+							className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted hover:text-fg disabled:opacity-40",
+							children: "Spawn peptide near ROI"
+						})]
 					})
 				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				className: "space-y-1.5 rounded-lg border border-border bg-surface/70 p-3",
+				className: "space-y-2 rounded-lg border border-border bg-surface/70 p-3",
 				children: [
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 						className: "text-sm font-medium",
-						children: "Display"
+						children: "Display & continuum knobs"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToggleRow, {
-						label: "Protein proxies",
+						label: "Show proteins",
 						checked: showProteins,
 						onChange: setShowProteins
 					}),
@@ -8278,7 +8250,7 @@ function ControlPanel() {
 						checked: showField,
 						onChange: setShowField
 					}),
-					showField && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex justify-between text-[10px]",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "text-muted",
@@ -8287,59 +8259,63 @@ function ControlPanel() {
 							className: "tabular",
 							children: fieldOpacity.toFixed(2)
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
 						min: .05,
 						max: 1,
 						step: .05,
 						value: [fieldOpacity],
-						onValueChange: (v) => setFieldOpacity(v[0] ?? .4),
+						onValueChange: (v) => setFieldOpacity(v[0] ?? .5),
+						disabled: !showField,
 						"aria-label": "Field opacity"
-					})] }),
+					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToggleRow, {
-						label: "Short-range metal–His well (optional)",
+						label: "Short-range well (off under validity lock)",
 						checked: shortRangeWellEnabled,
 						onChange: setShortRangeWellEnabled
 					}),
-					shortRangeWellEnabled && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex justify-between text-[10px]",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "text-muted",
-							children: "Well depth (kT)"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "tabular",
-							children: shortRangeWellDepthKt.toFixed(1)
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
-						min: .5,
-						max: 8,
-						step: .5,
-						value: [shortRangeWellDepthKt],
-						onValueChange: (v) => setShortRangeWellDepthKt(v[0] ?? 3),
-						"aria-label": "Short-range well depth"
-					})] }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex justify-between text-[10px]",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "text-muted",
-							children: "λ_D (nm)"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							children: "Well depth kT"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "tabular",
-							children: [debyeNm.toFixed(2), debyeOverrideNm != null ? " (override)" : " locked"]
+							children: shortRangeWellDepthKt.toFixed(1)
 						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
-						min: .4,
-						max: 1.5,
-						step: .02,
+						min: 0,
+						max: 8,
+						step: .1,
+						value: [shortRangeWellDepthKt],
+						onValueChange: (v) => setShortRangeWellDepthKt(v[0] ?? 3),
+						disabled: !shortRangeWellEnabled,
+						"aria-label": "Short range well depth"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex justify-between text-[10px]",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "text-muted",
+							children: ["λ_D (nm)", debyeOverrideNm != null ? " · override" : " · auto"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "tabular",
+							children: debyeNm.toFixed(2)
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
+						min: .3,
+						max: 2.5,
+						step: .05,
 						value: [debyeNm],
 						onValueChange: (v) => setDebyeNm(v[0] ?? .8),
 						"aria-label": "Debye length"
 					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+					debyeOverrideNm != null && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 						type: "button",
 						onClick: clearDebyeOverride,
-						className: "rounded border border-border bg-surface px-2 py-1 text-[9px] text-muted",
-						children: "Clear λ_D override (restore lock)"
+						className: "text-[9px] text-muted underline",
+						children: "Clear λ_D override"
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex justify-between text-[10px]",
@@ -8352,8 +8328,8 @@ function ControlPanel() {
 						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
-						min: 5,
-						max: 7.5,
+						min: 4,
+						max: 8,
 						step: .05,
 						value: [hisPka],
 						onValueChange: (v) => setHisPka(v[0] ?? 6.2),
@@ -8373,7 +8349,7 @@ function ControlPanel() {
 						children: [
 							"Record continuum frames (cap ",
 							500,
-							"). Clamp rulers on tape; zoom crops viewport only."
+							"). Clamp rulers on tape; zoom crops viewport only. Surgical control changes do not full-reseed."
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -8389,27 +8365,34 @@ function ControlPanel() {
 								type: "button",
 								onClick: clearEventLog,
 								className: "rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted",
-								children: "Clear log"
+								children: "Clear"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
 								onClick: toggleEventPlayback,
 								disabled: !eventLogLen,
 								className: "rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted disabled:opacity-40",
-								children: eventPlayback ? "Stop play" : "Play clamp"
+								children: eventPlayback ? "Pause tape" : "Play tape"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
-								onClick: () => setEventScrub(null),
-								className: "rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted",
-								children: "Live"
+								onClick: () => {
+									const csv = exportEventLogCsv();
+									const a = document.createElement("a");
+									a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+									a.download = "event_log_public.csv";
+									a.click();
+								},
+								disabled: !eventLogLen,
+								className: "rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted disabled:opacity-40",
+								children: "Export tape CSV"
 							})
 						]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-						className: "text-[9px] text-subtle",
+						className: "text-[9px] text-muted",
 						children: [
-							"Frames: ",
+							"Frames ",
 							eventLogLen,
 							eventTargetFrames ? ` / ${eventTargetFrames}` : "",
 							" · ",
@@ -8417,23 +8400,41 @@ function ControlPanel() {
 							" ns/frame"
 						]
 					}),
+					eventLogLen > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "mb-1 flex justify-between text-[10px]",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-muted",
+							children: "Scrub"
+						})
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slider, {
+						min: 0,
+						max: Math.max(0, eventLogLen - 1),
+						step: 1,
+						value: [0],
+						onValueChange: (v) => setEventScrub(v[0] ?? 0),
+						"aria-label": "Event scrub"
+					})] }),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "flex flex-wrap gap-1",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
+								onClick: () => setClampStart(0),
 								disabled: !eventLogLen,
-								onClick: () => {
-									if (clampStart == null) setClampStart(0);
-									if (clampEnd == null) setClampEnd(Math.max(0, eventLogLen - 1));
-								},
 								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
-								children: "Arm clamp ends"
+								children: "Clamp start"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 								type: "button",
+								onClick: () => setClampEnd(Math.max(0, eventLogLen - 1)),
 								disabled: !eventLogLen,
+								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
+								children: "Clamp end"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
 								onClick: fitClampToTape,
+								disabled: !eventLogLen,
 								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
 								children: "Fit clamp"
 							}),
@@ -8444,41 +8445,51 @@ function ControlPanel() {
 								children: "Clear clamp"
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ToggleRow, {
-								label: "Clamp loop",
+								label: "Loop clamp",
 								checked: clampLoop,
 								onChange: setClampLoop
 							})
 						]
 					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-wrap gap-1",
+					(clampStart != null || clampEnd != null) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "text-[9px] text-subtle",
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								type: "button",
-								disabled: !eventLogLen,
-								onClick: () => exportEventLogCsv(),
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
-								children: "Export tape CSV"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								type: "button",
-								disabled: clampStart == null || clampEnd == null,
-								onClick: () => exportClampCsv(),
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
-								children: "Export clamp CSV"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-								type: "button",
-								disabled: clampStart == null || clampEnd == null,
-								onClick: () => exportClampJson(),
-								className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted disabled:opacity-40",
-								children: "Export clamp JSON"
-							})
+							"Clamp [",
+							clampStart ?? "—",
+							", ",
+							clampEnd ?? "—",
+							"]"
 						]
 					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-wrap gap-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							type: "button",
+							onClick: () => {
+								const csv = exportClampCsv();
+								const a = document.createElement("a");
+								a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+								a.download = "clamp_window_public.csv";
+								a.click();
+							},
+							className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted",
+							children: "Export clamp CSV"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							type: "button",
+							onClick: () => {
+								const json = exportClampJson();
+								const a = document.createElement("a");
+								a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
+								a.download = "clamp_window_public.json";
+								a.click();
+							},
+							className: "rounded border border-border bg-surface px-1.5 py-1 text-[9px] text-muted",
+							children: "Export clamp JSON"
+						})]
+					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "mb-1 text-[9px] text-subtle",
-						children: "Tape zoom (time window)"
+						className: "mb-1 text-[10px] text-muted",
+						children: "Tape zoom"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "flex flex-wrap gap-1",
 						children: CLAMP_ZOOM_LEVELS.map((z) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
@@ -9468,6 +9479,10 @@ function MoleculoApp() {
 							className: "flex flex-wrap gap-1.5",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "rounded-md border border-border bg-panel/85 px-2.5 py-1 text-[11px] font-medium text-fg backdrop-blur-sm",
+									children: APP_VERSION_BANNER
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 									className: "rounded-md border border-border bg-panel/85 px-2.5 py-1 text-[11px] text-muted backdrop-blur-sm",
 									children: "Orbit · zoom · click ROI"
 								}),
@@ -9512,9 +9527,8 @@ function MoleculoApp() {
 								})
 							]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "max-w-md rounded-md border border-amber-500/40 bg-amber-950/70 px-2.5 py-1.5 text-[9px] leading-snug text-amber-50/95 backdrop-blur-sm",
-							title: PUBLICATION_DISCLAIMER,
-							children: "MoleculoSphere 5D · Beta v1.0 · continuum only · not MD / docking / clinical"
+							className: "max-w-md rounded-md border border-border bg-panel/85 px-2.5 py-1 text-[10px] leading-snug text-muted backdrop-blur-sm",
+							children: APP_SUBTITLE
 						})]
 					}),
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
@@ -9523,6 +9537,15 @@ function MoleculoApp() {
 						onClick: () => setPanelOpen((o) => !o),
 						"aria-label": panelOpen ? "Close controls" : "Open controls",
 						children: panelOpen ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "size-5" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Menu, { className: "size-5" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "pointer-events-none absolute inset-x-0 bottom-0 z-10 border-t border-amber-500/25 bg-amber-950/80 px-3 py-1.5 backdrop-blur-sm",
+						role: "note",
+						"aria-label": "Publication disclaimer",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-center text-[9px] leading-snug text-amber-50/95 sm:text-[10px]",
+							children: PUBLICATION_DISCLAIMER
+						})
 					})
 				]
 			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EventTape, {})]

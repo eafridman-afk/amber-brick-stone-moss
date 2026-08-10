@@ -93,6 +93,7 @@ export function buildPublicDisclosureTxt(): string {
     "Public continuum observables only — not MD, docking, or clinical prediction.",
     "Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.",
     "Public receptors A–F; Cu2+ Menkes analysis uses E and F only.",
+    "Private analyses are excluded from this public package.",
   ].join("\n");
 }
 

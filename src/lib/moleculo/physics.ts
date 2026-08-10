@@ -123,7 +123,7 @@ export const SPECIES: MoleculeSpecies[] = [
   },
   {
     id: "acetylcholine",
-    label: "ACh",
+    label: "L4-int",
     kind: "ach",
     ligandClass: "ligand4",
     radius: 0.048,

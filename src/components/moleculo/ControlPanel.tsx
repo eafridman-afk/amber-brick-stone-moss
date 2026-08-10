@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Beaker,
   Download,
@@ -6,7 +6,6 @@ import {
   Pause,
   Play,
   RotateCcw,
-  Shapes,
   BookOpen,
   SlidersHorizontal,
 } from "lucide-react";
@@ -125,10 +124,8 @@ export function ControlPanel() {
   const setLigand2Count = useSimStore((s) => s.setLigand2Count);
   const ligand2ChargeScale = useSimStore((s) => s.ligand2ChargeScale);
   const setLigand2ChargeScale = useSimStore((s) => s.setLigand2ChargeScale);
-  const ligand4Enabled = useSimStore((s) => s.ligand4Enabled);
   const setLigand4Enabled = useSimStore((s) => s.setLigand4Enabled);
-  const ligand4Count = useSimStore((s) => s.ligand4Count);
-  const setLigand4Count = useSimStore((s) => s.setLigand4Count);
+  const setLigand3Enabled = useSimStore((s) => s.setLigand3Enabled);
   const respawnOnBinding = useSimStore((s) => s.respawnOnBinding);
   const setRespawnOnBinding = useSimStore((s) => s.setRespawnOnBinding);
   const shortRangeWellEnabled = useSimStore((s) => s.shortRangeWellEnabled);
@@ -178,6 +175,12 @@ export function ControlPanel() {
   const tPrime = timeAccelerationFactor(displayDurationSec);
   const recMeta = RECEPTOR_GEOMETRIES[receptorGeometry];
 
+  // Public Beta v1.0: hard-off non-public species (no UI, no HUD rows).
+  useEffect(() => {
+    setLigand4Enabled(false);
+    setLigand3Enabled(false);
+  }, [setLigand4Enabled, setLigand3Enabled]);
+
   const hm = resolveHeavyMetal(metalMode);
   const pbActive = ligandBaseline !== "ligand2" && hm !== "off";
   const pepActive = ligandBaseline !== "ligand1" && peptideVariant !== "off";
@@ -195,8 +198,15 @@ export function ControlPanel() {
         ? `L2 ${pepLabel} ×${ligand2Count} exclusive`
         : `L2 ${pepLabel} ×${ligand2Count}`
       : "peptide absent",
-    `ACh ${ligand4Enabled ? `×${ligand4Count}` : "absent"}`,
   ].join(" · ");
+
+  /** Public HUD total = active public L–ROI terms only (no private channels). */
+  const publicUTot = (() => {
+    let t = 0;
+    if (pbActive) t += Number(roiEnergy?.energyL1His) || 0;
+    if (pepActive) t += Number(roiEnergy?.energyL2His) || 0;
+    return t;
+  })();
 
   const downloadValidationManifest = () => {
     const body = [
@@ -219,6 +229,7 @@ export function ControlPanel() {
       "  paper_figures/",
       "",
       "Primary metric: U_L–ROI = mean continuum Yukawa energy of exclusive ligand L at the receptor ROI (kT).",
+      "Private analyses are excluded from this public package.",
       "Not MD, docking, coordination chemistry, or a biological claim.",
     ].join("\n");
     const a = document.createElement("a");
@@ -372,46 +383,87 @@ export function ControlPanel() {
               </button>
             ))}
           </div>
+          <p className="mt-1 text-[9px] text-subtle">
+            Scales live integrator presentation only — locked batch/export dt unchanged.
+          </p>
         </div>
-        <p className="text-[9px] text-subtle">
-          U_L–ROI: L1 {fmtE(roiEnergy?.energyL1His)} · L2 {fmtE(roiEnergy?.energyL2His)} ·
-          tot {fmtE(roiEnergy?.energyTotal)} kT · θ {hisTheta.toFixed(2)} · switch{" "}
-          {switchDisplayOn ? "ON" : "OFF"}
-        </p>
-        <p className="text-[9px] text-muted">
-          Events prox {proximityEvents} · HH {hhBinaryEvents}
-          {meanTriggerDistNm != null && meanTriggerDistNm > 0
-            ? ` · ⟨d⟩ ${meanTriggerDistNm.toFixed(2)} nm`
-            : ""}
-          <button
-            type="button"
-            onClick={resetBehaviorCounters}
-            className="ml-1 underline decoration-border hover:text-fg"
-          >
-            reset
-          </button>
-        </p>
+      </section>
+
+      {/* Energy HUD — public ligands only; hard exclusion when toggled off */}
+      <section className="space-y-1.5 rounded-lg border border-border bg-surface/70 p-2.5">
+        <p className="text-[11px] font-medium text-fg">Energy HUD (kT)</p>
+        <div className="space-y-0.5 font-mono text-[10px]">
+          {pbActive && (
+            <div className="flex justify-between">
+              <span className="text-muted">U_HM–ROI</span>
+              <span className="tabular text-fg">{fmtE(roiEnergy?.energyL1His)}</span>
+            </div>
+          )}
+          {pepActive && (
+            <div className="flex justify-between">
+              <span className="text-muted">U_pep–ROI</span>
+              <span className="tabular text-fg">{fmtE(roiEnergy?.energyL2His)}</span>
+            </div>
+          )}
+          <div className="flex justify-between border-t border-border/60 pt-0.5">
+            <span className="text-muted">U_tot</span>
+            <span className="tabular text-fg">{fmtE(publicUTot)}</span>
+          </div>
+          <div className="flex justify-between text-subtle">
+            <span>His θ / switch</span>
+            <span className="tabular">
+              {hisTheta.toFixed(2)} · {switchDisplayOn ? "ON" : "OFF"}
+            </span>
+          </div>
+        </div>
+        {!pbActive && !pepActive && (
+          <p className="text-[9px] text-subtle">
+            No public ligand active — enable Pb²⁺/Cu²⁺ or a peptide to see U_L–ROI rows.
+          </p>
+        )}
       </section>
 
       <section className="space-y-2 rounded-lg border border-emerald-500/25 bg-emerald-950/15 p-3">
         <div className="flex items-center gap-2">
           <Download className="size-4 text-emerald-300" aria-hidden />
-          <span className="text-sm font-medium">Public validation</span>
+          <span className="text-sm font-medium">Scientific data</span>
         </div>
-        <p className="text-[9px] text-subtle">
-          Suite exports write public columns only. Frozen package:{" "}
-          <span className="text-fg">{VALIDATION_PACKAGE_PATH}</span>
-        </p>
+        <div className="grid grid-cols-2 gap-1 text-[10px]">
+          <div className="rounded border border-border bg-surface/50 px-1.5 py-1">
+            Prox events: <span className="tabular text-fg">{proximityEvents}</span>
+          </div>
+          <div className="rounded border border-border bg-surface/50 px-1.5 py-1">
+            HH events: <span className="tabular text-fg">{hhBinaryEvents}</span>
+          </div>
+          <div className="col-span-2 rounded border border-border bg-surface/50 px-1.5 py-1">
+            Mean trigger d:{" "}
+            <span className="tabular text-fg">
+              {meanTriggerDistNm != null && meanTriggerDistNm > 0
+                ? `${meanTriggerDistNm.toFixed(2)} nm`
+                : "—"}
+            </span>
+          </div>
+        </div>
         <div className="flex flex-wrap gap-1">
+          <button
+            type="button"
+            onClick={() => {
+              resetBehaviorCounters();
+              setIoMsg("Counters reset");
+            }}
+            className="rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted"
+          >
+            Reset counters
+          </button>
           <button
             type="button"
             onClick={() => {
               exportScientificSnapshot();
               setIoMsg("Scientific snapshot exported");
             }}
-            className="inline-flex items-center gap-1 rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted"
+            className="rounded border border-emerald-400/40 bg-emerald-950/30 px-2 py-1 text-[10px] text-emerald-100"
           >
-            Snapshot
+            Export JSON
           </button>
           <button
             type="button"
@@ -421,18 +473,18 @@ export function ControlPanel() {
               a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
               a.download = "scientific_snapshot_public.csv";
               a.click();
-              setIoMsg("CSV exported");
+              setIoMsg("Scientific CSV exported");
             }}
-            className="inline-flex items-center gap-1 rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted"
+            className="rounded border border-emerald-400/40 bg-emerald-950/30 px-2 py-1 text-[10px] text-emerald-100"
           >
-            CSV
+            Export CSV
           </button>
           <button
             type="button"
             onClick={async () => {
               try {
                 const msg = await saveScientificToFolder();
-                setIoMsg(msg ?? "Saved");
+                setIoMsg(msg);
               } catch (e) {
                 setIoMsg(String(e));
               }
@@ -444,7 +496,8 @@ export function ControlPanel() {
           <button
             type="button"
             onClick={() => {
-              setIoMsg(exportPaperAssetTables());
+              const msg = exportPaperAssetTables();
+              setIoMsg(msg);
             }}
             className="rounded border border-border bg-surface px-2 py-1 text-[10px] text-muted"
           >
@@ -453,6 +506,11 @@ export function ControlPanel() {
         </div>
         {ioMsg && <p className="text-[9px] text-subtle">{ioMsg}</p>}
 
+        <p className="text-[9px] text-subtle">
+          Suite exports write public columns only. Private analyses are excluded from this
+          public package. Frozen package:{" "}
+          <span className="text-fg">{VALIDATION_PACKAGE_PATH}</span>
+        </p>
         <button
           type="button"
           onClick={() => {
@@ -584,7 +642,8 @@ export function ControlPanel() {
           <span className="text-sm font-medium">Experimental programmes</span>
         </div>
         <p className="text-[9px] leading-relaxed text-subtle">
-          Locked continuum (λ_D 0.8 nm, coulombK 1.15). Exports mean±sd · public columns only.
+          Public continuum programmes only (λ_D 0.8 nm, coulombK 1.15). Exports mean±sd ·
+          public columns only. Private analyses are excluded from this public package.
         </p>
         <div className="space-y-1.5">
           {visibleProgrammeOrder().map((id) => {
@@ -597,31 +656,28 @@ export function ControlPanel() {
                   "rounded-md border p-2",
                   activeProgramme === id
                     ? "border-fuchsia-400/40 bg-fuchsia-950/30"
-                    : "border-border bg-surface/50",
+                    : "border-border bg-surface/40",
                 ].join(" ")}
               >
-                <p className="text-[11px] font-medium text-fg">{prog.shortLabel}</p>
-                <p className="mt-0.5 text-[9px] text-subtle">{prog.hypothesis}</p>
-                <div className="mt-1.5 flex flex-wrap gap-1">
+                <p className="text-[10px] font-medium text-fg">{prog.shortLabel}</p>
+                <p className="mb-1 text-[8px] leading-snug text-subtle">{prog.note}</p>
+                <div className="flex flex-wrap gap-1">
                   {sets.map((set) => (
                     <button
                       key={set.id}
                       type="button"
                       onClick={() =>
-                        applyProgrammeSetup(
-                          id as ProgrammeId,
-                          set.id,
-                          prog.receptors[0],
-                        )
+                        applyProgrammeSetup(id as ProgrammeId, set.id, prog.receptors[0])
                       }
-                      className="rounded border border-border bg-elevated px-1.5 py-1 text-[9px] text-muted hover:text-fg"
+                      className="rounded border border-border bg-elevated px-1.5 py-0.5 text-[9px] text-muted hover:text-fg"
                     >
-                      {set.label}
+                      Load {set.label}
                     </button>
                   ))}
                   <button
                     type="button"
                     onClick={async () => {
+                      setValidityMsg(`Running ${prog.shortLabel}…`);
                       try {
                         const summary = await runProgrammeSuite(id as ProgrammeId);
                         setValidityMsg(summary);
@@ -629,9 +685,9 @@ export function ControlPanel() {
                         setValidityMsg(String(e));
                       }
                     }}
-                    className="rounded border border-fuchsia-400/40 bg-fuchsia-950/30 px-1.5 py-1 text-[9px] text-fuchsia-100"
+                    className="rounded border border-fuchsia-400/40 bg-fuchsia-950/30 px-1.5 py-0.5 text-[9px] text-fuchsia-100"
                   >
-                    Run suite + export · public
+                    Run suite
                   </button>
                 </div>
               </div>
@@ -640,26 +696,22 @@ export function ControlPanel() {
         </div>
       </section>
 
-      <section className="space-y-2 rounded-lg border border-teal-500/25 bg-teal-950/15 p-3">
-        <div className="flex items-center gap-2">
-          <Shapes className="size-4 text-teal-300" aria-hidden />
-          <span className="text-sm font-medium">Receptors A–F</span>
-        </div>
-        <div className="grid grid-cols-2 gap-1">
+      <section className="space-y-2 rounded-lg border border-border bg-surface/70 p-3">
+        <span className="text-sm font-medium">Receptor</span>
+        <div className="flex flex-wrap gap-1">
           {RECEPTOR_GEOMETRY_ORDER.map((id) => {
-            const m = RECEPTOR_GEOMETRIES[id];
-            const active = receptorGeometry === id;
+            const m = RECEPTOR_GEOMETRIES[id as ReceptorGeometryId];
             return (
               <button
                 key={id}
                 type="button"
-                title={m.blurb}
+                title={m.label}
                 onClick={() => setReceptorGeometry(id as ReceptorGeometryId)}
                 className={[
-                  "rounded-md border px-2 py-1.5 text-left text-[10px]",
-                  active
+                  "rounded border px-1.5 py-1 text-[9px]",
+                  receptorGeometry === id
                     ? "border-teal-400/50 bg-teal-950/40 text-teal-100"
-                    : "border-border bg-surface text-muted hover:text-fg",
+                    : "border-border bg-surface text-muted",
                 ].join(" ")}
               >
                 {m.shortLabel}
@@ -668,32 +720,32 @@ export function ControlPanel() {
           })}
         </div>
         <p className="text-[9px] text-subtle">
-          {recMeta?.shortLabel}: {recMeta?.roiLabel}
+          {recMeta?.label} · ROI {recMeta?.roiLabel}
         </p>
       </section>
 
       <section className="space-y-2 rounded-lg border border-border bg-surface/70 p-3">
-        <span className="text-sm font-medium">Ligands (hard exclusion)</span>
+        <span className="text-sm font-medium">Ligands · public exclusive</span>
         <div className="flex flex-wrap gap-1">
           {(
             [
               ["both", "Both"],
               ["ligand1", "L1 only"],
               ["ligand2", "L2 only"],
-            ] as [LigandBaselineMode, string][]
-          ).map(([mode, label]) => (
+            ] as const
+          ).map(([mode, lab]) => (
             <button
               key={mode}
               type="button"
-              onClick={() => setLigandBaseline(mode)}
+              onClick={() => setLigandBaseline(mode as LigandBaselineMode)}
               className={[
-                "rounded border px-2 py-1 text-[10px]",
+                "rounded border px-1.5 py-1 text-[9px]",
                 ligandBaseline === mode
                   ? "border-cyan-400/50 bg-cyan-950/40 text-cyan-100"
                   : "border-border bg-surface text-muted",
               ].join(" ")}
             >
-              {label}
+              {lab}
             </button>
           ))}
         </div>
@@ -801,32 +853,6 @@ export function ControlPanel() {
             aria-label="Peptide charge scale"
           />
           <ToggleRow label="Show L2 beads" checked={showL2} onChange={setShowL2} />
-        </div>
-
-        <div className="space-y-1 rounded border border-border bg-elevated/40 p-2">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-medium text-fg">L3 · ACh (+1)</span>
-            <input
-              type="checkbox"
-              checked={ligand4Enabled}
-              onChange={(e) => setLigand4Enabled(e.target.checked)}
-              className="size-3.5 accent-cyan-500"
-              aria-label="Enable ACh"
-            />
-          </div>
-          <div className="flex justify-between text-[10px]">
-            <span className="text-muted">Count</span>
-            <span className="tabular">{ligand4Enabled ? ligand4Count : 0}</span>
-          </div>
-          <Slider
-            min={0}
-            max={30}
-            step={1}
-            value={[ligand4Enabled ? ligand4Count : 0]}
-            onValueChange={(v) => setLigand4Count(v[0] ?? 0)}
-            disabled={!ligand4Enabled}
-            aria-label="ACh count"
-          />
         </div>
 
         <ToggleRow
