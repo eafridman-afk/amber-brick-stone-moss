@@ -1,0 +1,78 @@
+{
+  "table": "tab_ligands",
+  "disclaimer": "Classical continuum electrostatics only. Educational / hypothesis-generation tool. No biological pore-block or receptor-antagonism claim without independent validation.",
+  "policy": "See tab_ligand_keep_drop.csv. Tool may implement full L1–L4; public paper default is KEEP set only.",
+  "MULTI_numbering_internal": "L1=Pb L2=peptide L3=ACh L4=5H-EAF",
+  "rows": [
+    {
+      "MULTI_ID": "L1",
+      "species": "Pb2+",
+      "q": "+2",
+      "public_action": "KEEP",
+      "representation": "metallic sphere / continuum bead",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Public continuum heavy-metal baseline"
+    },
+    {
+      "MULTI_ID": "L2",
+      "species": "KSRRRAR",
+      "q": "+5 (nominal)",
+      "public_action": "KEEP",
+      "representation": "centre-of-charge bead-chain",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Primary polybasic peptide (FCS-like continuum proxy)"
+    },
+    {
+      "MULTI_ID": "L2",
+      "species": "PRARR",
+      "q": "+3 (nominal)",
+      "public_action": "KEEP",
+      "representation": "centre-of-charge bead-chain",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Include if present in that export"
+    },
+    {
+      "MULTI_ID": "L2",
+      "species": "SLLRST",
+      "q": "+1 (nominal)",
+      "public_action": "KEEP",
+      "representation": "centre-of-charge bead-chain",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Include if present in that export; single-Arg educational proxy — not a viral infectivity claim"
+    },
+    {
+      "MULTI_ID": "L3",
+      "species": "ACh",
+      "q": "+1",
+      "public_action": "OPTIONAL",
+      "representation": "single-bead continuum proxy",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Omit unless you explicitly publicize ACh continuum results"
+    },
+    {
+      "MULTI_ID": "L4",
+      "species": "5H-EAF",
+      "q": "approx theta*4.5",
+      "public_action": "DROP",
+      "representation": "penta-His continuum polycation",
+      "titration": "HH pKa 6.2",
+      "hard_exclusion": true,
+      "notes": "Omit from public paper tables/panels by default"
+    },
+    {
+      "MULTI_ID": null,
+      "species": "Cu2+",
+      "q": "+2",
+      "public_action": "KEEP_IF_PANEL_E_F",
+      "representation": "metallic sphere / continuum bead (if enabled)",
+      "titration": "fixed",
+      "hard_exclusion": true,
+      "notes": "Only if the panel is E/F — not in default A–D public pack"
+    }
+  ]
+}

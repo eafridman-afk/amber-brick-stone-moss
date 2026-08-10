@@ -1,0 +1,85 @@
+{
+  "test_name": "yukawa_kernel_validation_two_particle",
+  "model": "MoleculoSphere5D_continuum_v1",
+  "description": "Static pair kernel dump before any dynamics. Two particles, equal charge.",
+  "particles": [
+    {
+      "id": 0,
+      "q": 1.0
+    },
+    {
+      "id": 1,
+      "q": 1.0
+    }
+  ],
+  "locked_kernel_params": {
+    "coulombK": 1.15,
+    "lambda_D_nm": 0.8,
+    "force_cutoff_nm": 3.2,
+    "r_min_nm": 0.12,
+    "short_range_well": false,
+    "energy_unit": "kT (with kT=1 continuum units)",
+    "force_unit": "kT / nm",
+    "coordinate_unit": "nm"
+  },
+  "formula": {
+    "U": "U(r) = coulombK * (q1*q2 / r) * exp(-r / lambda_D)   for 0 < r <= cutoff; else 0",
+    "dU_dr": "dU/dr = coulombK * q1*q2 * exp(-r/lambda_D) * (-1/r^2 - 1/(r*lambda_D))",
+    "F_mag": "|F| = |dU/dr|  (pair force magnitude on either particle, nm-unit continuum)",
+    "r_floor": "r_eff = max(r, r_min=0.12 nm) for numerical stability (not hit at r>=1.0)"
+  },
+  "evaluations_before_dynamics": [
+    {
+      "r_nm": 1.0,
+      "r_effective_nm": 1.0,
+      "softened": false,
+      "within_cutoff": true,
+      "U_kT": 0.3294805163892186,
+      "F_mag_kT_per_nm": 0.7413311618757419,
+      "dU_dr": -0.7413311618757419,
+      "force_direction_note": "Like charges: F repulsive (particles pushed apart); |F| = |dU/dr|"
+    },
+    {
+      "r_nm": 3.1,
+      "r_effective_nm": 3.1,
+      "softened": false,
+      "within_cutoff": true,
+      "U_kT": 0.007699189856372485,
+      "F_mag_kT_per_nm": 0.012107596951553501,
+      "dU_dr": -0.012107596951553501,
+      "force_direction_note": "Like charges: F repulsive (particles pushed apart); |F| = |dU/dr|"
+    },
+    {
+      "r_nm": 3.3,
+      "within_cutoff": false,
+      "U_kT": 0.0,
+      "F_mag_kT_per_nm": 0.0,
+      "dU_dr": 0.0,
+      "note": "r > cutoff or r <= 0 \u2192 U = 0, F = 0"
+    }
+  ],
+  "reference_r_1_0_nm": {
+    "U_kT": 0.3294805163892186,
+    "F_mag_kT_per_nm": 0.7413311618757419
+  },
+  "cutoff_bracket": {
+    "r_3_1_nm_just_inside": {
+      "U_kT": 0.007699189856372485,
+      "F_mag_kT_per_nm": 0.012107596951553501,
+      "within_cutoff": true
+    },
+    "r_3_3_nm_just_outside": {
+      "U_kT": 0.0,
+      "F_mag_kT_per_nm": 0.0,
+      "within_cutoff": false,
+      "expected": "Both U and |F| identically zero beyond cutoff"
+    }
+  },
+  "sanity": {
+    "U_at_1nm_positive_like_charges": true,
+    "U_decays_with_r_inside_cutoff": true,
+    "outside_cutoff_zero": true
+  },
+  "generated_at": "2026-08-06T15:41:33.672905+00:00",
+  "notes": "Classical continuum Yukawa only. No dynamics, no integrator, no friction/fCap applied."
+}
