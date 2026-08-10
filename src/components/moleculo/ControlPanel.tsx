@@ -176,7 +176,7 @@ export function ControlPanel() {
   const tPrime = timeAccelerationFactor(displayDurationSec);
   const recMeta = RECEPTOR_GEOMETRIES[receptorGeometry];
 
-  // Public Beta v1.0: hard-off non-public species (no UI, no HUD rows).
+  // Public Beta: hard-off non-public species (no UI, no HUD rows).
   useEffect(() => {
     setLigand4Enabled(false);
     setLigand3Enabled(false);

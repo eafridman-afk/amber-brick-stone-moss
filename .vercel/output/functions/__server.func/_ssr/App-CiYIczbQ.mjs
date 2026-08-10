@@ -4,7 +4,7 @@ import { a as Play, c as Focus, d as Beaker, i as RotateCcw, l as Download, o as
 import { i as SliderTrack, n as SliderRange, r as SliderThumb, t as Slider$1 } from "../_libs/@radix-ui/react-slider+[...].mjs";
 import { a as useFrame, c as Color, d as RGBAFormat, f as Vector3, i as Canvas, l as DataTexture, n as Line, o as useThree, r as Html, t as OrbitControls, u as LinearFilter } from "../_libs/@react-three/drei+[...].mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/App-CBwn-JUU.js
+//#region node_modules/.nitro/vite/services/ssr/assets/App-CiYIczbQ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function cn(...parts) {
@@ -7614,6 +7614,8 @@ function buildPublicDisclosureTxt() {
 		"Public continuum observables only — not MD, docking, or clinical prediction.",
 		"Public ligands: Pb2+, Cu2+ (E/F Menkes scope), KSRRRAR, PRARR, SLLRST.",
 		"Public receptors A–F; Cu2+ Menkes analysis uses E and F only.",
+		"Combo (v1.1): simultaneous HM + peptide → U_HM–ROI, U_pep–ROI, U_HM–pep, U_tot.",
+		"Charges: formal / HH (chargeSource: formal). No live quantum solver.",
 		"Private analyses are excluded from this public package."
 	].join("\n");
 }
