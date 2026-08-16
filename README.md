@@ -6,6 +6,16 @@
 
 Browser-only Debye–Hückel / Yukawa educational app for exclusive ligand–ROI continuum energies across public receptor proxies A–F.
 
+## Access
+
+| | URL |
+| --- | --- |
+| **Source** | https://github.com/eafridman-afk/MoleculoSphere5D |
+| **Live** | https://amber-brick-stone-moss.vercel.app/ |
+| **Branded Vercel** | https://moleculosphere5d.vercel.app/ — after one project rename (see `ACCESS.md`) |
+
+`https://MoleculoSphere5D` is not a valid hostname. Use the table above.
+
 ## Quick start
 
 ```bash
